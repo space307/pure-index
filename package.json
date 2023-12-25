@@ -1,0 +1,59 @@
+{
+  "name": "pure-index",
+  "type": "module",
+  "version": "0.0.3",
+  "description": "some description",
+  "main": "./bin/index.js",
+  "bin": "./bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Viktor Pasynok",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "dependencies": {
+    "@babel/parser": "7.23.6",
+    "@babel/traverse": "7.23.6",
+    "fast-glob": "3.3.2",
+    "lilconfig": "3.0.0",
+    "nanospinner": "1.1.0"
+  },
+  "engines": {
+    "node": ">= 16"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.1"
+  },
+  "keywords": [
+    "analysis",
+    "analyze",
+    "cli",
+    "dead code",
+    "dependencies",
+    "detect",
+    "duplicate",
+    "entropy",
+    "export",
+    "import",
+    "index",
+    "files",
+    "find",
+    "javascript",
+    "lint",
+    "maintenance",
+    "members",
+    "missing",
+    "monorepo",
+    "namespace",
+    "package",
+    "scan",
+    "types",
+    "typescript",
+    "unreferenced",
+    "unresolved",
+    "unused",
+    "workspace"
+  ]
+}
