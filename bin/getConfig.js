@@ -6,7 +6,8 @@ const BASE_CONFIG = {
   // https://jestjs.io/ru/docs/configuration#testpathignorepatterns-arraystring
   exclude: new Set(['node_modules']),
   babelPlugins: new Set(['typescript']),
-  indexFilePath: 'index.ts'
+  indexFilePath: 'index.ts',
+  filesBatchSize: 100
 }
 
 const getConfig = async () => {
@@ -22,7 +23,8 @@ const getConfig = async () => {
     config: {
       exclude = [],
       babelPlugins = [],
-      indexFilePath = BASE_CONFIG.indexFilePath
+      indexFilePath = BASE_CONFIG.indexFilePath,
+      filesBatchSize = BASE_CONFIG.filesBatchSize
     }
   } = result
 
@@ -31,7 +33,8 @@ const getConfig = async () => {
     : {
         exclude: new Set([...BASE_CONFIG.exclude, ...exclude]),
         babelPlugins: new Set([...BASE_CONFIG.babelPlugins, ...babelPlugins]),
-        indexFilePath
+        indexFilePath,
+        filesBatchSize
       }
 }
 
