@@ -1,8 +1,10 @@
 import { join } from 'node:path'
 import parser from '@babel/parser'
-import traverse from '@babel/traverse'
+import _traverse from '@babel/traverse'
 
-import { readFile } from './utils.js'
+import { readFile, ObservableSet } from './utils/index.js'
+
+const traverse = _traverse.default
 
 /**
  * @param {{
@@ -19,14 +21,14 @@ import { readFile } from './utils.js'
  */
 const getExports = async ({ config, pkg }) => {
   const code = await readFile(join(pkg.path, config.indexFilePath))
-  const result = new Set([])
+  const result = new ObservableSet()
 
   const ast = parser.parse(code, {
     sourceType: 'module',
-    plugins: [...config.babelPlugins]
+    plugins: config.babelPlugins
   })
 
-  traverse.default(ast, {
+  traverse(ast, {
     ExportNamedDeclaration(path) {
       if (path.node.declaration) {
         const declaration = path.node.declaration
@@ -43,6 +45,8 @@ const getExports = async ({ config, pkg }) => {
           result.add(specifier.exported.name)
         })
       }
+
+      path.skip()
     }
   })
 

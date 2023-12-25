@@ -2,34 +2,38 @@
 
 import { getConfig } from './getConfig.js'
 import { getExports } from './getExports.js'
-import { getImports } from './imports/index.js'
-import { createSpinner, printError, readJSON } from './utils.js'
+import { getUnusedExports } from './getUnusedExports/index.js'
+import { createStatusAPI, readJSON } from './utils/index.js'
 
 const config = await getConfig()
 
 const { name } = await readJSON('package.json')
 const pkg = { name, path: process.cwd() }
-
-const spinner = createSpinner({ name: pkg.name })
-
-const imports = await getImports({ config, pkg })
-
-if (imports.size === 0) {
-  spinner.error()
-  printError(`Nothing is imported from ${pkg.name}. Remove it.`)
-  process.exit(1)
-}
-
+const statusApi = createStatusAPI({ pkg })
 const exports = await getExports({ config, pkg })
+const exportsSize = exports.size
 
-const unusedExports = [...exports].filter(element => !imports.has(element))
+exports.onEmpty(statusApi.succeed)
 
-if (unusedExports.length === 0) {
-  spinner.success()
-  process.exit(0)
+if (exportsSize === 0) {
+  statusApi.failed({
+    msg: `Nothing is exported from ${pkg.name}. Remove it.`
+  })
 }
 
-spinner.error()
-printError(`Unused exports in ${pkg.name} package found`)
-process.stdout.write(`${JSON.stringify(unusedExports, undefined, 2)} \n\n`)
-process.exit(1)
+const unusedExports = await getUnusedExports({ config, pkg, exports })
+
+if (unusedExports.size === 0) {
+  statusApi.succeed()
+}
+
+if (unusedExports.size === exportsSize) {
+  statusApi.failed({
+    msg: `Nothing is imported from ${pkg.name}. Remove it.`
+  })
+}
+
+statusApi.failed({
+  msg: `Unused exports in ${pkg.name} package found`,
+  exports: unusedExports
+})
