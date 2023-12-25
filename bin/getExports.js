@@ -25,25 +25,28 @@ const getExports = async ({ config, pkg }) => {
 
   const ast = parser.parse(code, {
     sourceType: 'module',
-    plugins: config.babelPlugins
+    plugins: [...config.babelPlugins]
   })
 
   traverse(ast, {
+    ImportDeclaration(path) {
+      path.skip()
+    },
     ExportNamedDeclaration(path) {
       if (path.node.declaration) {
         const declaration = path.node.declaration
 
         if (declaration.declarations) {
           // constants and fns
-          declaration.declarations.forEach(decl => {
+          for (const decl of declaration.declarations) {
             result.add(decl.id.name)
-          })
+          }
         }
       } else if (path.node.specifiers) {
         // `export { name }`
-        path.node.specifiers.forEach(specifier => {
+        for (const specifier of path.node.specifiers) {
           result.add(specifier.exported.name)
-        })
+        }
       }
 
       path.skip()

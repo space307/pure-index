@@ -1,7 +1,7 @@
 import { parse } from '@babel/parser'
 import _traverse from '@babel/traverse'
 
-import { readFile } from '../utils/index.js'
+import { readFile } from '../../utils/index.js'
 
 const traverse = _traverse.default
 
@@ -22,7 +22,7 @@ const filterExports = async ({ file, pkg, config, exports }) => {
 
   const ast = parse(code, {
     sourceType: 'module',
-    plugins: config.babelPlugins
+    plugins: [...config.babelPlugins]
   })
 
   traverse(ast, {

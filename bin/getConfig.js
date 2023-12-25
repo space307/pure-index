@@ -7,7 +7,9 @@ const BASE_CONFIG = {
   exclude: new Set(['node_modules']),
   babelPlugins: new Set(['typescript']),
   indexFilePath: 'index.ts',
-  filesBatchSize: 100
+  batch: {
+    default: 100
+  }
 }
 
 const getConfig = async () => {
@@ -24,7 +26,7 @@ const getConfig = async () => {
       exclude = [],
       babelPlugins = [],
       indexFilePath = BASE_CONFIG.indexFilePath,
-      filesBatchSize = BASE_CONFIG.filesBatchSize
+      batch = {}
     }
   } = result
 
@@ -34,7 +36,9 @@ const getConfig = async () => {
         exclude: new Set([...BASE_CONFIG.exclude, ...exclude]),
         babelPlugins: new Set([...BASE_CONFIG.babelPlugins, ...babelPlugins]),
         indexFilePath,
-        filesBatchSize
+        batch: {
+          default: batch.default || BASE_CONFIG.batch.defaul
+        }
       }
 }
 

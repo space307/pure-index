@@ -1,13 +1,20 @@
-import { findImport } from './findImport.js'
-import { getFiles } from './getFiles.js'
-import { filterExports } from './filter.js'
+import { execSync } from 'node:child_process'
+import { join } from 'node:path'
+import fg from 'fast-glob'
+
+import { processBatch } from './processBatch/index.js'
+
+const getRepoRoot = () =>
+  execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim()
 
 /**
  * @param {{
  *   config: {
  *      exclude: Set<string>,
  *      babelPlugins: Set<string>,
- *      filesBatchSize: number
+ *      batch: {
+ *        default: number
+ *      },
  *   },
  *   pkg: {
  *      name: string,
@@ -20,21 +27,27 @@ import { filterExports } from './filter.js'
  */
 const getUnusedExports = async ({ config, pkg, exports }) => {
   const tokens = [`from '${pkg.name}'`, `from "${pkg.name}"`]
-  const files = await getFiles({ config, pkg })
 
-  for (let i = 0; i < files.length; i += config.filesBatchSize) {
-    const batch = files.slice(i, i + config.filesBatchSize)
+  const repoRoot = getRepoRoot()
+  const source = join(repoRoot, '**', '*.{ts,tsx}')
+  const ignore = [
+    ...[...config.exclude].map(x => join('**', x, '**')),
+    join(pkg.path, '**')
+  ]
 
-    const filesPromise = batch.map(async file => {
-      const found = await findImport({ file, tokens })
-      return found ? file : null
-    })
+  let batch = []
 
-    const filterPromise = (await Promise.all(filesPromise))
-      .filter(x => x !== null)
-      .map(file => filterExports({ file, pkg, config, exports }))
+  for await (const entry of fg.stream(source, { ignore })) {
+    batch.push(entry)
 
-    await Promise.all(filterPromise)
+    if (batch.length >= config.batch.default) {
+      await processBatch({ config, exports, files: batch, pkg, tokens })
+      batch = []
+    }
+  }
+
+  if (batch.length > 0) {
+    await processBatch({ config, exports, files: batch, pkg, tokens })
   }
 
   return exports
