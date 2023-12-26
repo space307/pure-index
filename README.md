@@ -16,7 +16,7 @@ npm install --save-dev pure-index
     "scripts": {
       "build": "webpack ./webpack.config.js",
 +     "check-exports": "pure-index",
-      "test": "vitest && eslint ."
+      "test": "vitest"
     }
 ```
 
