@@ -88,7 +88,7 @@ Pure Index supports two ways to define config.
 
 Allows to override the config values for package.
 
-- `--entry, -e` — specific value for _entry_
+- `--entry, -e` — sets specific value for _entry_
 
 ```diff
     "scripts": {
