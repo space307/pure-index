@@ -96,7 +96,7 @@ In fact, the task is to compare all exports and imports of the package. Anything
 4. if the size of exports _exports Set_ became equal to 0, then exit with success
 5. if _exports Set_ size is not equal to 0, then exit with an error
 
-### How the algorithm is optimized
+### How It Optimized
 
 1. file reading is divided into batches
 2. file is not immediately converted to AST. First the import of the package is searched for in the file. _createReadStream_ is used
