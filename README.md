@@ -45,6 +45,8 @@ npm install --save-dev pure-index
 
 3. Configure
 
+4. Use flags if you need to specifically override the config.
+
 ## Config
 
 Pure Index supports two ways to define config.
@@ -81,6 +83,12 @@ Pure Index supports two ways to define config.
 - `exclude (Array<string>)` — list of directories that will be excluded when searching for imports.
 - `babelPlugins (Array<string>)` — list of babel plugins that will be used when parsing files.
 - `batch.default (Number)` — number of files to be traversed in parallel. changing the value may speed up or slow down the script. choose the value yourself.
+
+## CLI usage
+
+- `--entry, -e`
+
+123
 
 ## Explanation
 
