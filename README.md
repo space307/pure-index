@@ -45,7 +45,7 @@ npm install --save-dev pure-index
 
 3. Configure
 
-4. Use flags if you need to specifically [override](#cli) the config.
+4. Use flags if you need to [override](#cli) the config values for package
 
 ## Config
 
@@ -86,7 +86,7 @@ Pure Index supports two ways to define config.
 
 ## CLI
 
-Allows to specifically override the config values for package.
+Allows to override the config values for package.
 
 - `--entry, -e`
 
