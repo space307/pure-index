@@ -10,14 +10,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: 'node:lts-buster'
+      image: 'node:16.15.0-buster'
 
     steps:
       - name: Checkouut
         uses: actions/checkout@v2
 
       - name: Install
-        run: npm i
+        run: npm ci
 
       - name: Test
         run: npm t;
