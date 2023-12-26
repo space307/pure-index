@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: 'node:16.15.0-buster'
-
+    env:
+      NO_COLOR: true
     steps:
       - name: Checkouut
         uses: actions/checkout@v2
