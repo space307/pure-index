@@ -36,10 +36,10 @@ Pure Index supports two ways to define config.
 
 ### Arguments
 
-- `exclude (Array<string>)` — description. _Default_: `['node_modules']`
-- `indexFilePath (String)` — description. _Default_: `index.ts`
-- `babelPlugins (Array<string>)` — description. _Default_: `['typescript']`
-- `batch.default (Number)` — description. _Default_: `100`
+- `exclude (Array<string>)` — list of directories that will be excluded when searching for imports. _Default_: `['node_modules']`
+- `indexFilePath (String)` — path to the package index file. relative to the package directory. _Default_: `index.ts`
+- `babelPlugins (Array<string>)` — list of babel plugins that will be used when parsing files. _Default_: `['typescript']`
+- `batch.default (Number)` — number of files to be traversed in parallel. changing the value may speed up or slow down the script. choose the value yourself. _Default_: `100`
 
 ## Explanation
 
@@ -60,3 +60,5 @@ In fact, the task is to compare all exports and imports of the package. Anything
 1. file reading is divided into batches
 2. file is not immediately converted to AST. First the import of the package is searched for in the file. _createReadStream_ is used
 3. there is an instant exit with success as soon as the size of _exports Set_ is equal to zero
+
+## Limitations
