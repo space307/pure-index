@@ -1,6 +1,29 @@
 # Pure Index
 
-Describe problem.
+Pure Index is utility for monorepos. It helps to find unused exports from packages.
+
+## Problem
+
+There is a package `a` which exports 2 functions
+
+```ts
+// "a" package index.ts file
+
+export const T = () => true
+
+export { myFn } from './myFn'
+```
+
+only 1 function from the package is used in the project
+
+```ts
+// some file
+
+import { T } from 'a'
+```
+
+This means that package `a` exports `myFn` for nothing, so we can remove its export and possibly remove all the code.
+As the code base develops, a large number of such unnecessary exports may accumulate in the monorepo. Pure Index allows you to find such exports.
 
 ## Usage
 
