@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`run check-exports in package-a 1`] = `
+"
+> check-exports
+> node ../../../../bin/index.js
+
+
+ Failed  Unused exports in package-a package found
+
+[
+  "F"
+] 
+
+"
+`;
+
+exports[`run check-exports in package-b 1`] = `
+"
+> check-exports
+> node ../../../../bin/index.js -e index.tsx
+
+"
+`;
+
+exports[`run check-exports in package-b 2`] = `
+"✔ I'm checking exports from the package-b package
+"
+`;
+
+exports[`run check-exports in package-c 1`] = `
+"
+> check-exports
+> node ../../../../bin/index.js
+
+
+ Failed  Nothing is imported from package-c. Remove it.
+
+"
+`;
