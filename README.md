@@ -105,7 +105,7 @@ Allows to override the config values for package.
 
 In fact, the task is to compare all exports and imports of the package. Anything not imported but exported are unused exports.
 
-#### Base algorithm:
+#### Algorithm:
 
 1. collect all package exports into _exports Set_
 2. traverse all files where package import may occur
