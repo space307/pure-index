@@ -99,6 +99,10 @@ Allows to override the config values for package.
     }
 ```
 
+## Tips
+
+- Use [knip](https://github.com/webpro/knip) or [ts-prune](https://github.com/nadeesha/ts-prune) to clean up unused code inside packages
+
 ## Explanation
 
 ### How It Works
