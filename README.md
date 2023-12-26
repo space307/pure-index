@@ -49,7 +49,7 @@ npm install --save-dev pure-index
 
 ## Config
 
-Pure Index supports two ways to define config.
+Pure Index supports three ways to define config.
 
 1. `.pure-index.json` config file:
 
@@ -75,6 +75,19 @@ Pure Index supports two ways to define config.
       "default": 100
     }
   }
+```
+
+3. or a more flexible `.pure-index.js` or `.pure-index.cjs` config file:
+
+```js
+module.exports = {
+  entry: 'index.ts',
+  exclude: ['node_modules'],
+  babelPlugins: ['typescript'],
+  batch: {
+    default: 100
+  }
+}
 ```
 
 ### Arguments

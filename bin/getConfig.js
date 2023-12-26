@@ -1,14 +1,12 @@
 import { join } from 'node:path'
-import { lilconfig, lilconfigSync } from 'lilconfig'
+import { lilconfig } from 'lilconfig'
 import meow from 'meow'
 
 const BASE_CONFIG = {
   entry: 'index.ts',
   exclude: new Set(['node_modules']),
   babelPlugins: new Set(['typescript']),
-  batch: {
-    default: 100
-  }
+  batch: { default: 100 }
 }
 
 const cli = meow(
@@ -27,25 +25,21 @@ const cli = meow(
 )
 
 const getConfig = async () => {
-  const result = await lilconfig('pure-index', {
-    searchPlaces: ['package.json', '.pure-index.json']
-  }).search()
-
-  if (!result) {
-    return {
-      ...BASE_CONFIG,
-      entry: cli.flags.entry || BASE_CONFIG.entry
-    }
-  }
+  const result = (await lilconfig('pure-index', {
+    searchPlaces: [
+      'package.json',
+      '.pure-index.json',
+      '.pure-index.js',
+      '.pure-index.cjs'
+    ]
+  }).search()) || { config: BASE_CONFIG }
 
   const {
-    config: {
-      exclude = [],
-      babelPlugins = [],
-      entry = BASE_CONFIG.entry,
-      batch = {}
-    }
-  } = result
+    exclude = [],
+    babelPlugins = [],
+    entry = BASE_CONFIG.entry,
+    batch = {}
+  } = result.config
 
   return result === null
     ? BASE_CONFIG
