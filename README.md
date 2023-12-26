@@ -4,6 +4,24 @@ Describe problem.
 
 ## Usage
 
+1. Install
+
+```sh
+npm install --save-dev pure-index
+```
+
+2. Add the `check-exports` script in the `package.json` of each package that needs to be checked
+
+```diff
+    "scripts": {
+      "build": "webpack ./webpack.config.js",
+  +   "check-exports": "pure-index",
+      "test": "vitest && eslint ."
+    }
+```
+
+3. Configure
+
 ## Config
 
 Pure Index supports two ways to define config.
