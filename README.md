@@ -1,5 +1,9 @@
 # 🌝 Pure Index
 
+# ☀️ Pure Index
+
+# 🌞 Pure Index
+
 Pure Index is utility for monorepos. It helps to find unused exports from packages.
 
 ## Problem
