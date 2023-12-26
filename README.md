@@ -15,7 +15,7 @@ npm install --save-dev pure-index
 ```diff
     "scripts": {
       "build": "webpack ./webpack.config.js",
-  +   "check-exports": "pure-index",
++     "check-exports": "pure-index",
       "test": "vitest && eslint ."
     }
 ```
