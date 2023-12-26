@@ -9,7 +9,8 @@ exports[`run check-exports in package-a 1`] = `
  Failed  Unused exports in package-a package found
 
 [
-  "F"
+  "F",
+  "UnusedType"
 ] 
 
 "
