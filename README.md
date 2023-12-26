@@ -53,8 +53,8 @@ Pure Index supports two ways to define config.
 
 ```json
 {
+  "entry": "index.ts",
   "exclude": ["node_modules"],
-  "indexFilePath": "index.ts",
   "babelPlugins": ["typescript"],
   "batch": {
     "default": 100
@@ -66,8 +66,8 @@ Pure Index supports two ways to define config.
 
 ```json
   "pure-index": {
+    "entry": "index.ts",
     "exclude": ["node_modules"],
-    "indexFilePath": "index.ts",
     "babelPlugins": ["typescript"],
     "batch": {
       "default": 100
@@ -77,8 +77,8 @@ Pure Index supports two ways to define config.
 
 ### Arguments
 
+- `entry (String)` — path to the package index file. relative to the package directory.
 - `exclude (Array<string>)` — list of directories that will be excluded when searching for imports.
-- `indexFilePath (String)` — path to the package index file. relative to the package directory.
 - `babelPlugins (Array<string>)` — list of babel plugins that will be used when parsing files.
 - `batch.default (Number)` — number of files to be traversed in parallel. changing the value may speed up or slow down the script. choose the value yourself.
 

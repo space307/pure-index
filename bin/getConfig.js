@@ -2,11 +2,9 @@ import { join } from 'node:path'
 import { lilconfig, lilconfigSync } from 'lilconfig'
 
 const BASE_CONFIG = {
-  // like Jest.config.testPathIgnorePatterns
-  // https://jestjs.io/ru/docs/configuration#testpathignorepatterns-arraystring
+  entry: 'index.ts',
   exclude: new Set(['node_modules']),
   babelPlugins: new Set(['typescript']),
-  indexFilePath: 'index.ts',
   batch: {
     default: 100
   }
@@ -25,7 +23,7 @@ const getConfig = async () => {
     config: {
       exclude = [],
       babelPlugins = [],
-      indexFilePath = BASE_CONFIG.indexFilePath,
+      entry = BASE_CONFIG.entry,
       batch = {}
     }
   } = result
@@ -35,7 +33,7 @@ const getConfig = async () => {
     : {
         exclude: new Set([...BASE_CONFIG.exclude, ...exclude]),
         babelPlugins: new Set([...BASE_CONFIG.babelPlugins, ...babelPlugins]),
-        indexFilePath,
+        entry,
         batch: {
           default: batch.default || BASE_CONFIG.batch.defaul
         }

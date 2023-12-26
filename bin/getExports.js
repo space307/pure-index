@@ -9,8 +9,8 @@ const traverse = _traverse.default
 /**
  * @param {{
  *   config: {
+ *      entry: string,
  *      babelPlugins: Set<string>,
- *      indexFilePath: string,
  *   },
  *   pkg: {
  *      path: string
@@ -20,7 +20,7 @@ const traverse = _traverse.default
  * @returns {Promise<Set.<string>>}
  */
 const getExports = async ({ config, pkg }) => {
-  const code = await readFile(join(pkg.path, config.indexFilePath))
+  const code = await readFile(join(pkg.path, config.entry))
   const result = new ObservableSet()
 
   const ast = parser.parse(code, {
