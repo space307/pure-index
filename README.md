@@ -100,8 +100,6 @@ Allows to specifically override the config values for package.
 }
 ```
 
-123
-
 ## Explanation
 
 ### How It Works
