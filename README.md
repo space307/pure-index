@@ -86,7 +86,19 @@ Pure Index supports two ways to define config.
 
 ## CLI
 
+Allows to specifically override the config values for package.
+
 - `--entry, -e`
+
+```json{4}
+{
+  "scripts": {
+    "build": "webpack ./webpack.config.js",
+    "check-exports": "pure-index --entry ./src/index.ts",
+    "test": "vitest"
+  }
+}
+```
 
 123
 
