@@ -31,9 +31,9 @@ const getConfig = async () => {
   return result === null
     ? BASE_CONFIG
     : {
+        entry,
         exclude: new Set([...BASE_CONFIG.exclude, ...exclude]),
         babelPlugins: new Set([...BASE_CONFIG.babelPlugins, ...babelPlugins]),
-        entry,
         batch: {
           default: batch.default || BASE_CONFIG.batch.defaul
         }
