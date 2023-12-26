@@ -88,16 +88,15 @@ Pure Index supports two ways to define config.
 
 Allows to override the config values for package.
 
-- `--entry, -e`
+- `--entry, -e` — specific value for _entry_
 
-```json{4}
-{
-  "scripts": {
-    "build": "webpack ./webpack.config.js",
-    "check-exports": "pure-index --entry ./src/index.ts",
-    "test": "vitest"
-  }
-}
+```diff
+    "scripts": {
+      "build": "webpack ./webpack.config.js",
+-     "check-exports": "pure-index",
++     "check-exports": "pure-index --entry ./src/index.ts",
+      "test": "vitest"
+    }
 ```
 
 ## Explanation
