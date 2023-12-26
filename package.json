@@ -11,7 +11,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "scripts": {
-    "test": "vitest --run --no-color"
+    "test": "vitest --run"
   },
   "dependencies": {
     "@babel/parser": "7.23.6",
