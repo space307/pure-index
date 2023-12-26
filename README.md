@@ -12,11 +12,11 @@ Pure Index supports two ways to define config.
 
 ```json
 {
-  "exclude": ["node_modules", "dist"],
-  "indexFilePath": "./src/index.ts",
-  "babelPlugins": ["typescript", "jsx"],
+  "exclude": ["node_modules"],
+  "indexFilePath": "index.ts",
+  "babelPlugins": ["typescript"],
   "batch": {
-    "default": 307
+    "default": 100
   }
 }
 ```
@@ -25,23 +25,21 @@ Pure Index supports two ways to define config.
 
 ```json
   "pure-index": {
-    "exclude": ["node_modules", "dist"],
-    "indexFilePath": "./src/index.ts",
-    "babelPlugins": ["typescript", "jsx"],
+    "exclude": ["node_modules"],
+    "indexFilePath": "index.ts",
+    "babelPlugins": ["typescript"],
     "batch": {
-      "default": 307
+      "default": 100
     }
   }
 ```
 
 ### Arguments
 
-- `exclude (Array<string>)` — list of directories that will be excluded when searching for imports. _Default_: ['node_modules']
-- `indexFilePath (String)` — path to the package index file. relative to the package directory. _Default_: index.ts
-- `babelPlugins (Array<string>)` — list of babel plugins that will be used when parsing files.<br />
-  _Default_: _['typescript']_
-- `batch.default (Number)` — number of files to be traversed in parallel. changing the value may speed up or slow down the script. choose the value yourself.<br />
-  _Default_: _100_
+- `exclude (Array<string>)` — list of directories that will be excluded when searching for imports.
+- `indexFilePath (String)` — path to the package index file. relative to the package directory.
+- `babelPlugins (Array<string>)` — list of babel plugins that will be used when parsing files.
+- `batch.default (Number)` — number of files to be traversed in parallel. changing the value may speed up or slow down the script. choose the value yourself.
 
 ## Explanation
 
