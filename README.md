@@ -36,7 +36,7 @@ Pure Index supports two ways to define config.
 
 ### Arguments
 
-- `exclude (Array<string>)` — list of directories that will be excluded when searching for imports. _Default_: `['node_modules']`
+- **exclude (Array<string>)** — list of directories that will be excluded when searching for imports. _Default_: `['node_modules']`
 - `indexFilePath (String)` — path to the package index file. relative to the package directory. _Default_: `index.ts`
 - `babelPlugins (Array<string>)` — list of babel plugins that will be used when parsing files. _Default_: `['typescript']`
 - `batch.default (Number)` — number of files to be traversed in parallel. changing the value may speed up or slow down the script. choose the value yourself. _Default_: `100`
