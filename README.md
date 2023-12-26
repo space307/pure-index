@@ -45,7 +45,7 @@ npm install --save-dev pure-index
 
 3. Configure
 
-4. Use flags if you need to specifically [override](##CLI) the config.
+4. Use flags if you need to specifically [override](#cli) the config.
 
 ## Config
 
