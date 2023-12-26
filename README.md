@@ -2,7 +2,7 @@
 
 Pure Index is utility for monorepos. It helps to find unused exports from packages.
 
-## Problem
+## Motivation
 
 There is a package `a` which exports 2 functions
 
