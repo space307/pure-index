@@ -120,13 +120,13 @@ Outputs a list of all unique uses of the package.
 
 ```sh
 npx pure-index --collect-usages my-package
-npx pure-index --u my-package
+npx pure-index -u my-package
 
 npx pure-index --collect-usages react-spring
 npx pure-index -u react-spring
 ```
 
-Useful if the package index file contains `export *` syntax. Or to search for all uses of an external package. [More info]()
+Useful if the package index file contains `export *` syntax. Or to search for all uses of an external package. [More info](#export-)
 
 ## Tips
 
@@ -136,7 +136,7 @@ Useful if the package index file contains `export *` syntax. Or to search for al
 
 ### _export \*_
 
-Pure Index when getting a list of exports does not parse `export *` to find out what is exported from there. For projects with this syntax, it may result in an inability to use the library. But Pure Index can help with replacing `export *` if you run it with the [--collect-usages flag]() and replace exports with named exports.
+Pure Index when getting a list of exports does not parse `export *` to find out what is exported from there. For projects with this syntax, it may result in an inability to use the library. But Pure Index can help with replacing `export *` if you run it with the [--collect-usages flag](#--collect-usages--u) and replace `export *` with named exports.
 
 ## Explanation
 
