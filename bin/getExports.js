@@ -1,10 +1,8 @@
 import { join } from 'node:path'
 import parser from '@babel/parser'
-import _traverse from '@babel/traverse'
+import walk from 'babel-walk'
 
 import { readFile, ObservableSet } from './utils/index.js'
-
-const traverse = _traverse.default
 
 /**
  * @param {{
@@ -28,13 +26,10 @@ const getExports = async ({ config, pkg }) => {
     plugins: [...config.babelPlugins]
   })
 
-  traverse(ast, {
-    ImportDeclaration(path) {
-      path.skip()
-    },
-    ExportNamedDeclaration(path) {
-      if (path.node.declaration) {
-        const declaration = path.node.declaration
+  const visitors = {
+    ExportNamedDeclaration(node) {
+      if (node.declaration) {
+        const declaration = node.declaration
 
         if (declaration.declarations) {
           // constants and fns
@@ -42,16 +37,16 @@ const getExports = async ({ config, pkg }) => {
             result.add(decl.id.name)
           }
         }
-      } else if (path.node.specifiers) {
+      } else if (node.specifiers) {
         // `export { name }`
-        for (const specifier of path.node.specifiers) {
+        for (const specifier of node.specifiers) {
           result.add(specifier.exported.name)
         }
       }
-
-      path.skip()
     }
-  })
+  }
+
+  walk.ancestor(visitors)(ast)
 
   return result
 }

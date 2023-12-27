@@ -1,9 +1,7 @@
 import { parse } from '@babel/parser'
-import _traverse from '@babel/traverse'
+import walk from 'babel-walk'
 
 import { readFile } from '../../utils/index.js'
-
-const traverse = _traverse.default
 
 /**
  * @param {{
@@ -25,10 +23,10 @@ const filterExports = async ({ file, pkg, config, exports }) => {
     plugins: [...config.babelPlugins]
   })
 
-  traverse(ast, {
-    ImportDeclaration(path) {
-      if (path.node.source.value === pkg.name) {
-        for (const specifier of path.node.specifiers) {
+  const visitors = {
+    ImportDeclaration(node) {
+      if (node.source.value === pkg.name) {
+        for (const specifier of node.specifiers) {
           const type = specifier.type
 
           if (type === 'ImportSpecifier' || type === 'ImportDefaultSpecifier') {
@@ -38,25 +36,17 @@ const filterExports = async ({ file, pkg, config, exports }) => {
           }
         }
       }
-
-      path.skip()
     },
-    ExportNamedDeclaration(path) {
-      if (path.node.source && path.node.source.value === pkg.name) {
-        for (const specifier of path.node.specifiers) {
+    ExportNamedDeclaration(node) {
+      if (node.source && node.source.value === pkg.name) {
+        for (const specifier of node.specifiers) {
           exports.delete(specifier.exported.name)
         }
       }
-
-      path.skip()
-    },
-    FunctionDeclaration(path) {
-      path.skip()
-    },
-    VariableDeclaration(path) {
-      path.skip()
     }
-  })
+  }
+
+  walk.ancestor(visitors)(ast)
 }
 
 export { filterExports }
