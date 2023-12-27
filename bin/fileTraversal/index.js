@@ -25,7 +25,7 @@ const getRepoRoot = () =>
  *
  * @returns {Promise<Set.<string>>}
  */
-const getUnusedExports = async ({ config, pkg, cmd }) => {
+const fileTraversal = async ({ config, pkg, cmd }) => {
   const tokens = [`from '${pkg.name}'`, `from "${pkg.name}"`]
 
   const repoRoot = getRepoRoot()
@@ -51,4 +51,4 @@ const getUnusedExports = async ({ config, pkg, cmd }) => {
   }
 }
 
-export { getUnusedExports }
+export { fileTraversal }

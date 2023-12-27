@@ -1,5 +1,5 @@
 import { getExports } from './getExports.js'
-import { getUnusedExports } from './getUnusedExports/index.js'
+import { fileTraversal } from './fileTraversal/index.js'
 import { createStatusAPI, readJSON } from './utils/index.js'
 
 /**
@@ -31,7 +31,7 @@ const main = async ({ config }) => {
     })
   }
 
-  await getUnusedExports({ config, pkg, cmd: exports.delete.bind(exports) })
+  await fileTraversal({ config, pkg, cmd: exports.delete.bind(exports) })
 
   if (exports.size === 0) {
     statusApi.succeed()

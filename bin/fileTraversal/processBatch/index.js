@@ -1,5 +1,5 @@
 import { findImport } from './findImport.js'
-import { traverse } from './traverse.js'
+import { traversal } from './traversal.js'
 
 /**
  * @param {{
@@ -23,7 +23,7 @@ const processBatch = async ({ config, cmd, files, pkg, tokens }) => {
 
   const filterPromise = (await Promise.all(filesPromise))
     .filter(x => x !== null)
-    .map(file => traverse({ config, cmd, file, pkg }))
+    .map(file => traversal({ config, cmd, file, pkg }))
 
   await Promise.all(filterPromise)
 }

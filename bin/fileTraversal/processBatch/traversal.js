@@ -15,7 +15,7 @@ import { readFile } from '../../utils/index.js'
  *   }
  * }}
  */
-const traverse = async ({ file, pkg, config, cmd }) => {
+const traversal = async ({ file, pkg, config, cmd }) => {
   const code = await readFile(file)
 
   const ast = parse(code, {
@@ -49,4 +49,4 @@ const traverse = async ({ file, pkg, config, cmd }) => {
   walk.ancestor(visitors)(ast)
 }
 
-export { traverse }
+export { traversal }

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
+import { fileTraversal } from './fileTraversal/index.js'
 import { getConfig } from './getConfig.js'
-import { getUnusedExports } from './getUnusedExports/index.js'
 import { main } from './main.js'
 
 const config = await getConfig()
@@ -9,7 +9,7 @@ const config = await getConfig()
 if (config.collectUsages) {
   const usages = new Set()
 
-  await getUnusedExports({
+  await fileTraversal({
     config,
     pkg: { name: config.collectUsages, path: '' },
     cmd: usages.add.bind(usages)
