@@ -7,6 +7,10 @@ import { createStatusAPI, readJSON } from './utils/index.js'
 
 const config = await getConfig()
 
+if (config.collectUsages) {
+  process.exit(0)
+}
+
 const { name } = await readJSON('package.json')
 const pkg = { name, path: process.cwd() }
 const statusApi = createStatusAPI({ pkg })

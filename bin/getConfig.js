@@ -6,7 +6,8 @@ const BASE_CONFIG = {
   entry: 'index.ts',
   exclude: new Set(['node_modules']),
   babelPlugins: new Set(['typescript']),
-  batch: { default: 100 }
+  batch: { default: 100 },
+  collectUsages: null
 }
 
 const cli = meow(
@@ -19,7 +20,8 @@ const cli = meow(
     allowUnknownFlags: false,
     description: false,
     flags: {
-      entry: { type: 'string', shortFlag: 'e' }
+      entry: { type: 'string', shortFlag: 'e' },
+      collectUsages: { type: 'string', shortFlag: 'u' }
     }
   }
 )
@@ -49,7 +51,8 @@ const getConfig = async () => {
         babelPlugins: new Set([...BASE_CONFIG.babelPlugins, ...babelPlugins]),
         batch: {
           default: batch.default || BASE_CONFIG.batch.defaul
-        }
+        },
+        collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages
       }
 }
 
