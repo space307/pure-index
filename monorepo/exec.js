@@ -11,5 +11,7 @@ const dirname = importMeta => path.dirname(filename(importMeta))
 export const exec = params => {
   const prefix = path.join(dirname(import.meta), params.path)
 
-  return promisify(cp.exec)(`${params.cmd} --prefix ${prefix}`)
+  return promisify(cp.exec)(
+    `${params.cmd} ${params.noPrefix ? '' : `--prefix ${prefix}`}`
+  )
 }
