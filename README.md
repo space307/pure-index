@@ -126,6 +126,10 @@ Useful if the package index file contains `export *` syntax. Or to search for al
 
 - Use [knip](https://github.com/webpro/knip) or [ts-prune](https://github.com/nadeesha/ts-prune) to clean up unused code inside packages
 
+## Limitations
+
+# `export *`
+
 ## Explanation
 
 ### How It Works
