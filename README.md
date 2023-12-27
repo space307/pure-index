@@ -112,7 +112,7 @@ Allows to override the config values for package.
     }
 ```
 
-- `--collect-usages, -u` — outputs a list of all unique uses of the package.
+- `--collect-usages, -u` — outputs a list of all unique uses of the package.<br />
   Useful if the package index file contains `export *` syntax. Or to search for all uses of an external package. [More info]()
 
 ```sh
