@@ -14,22 +14,27 @@ const readJSON = async filePath =>
 const printError = text =>
   process.stdout.write(`\n${bold(bgRed(' Failed '))} ${text}\n\n`)
 
-const createStatusAPI = ({ pkg }) => {
-  const spinner = createSpinner(
-    `I'm checking exports from the ${pkg.name} package`
-  )
+const createStatusAPI = ({ title }) => {
+  const spinner = createSpinner(title)
 
-  const succeed = () => {
+  const succeed = (params = {}) => {
+    const { set } = params
+
     spinner.success()
+
+    if (set) {
+      process.stdout.write(`${JSON.stringify([...set], undefined, 2)} \n\n`)
+    }
+
     process.exit(0)
   }
 
-  const failed = ({ msg, exports }) => {
+  const failed = ({ msg, set }) => {
     spinner.error()
     printError(msg)
 
-    if (exports) {
-      process.stdout.write(`${JSON.stringify([...exports], undefined, 2)} \n\n`)
+    if (set) {
+      process.stdout.write(`${JSON.stringify([...set], undefined, 2)} \n\n`)
     }
 
     process.exit(1)

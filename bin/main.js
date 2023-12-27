@@ -19,7 +19,9 @@ import { createStatusAPI, readJSON } from './utils/index.js'
 const main = async ({ config }) => {
   const { name } = await readJSON('package.json')
   const pkg = { name, path: process.cwd() }
-  const statusApi = createStatusAPI({ pkg })
+  const statusApi = createStatusAPI({
+    title: `Checking exports from the ${pkg.name} package`
+  })
   const exports = await getExports({ config, pkg })
   const originalExportsSize = exports.size
 
@@ -45,7 +47,7 @@ const main = async ({ config }) => {
 
   statusApi.failed({
     msg: `Unused exports in ${pkg.name} package found`,
-    exports
+    set: exports
   })
 }
 

@@ -25,7 +25,7 @@ exports[`run check-exports in package-b 1`] = `
 `;
 
 exports[`run check-exports in package-b 2`] = `
-"✔ I'm checking exports from the package-b package
+"✔ Checking exports from the package-b package
 "
 `;
 
