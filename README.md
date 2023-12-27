@@ -128,7 +128,7 @@ Useful if the package index file contains `export *` syntax. Or to search for al
 
 ## Limitations
 
-### export \*
+### _export \*_
 
 ## Explanation
 
