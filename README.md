@@ -101,7 +101,9 @@ module.exports = {
 
 Allows to override the config values for package.
 
-- `--entry, -e` — sets specific value for _entry_
+### `--entry, -e`
+
+Sets specific value for _entry_
 
 ```diff
     "scripts": {
@@ -112,12 +114,16 @@ Allows to override the config values for package.
     }
 ```
 
-- `--collect-usages, -u` — outputs a list of all unique uses of the package.
+### `--collect-usages, -u`
+
+Outputs a list of all unique uses of the package.
 
 ```sh
 npx pure-index --collect-usages my-package
+npx pure-index --u my-package
 
 npx pure-index --collect-usages react-spring
+npx pure-index -u react-spring
 ```
 
 Useful if the package index file contains `export *` syntax. Or to search for all uses of an external package. [More info]()
@@ -129,6 +135,8 @@ Useful if the package index file contains `export *` syntax. Or to search for al
 ## Limitations
 
 ### _export \*_
+
+Pure Index when getting a list of exports does not parse `export *` to find out what is exported from there. For projects with this syntax, it may result in an inability to use the library. But Pure Index can help with replacing `export *` if you run it with the [--collect-usages flag]() and replace exports with named exports.
 
 ## Explanation
 
