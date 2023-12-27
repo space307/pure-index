@@ -1,6 +1,6 @@
 # 🌿 Pure Index
 
-Pure Index is utility for monorepos. It helps to find unused exports from packages.
+Pure Index is utility for monorepos. It helps to find unused exports from packages or get a list of all unique uses of any package.
 
 ## Motivation
 
