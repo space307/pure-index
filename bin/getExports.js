@@ -7,12 +7,12 @@ import { readFile, ObservableSet } from './utils/index.js'
 /**
  * @param {{
  *   config: {
- *      entry: string,
- *      babelPlugins: Set<string>,
- *   },
+ *      entry: string
+ *      babelPlugins: Set<string>
+ *   }
  *   pkg: {
  *      path: string
- *   },
+ *   }
  * }}
  *
  * @returns {Promise<Set.<string>>}

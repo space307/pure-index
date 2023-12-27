@@ -15,12 +15,12 @@ const getRepoRoot = () =>
  *      babelPlugins: Set<string>
  *      batch: {
  *        default: number
- *      },
- *   },
+ *      }
+ *   }
  *   pkg: {
  *      name: string
- *      path: string
- *   },
+ *      path?: string
+ *   }
  * }}
  *
  * @returns {Promise<Set.<string>>}
@@ -32,7 +32,7 @@ const getUnusedExports = async ({ config, pkg, cmd }) => {
   const source = join(repoRoot, '**', '*.{ts,tsx}')
   const ignore = [
     ...[...config.exclude].map(x => join('**', x, '**')),
-    join(pkg.path, '**')
+    pkg.path ? join(pkg.path, '**') : ''
   ]
 
   let batch = []

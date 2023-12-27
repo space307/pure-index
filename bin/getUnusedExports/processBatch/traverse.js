@@ -9,10 +9,10 @@ import { readFile } from '../../utils/index.js'
  *   file: string
  *   pkg: {
  *      name: string
- *   },
+ *   }
  *   config: {
  *      babelPlugins: Set<string>
- *   },
+ *   }
  * }}
  */
 const traverse = async ({ file, pkg, config, cmd }) => {

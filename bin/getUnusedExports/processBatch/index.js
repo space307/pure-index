@@ -5,13 +5,13 @@ import { traverse } from './traverse.js'
  * @param {{
  *   cmd: {function(_: string): void}
  *   config: {
- *      babelPlugins: Set<string>,
- *   },
- *   files: Array<string>,
+ *      babelPlugins: Set<string>
+ *   }
+ *   files: Array<string>
  *   pkg: {
- *      name: string,
- *   },
- *   tokens: Array<string>,
+ *      name: string
+ *   }
+ *   tokens: Array<string>
  * }}
  *
  */

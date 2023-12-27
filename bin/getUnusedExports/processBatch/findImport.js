@@ -4,7 +4,7 @@ import { pipeline } from 'node:stream/promises'
 
 /**
  * @param {{
- *   file: string,
+ *   file: string
  *   tokens: Array<string>
  * }}
  */
