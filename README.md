@@ -132,12 +132,6 @@ Useful if the package index file contains `export *` syntax. Or to search for al
 
 - Use [knip](https://github.com/webpro/knip) or [ts-prune](https://github.com/nadeesha/ts-prune) to clean up unused code inside packages
 
-## Limitations
-
-### _export \*_
-
-Pure Index when getting a list of exports does not parse `export *` to find out what is exported from there. For projects with this syntax, it may result in an inability to use the library. But Pure Index can help with replacing `export *` if you run it with the [--collect-usages flag](#--collect-usages--u) and replace `export *` with named exports.
-
 ## Explanation
 
 ### How It Works
@@ -157,3 +151,9 @@ In fact, the task is to compare all exports and imports of the package. Anything
 1. file reading is divided into batches
 2. file is not immediately converted to AST. First the import of the package is searched for in the file. _createReadStream_ is used
 3. there is an instant exit with success as soon as the size of _exports Set_ is equal to zero
+
+## Limitations
+
+### export \*
+
+Pure Index when getting a list of exports does not parse `export *` to find out what is exported from there. For projects with this syntax, it may result in an inability to use the library. But Pure Index can help with replacing `export *`. Just run it with the [--collect-usages flag](#--collect-usages--u) and replace `export *` with named exports.
