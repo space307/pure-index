@@ -112,6 +112,15 @@ Allows to override the config values for package.
     }
 ```
 
+- `--collect-usages, -u` — outputs a list of all unique uses of the package.
+  Useful if the package index file contains `export *` syntax. Or to search for all uses of an external package. [More info]()
+
+```sh
+npx pure-index --collect-usages my-package
+
+npx pure-index --collect-usages react-spring
+```
+
 ## Tips
 
 - Use [knip](https://github.com/webpro/knip) or [ts-prune](https://github.com/nadeesha/ts-prune) to clean up unused code inside packages
