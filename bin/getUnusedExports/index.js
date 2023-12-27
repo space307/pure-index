@@ -9,23 +9,23 @@ const getRepoRoot = () =>
 
 /**
  * @param {{
+ *   cmd: {function(_: string): void}
  *   config: {
- *      exclude: Set<string>,
- *      babelPlugins: Set<string>,
+ *      exclude: Set<string>
+ *      babelPlugins: Set<string>
  *      batch: {
  *        default: number
  *      },
  *   },
  *   pkg: {
- *      name: string,
+ *      name: string
  *      path: string
  *   },
- *   exports: Set<string>
  * }}
  *
  * @returns {Promise<Set.<string>>}
  */
-const getUnusedExports = async ({ config, pkg, exports }) => {
+const getUnusedExports = async ({ config, pkg, cmd }) => {
   const tokens = [`from '${pkg.name}'`, `from "${pkg.name}"`]
 
   const repoRoot = getRepoRoot()
@@ -41,16 +41,14 @@ const getUnusedExports = async ({ config, pkg, exports }) => {
     batch.push(entry)
 
     if (batch.length >= config.batch.default) {
-      await processBatch({ config, exports, files: batch, pkg, tokens })
+      await processBatch({ config, cmd, files: batch, pkg, tokens })
       batch = []
     }
   }
 
   if (batch.length > 0) {
-    await processBatch({ config, exports, files: batch, pkg, tokens })
+    await processBatch({ config, cmd, files: batch, pkg, tokens })
   }
-
-  return exports
 }
 
 export { getUnusedExports }

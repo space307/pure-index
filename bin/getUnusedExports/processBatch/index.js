@@ -1,12 +1,12 @@
-import { filterExports } from './filter.js'
 import { findImport } from './findImport.js'
+import { traverse } from './traverse.js'
 
 /**
  * @param {{
+ *   cmd: {function(_: string): void}
  *   config: {
  *      babelPlugins: Set<string>,
  *   },
- *   exports: Set<string>
  *   files: Array<string>,
  *   pkg: {
  *      name: string,
@@ -15,7 +15,7 @@ import { findImport } from './findImport.js'
  * }}
  *
  */
-const processBatch = async ({ config, exports, files, pkg, tokens }) => {
+const processBatch = async ({ config, cmd, files, pkg, tokens }) => {
   const filesPromise = files.map(async file => {
     const found = await findImport({ file, tokens })
     return found ? file : null
@@ -23,7 +23,7 @@ const processBatch = async ({ config, exports, files, pkg, tokens }) => {
 
   const filterPromise = (await Promise.all(filesPromise))
     .filter(x => x !== null)
-    .map(file => filterExports({ config, exports, file, pkg }))
+    .map(file => traverse({ config, cmd, file, pkg }))
 
   await Promise.all(filterPromise)
 }

@@ -5,17 +5,17 @@ import { readFile } from '../../utils/index.js'
 
 /**
  * @param {{
+ *   cmd: {function(_: string): void}
  *   file: string
  *   pkg: {
  *      name: string
  *   },
  *   config: {
- *      babelPlugins: Set<string>,
+ *      babelPlugins: Set<string>
  *   },
- *   exports: Set<string>
  * }}
  */
-const filterExports = async ({ file, pkg, config, exports }) => {
+const traverse = async ({ file, pkg, config, cmd }) => {
   const code = await readFile(file)
 
   const ast = parse(code, {
@@ -30,9 +30,9 @@ const filterExports = async ({ file, pkg, config, exports }) => {
           const type = specifier.type
 
           if (type === 'ImportSpecifier' || type === 'ImportDefaultSpecifier') {
-            exports.delete(specifier.imported?.name)
+            cmd(specifier.imported?.name)
           } else if (type === 'ImportNamespaceSpecifier') {
-            exports.delete('* as ' + specifier.local.name)
+            cmd('* as ' + specifier.local.name)
           }
         }
       }
@@ -40,7 +40,7 @@ const filterExports = async ({ file, pkg, config, exports }) => {
     ExportNamedDeclaration(node) {
       if (node.source && node.source.value === pkg.name) {
         for (const specifier of node.specifiers) {
-          exports.delete(specifier.exported.name)
+          cmd(specifier.exported.name)
         }
       }
     }
@@ -49,4 +49,4 @@ const filterExports = async ({ file, pkg, config, exports }) => {
   walk.ancestor(visitors)(ast)
 }
 
-export { filterExports }
+export { traverse }

@@ -21,23 +21,23 @@ const main = async ({ config }) => {
   const pkg = { name, path: process.cwd() }
   const statusApi = createStatusAPI({ pkg })
   const exports = await getExports({ config, pkg })
-  const exportsSize = exports.size
+  const originalExportsSize = exports.size
 
   exports.onEmpty(statusApi.succeed)
 
-  if (exportsSize === 0) {
+  if (originalExportsSize === 0) {
     statusApi.failed({
       msg: `Nothing is exported from ${pkg.name}. Remove it.`
     })
   }
 
-  const unusedExports = await getUnusedExports({ config, pkg, exports })
+  await getUnusedExports({ config, pkg, cmd: exports.delete.bind(exports) })
 
-  if (unusedExports.size === 0) {
+  if (exports.size === 0) {
     statusApi.succeed()
   }
 
-  if (unusedExports.size === exportsSize) {
+  if (exports.size === originalExportsSize) {
     statusApi.failed({
       msg: `Nothing is imported from ${pkg.name}. Remove it.`
     })
@@ -45,7 +45,7 @@ const main = async ({ config }) => {
 
   statusApi.failed({
     msg: `Unused exports in ${pkg.name} package found`,
-    exports: unusedExports
+    exports
   })
 }
 
