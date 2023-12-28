@@ -23,6 +23,7 @@ const cli = meow(
     description: false,
     flags: {
       entry: { type: 'string', shortFlag: 'e' },
+      extensions: { type: 'string', shortFlag: 'x' },
       collectUsages: { type: 'string', shortFlag: 'u' }
     }
   }
@@ -56,7 +57,7 @@ const getConfig = async () => {
           default: batch.default || BASE_CONFIG.batch.defaul
         },
         collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
-        extensions
+        extensions: cli.flags.extensions || extensions
       }
 }
 
