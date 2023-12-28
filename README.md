@@ -57,6 +57,7 @@ Pure Index supports three ways to define config.
 {
   "entry": "index.ts",
   "exclude": ["node_modules"],
+  "extensions": ["ts", "tsx"],
   "babelPlugins": ["typescript"],
   "batch": {
     "default": 100
@@ -70,6 +71,7 @@ Pure Index supports three ways to define config.
   "pure-index": {
     "entry": "index.ts",
     "exclude": ["node_modules"],
+    "extensions": ["ts", "tsx"],
     "babelPlugins": ["typescript"],
     "batch": {
       "default": 100
@@ -83,6 +85,7 @@ Pure Index supports three ways to define config.
 module.exports = {
   entry: 'index.ts',
   exclude: ['node_modules'],
+  extensions: ['ts', 'tsx'],
   babelPlugins: ['typescript'],
   batch: {
     default: 100
@@ -94,6 +97,7 @@ module.exports = {
 
 - `entry (String)` — path to the package index file. relative to the package directory.
 - `exclude (Array<string>)` — list of directories that will be excluded when searching for imports.
+- `extensions (Array<string>)` — list of file extensions to be considered during the search..
 - `babelPlugins (Array<string>)` — list of babel plugins that will be used when parsing files.
 - `batch.default (Number)` — number of files to be traversed in parallel. changing the value may speed up or slow down the script. choose the value yourself.
 
@@ -103,13 +107,22 @@ Allows to override the config values for package.
 
 ### `--entry, -e`
 
-Sets specific value for _entry_
-
 ```diff
     "scripts": {
       "build": "webpack ./webpack.config.js",
 -     "check-exports": "pure-index",
 +     "check-exports": "pure-index --entry ./src/index.ts",
+      "test": "vitest"
+    }
+```
+
+### `--extensions, -x`
+
+```diff
+    "scripts": {
+      "build": "webpack ./webpack.config.js",
+-     "check-exports": "pure-index",
++     "check-exports": "pure-index --extensions js,jsx,ts,tsx",
       "test": "vitest"
     }
 ```
