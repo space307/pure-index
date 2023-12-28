@@ -1,11 +1,5 @@
-import { execSync } from 'node:child_process'
-import { join } from 'node:path'
-import fg from 'fast-glob'
-
 import { processBatch } from './processBatch/index.js'
-
-const getRepoRoot = () =>
-  execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim()
+import { getFiles } from './getFiles.js'
 
 /**
  * @param {{
@@ -26,19 +20,12 @@ const getRepoRoot = () =>
  * @returns {Promise<Set.<string>>}
  */
 const fileTraversal = async ({ config, pkg, cmd }) => {
+  const files = await getFiles({ config, pkg })
   const tokens = [`from '${pkg.name}'`, `from "${pkg.name}"`]
-
-  const repoRoot = getRepoRoot()
-  const source = join(repoRoot, '**', '*.{ts,tsx}')
-  const ignore = [
-    ...[...config.exclude].map(x => join('**', x, '**')),
-    pkg.path ? join(pkg.path, '**') : ''
-  ]
-
   let batch = []
 
-  for await (const entry of fg.stream(source, { ignore })) {
-    batch.push(entry)
+  for (const file of files) {
+    batch.push(file)
 
     if (batch.length >= config.batch.default) {
       await processBatch({ config, cmd, files: batch, pkg, tokens })
