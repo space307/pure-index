@@ -1,0 +1,6 @@
+{
+  "name": "package-a",
+  "scripts": {
+    "check-exports": "node ../../../../index.js"
+  }
+}

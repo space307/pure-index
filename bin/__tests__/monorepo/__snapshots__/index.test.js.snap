@@ -3,7 +3,7 @@
 exports[`run check-exports in package-a 1`] = `
 "
 > check-exports
-> node ../../../bin/index.js
+> node ../../../../index.js
 
 
  Failed  Unused exports in package-a package found
@@ -19,7 +19,7 @@ exports[`run check-exports in package-a 1`] = `
 exports[`run check-exports in package-b 1`] = `
 "
 > check-exports
-> node ../../../bin/index.js -e index.tsx
+> node ../../../../index.js -e index.tsx
 
 "
 `;
@@ -32,7 +32,7 @@ exports[`run check-exports in package-b 2`] = `
 exports[`run check-exports in package-c 1`] = `
 "
 > check-exports
-> node ../../../bin/index.js
+> node ../../../../index.js
 
 
  Failed  Nothing is imported from package-c. Remove it.
