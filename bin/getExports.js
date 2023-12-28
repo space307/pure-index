@@ -1,6 +1,5 @@
 import { join } from 'node:path'
 import parser from '@babel/parser'
-import walk from 'babel-walk'
 
 import { readFile, ObservableSet } from './utils/index.js'
 
@@ -26,8 +25,8 @@ const getExports = async ({ config, pkg }) => {
     plugins: [...config.babelPlugins]
   })
 
-  const visitors = {
-    ExportNamedDeclaration(node) {
+  for (const node of ast.program.body) {
+    if (node.type === 'ExportNamedDeclaration') {
       if (node.declaration) {
         const declaration = node.declaration
 
@@ -43,10 +42,9 @@ const getExports = async ({ config, pkg }) => {
           result.add(specifier.exported.name)
         }
       }
+      continue
     }
   }
-
-  walk.ancestor(visitors)(ast)
 
   return result
 }

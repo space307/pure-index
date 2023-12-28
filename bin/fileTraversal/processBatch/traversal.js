@@ -1,5 +1,4 @@
 import { parse } from '@babel/parser'
-import walk from 'babel-walk'
 
 import { readFile } from '../../utils/index.js'
 
@@ -23,30 +22,33 @@ const traversal = async ({ file, pkg, config, cmd }) => {
     plugins: [...config.babelPlugins]
   })
 
-  const visitors = {
-    ImportDeclaration(node) {
-      if (node.source.value === pkg.name) {
-        for (const specifier of node.specifiers) {
-          const type = specifier.type
+  for (const node of ast.program.body) {
+    if (node.type === 'ImportDeclaration' && node.source.value === pkg.name) {
+      for (const specifier of node.specifiers) {
+        const type = specifier.type
 
-          if (type === 'ImportSpecifier' || type === 'ImportDefaultSpecifier') {
-            cmd(specifier.imported?.name)
-          } else if (type === 'ImportNamespaceSpecifier') {
-            cmd('* as ' + specifier.local.name)
-          }
+        if (type === 'ImportSpecifier' || type === 'ImportDefaultSpecifier') {
+          cmd(specifier.imported?.name)
+        } else if (type === 'ImportNamespaceSpecifier') {
+          cmd('* as ' + specifier.local.name)
         }
       }
-    },
-    ExportNamedDeclaration(node) {
-      if (node.source && node.source.value === pkg.name) {
-        for (const specifier of node.specifiers) {
-          cmd(specifier.exported.name)
-        }
+
+      continue
+    }
+
+    if (
+      node.type === 'ExportNamedDeclaration' &&
+      node.source &&
+      node.source.value === pkg.name
+    ) {
+      for (const specifier of node.specifiers) {
+        cmd(specifier.exported.name)
       }
+
+      continue
     }
   }
-
-  walk.ancestor(visitors)(ast)
 }
 
 export { traversal }
