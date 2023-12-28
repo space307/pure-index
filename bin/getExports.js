@@ -6,8 +6,8 @@ import { readFile, ObservableSet } from './utils/index.js'
 /**
  * @param {{
  *   config: {
- *      entry: string
  *      babelPlugins: Set<string>
+ *      entry: string
  *   }
  *   pkg: {
  *      path: string

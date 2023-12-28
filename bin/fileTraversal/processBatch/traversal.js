@@ -4,13 +4,13 @@ import { readFile } from '../../utils/index.js'
 
 /**
  * @param {{
- *   cmd: {function(_: string): void}
  *   file: string
- *   pkg: {
- *      name: string
- *   }
+ *   cmd: {function(_: string): void}
  *   config: {
  *      babelPlugins: Set<string>
+ *   }
+ *   pkg: {
+ *      name: string
  *   }
  * }}
  */

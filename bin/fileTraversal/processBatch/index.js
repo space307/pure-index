@@ -3,11 +3,11 @@ import { traversal } from './traversal.js'
 
 /**
  * @param {{
+ *   files: Array<string>
  *   cmd: {function(_: string): void}
  *   config: {
  *      babelPlugins: Set<string>
  *   }
- *   files: Array<string>
  *   pkg: {
  *      name: string
  *   }

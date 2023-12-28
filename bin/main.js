@@ -5,13 +5,13 @@ import { createStatusAPI, readJSON } from './utils/index.js'
 /**
  * @param {{
  *   config: {
- *      entry: string
- *      exclude: Set<string>
- *      extensions: Array<string>
  *      babelPlugins: Set<string>
  *      batch: {
  *        default: number
  *      }
+ *      entry: string
+ *      exclude: Set<string>
+ *      extensions: Array<string>
  *   },
  * }}
  *
