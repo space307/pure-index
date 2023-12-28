@@ -8,7 +8,7 @@ const BASE_CONFIG = {
   collectUsages: null,
   entry: 'index.ts',
   exclude: new Set(['node_modules']),
-  extensions: ['.ts', '.tsx']
+  extensions: ['ts', 'tsx']
 }
 
 const cli = meow(
@@ -59,7 +59,7 @@ const getConfig = async () => {
         },
         collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
         extensions: cli.flags.extensions
-          ? cli.flags.extensions.split(',').map(x => `.${x}`)
+          ? cli.flags.extensions.split(',')
           : extensions
       }
 }

@@ -19,7 +19,7 @@ test('default value', async () => {
   expect(config).toStrictEqual({
     ...CONFIG,
     entry: 'src/index.tsx',
-    extensions: ['.js', '.jsx'],
+    extensions: ['js', 'jsx'],
     collectUsages: 'package-a'
   })
 

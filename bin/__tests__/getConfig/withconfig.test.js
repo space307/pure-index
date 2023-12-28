@@ -12,7 +12,7 @@ test('default value', async () => {
           batch: { default: 500 },
           entry: 'src/index.ts',
           exclude: ['build'],
-          extensions: ['.js', '.jsx']
+          extensions: ['js', 'jsx']
         }
       })
     })
@@ -25,7 +25,7 @@ test('default value', async () => {
     babelPlugins: new Set([...CONFIG.babelPlugins, 'jsx']),
     batch: { default: 500 },
     entry: 'src/index.ts',
-    extensions: ['.js', '.jsx'],
+    extensions: ['js', 'jsx'],
     exclude: new Set([...CONFIG.exclude, 'build'])
   })
 

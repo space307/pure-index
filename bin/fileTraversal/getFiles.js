@@ -6,7 +6,7 @@ const getRepoRoot = () =>
   execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim()
 
 const formattedExtensions = list =>
-  list.reduce((acc, ext) => acc + (acc ? ',' : '') + ext.slice(1), '')
+  list.reduce((acc, ext) => acc + (acc ? ',' : '') + ext, '')
 
 /**
  * @param {{
