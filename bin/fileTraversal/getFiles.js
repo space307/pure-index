@@ -5,10 +5,14 @@ import { fdir } from 'fdir'
 const getRepoRoot = () =>
   execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim()
 
+const formattedExtensions = list =>
+  list.reduce((acc, ext) => acc + (acc ? ',' : '') + ext.slice(1), '')
+
 /**
  * @param {{
  *   config: {
  *      exclude: Set<string>
+ *      extensions: Array<string>
  *   }
  *   pkg: {
  *      name: string
@@ -30,7 +34,11 @@ const getFiles = async ({ config, pkg }) => {
     .join('|')
   const excludeRegExp = new RegExp(exclude)
   const repoRoot = getRepoRoot()
-  const source = join(repoRoot, '**', '*.{ts,tsx}')
+  const source = join(
+    repoRoot,
+    '**',
+    `*.{${formattedExtensions(config.extensions)}}`
+  )
 
   const files = new fdir()
     .exclude(dirName => excludeRegExp.test(dirName))

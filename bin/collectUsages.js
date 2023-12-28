@@ -6,6 +6,7 @@ import { createStatusAPI } from './utils/index.js'
  *   config: {
  *      collectUsages: string
  *      exclude: Set<string>
+ *      extensions: Array<string>
  *      babelPlugins: Set<string>
  *      batch: {
  *        default: number

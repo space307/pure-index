@@ -6,6 +6,7 @@ import { getFiles } from './getFiles.js'
  *   cmd: {function(_: string): void}
  *   config: {
  *      exclude: Set<string>
+ *      extensions: Array<string>
  *      babelPlugins: Set<string>
  *      batch: {
  *        default: number

@@ -3,11 +3,12 @@ import { lilconfig } from 'lilconfig'
 import meow from 'meow'
 
 const BASE_CONFIG = {
-  entry: 'index.ts',
-  exclude: new Set(['node_modules']),
   babelPlugins: new Set(['typescript']),
   batch: { default: 100 },
-  collectUsages: null
+  collectUsages: null,
+  entry: 'index.ts',
+  exclude: new Set(['node_modules']),
+  extensions: ['.ts', '.tsx']
 }
 
 const cli = meow(
@@ -41,7 +42,8 @@ const getConfig = async () => {
     exclude = [],
     babelPlugins = [],
     entry = BASE_CONFIG.entry,
-    batch = {}
+    batch = {},
+    extensions = BASE_CONFIG.extensions
   } = result.config
 
   return result === null
@@ -53,7 +55,8 @@ const getConfig = async () => {
         batch: {
           default: batch.default || BASE_CONFIG.batch.defaul
         },
-        collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages
+        collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
+        extensions
       }
 }
 
