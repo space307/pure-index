@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`--collect-usages in package-a 1`] = `
+"[
+  "T",
+  "Value"
+] 
+
+"
+`;
+
+exports[`--collect-usages in package-a 2`] = `
+"✔ Collecting usages of package-a
+"
+`;
+
+exports[`--collect-usages in package-b 1`] = `
+"[
+  "Component"
+] 
+
+"
+`;
+
+exports[`--collect-usages in package-b 2`] = `
+"✔ Collecting usages of package-b
+"
+`;
+
+exports[`--collect-usages in package-c 1`] = `
+"
+ Failed  Nothing is used from package-c. Remove it.
+
+"
+`;

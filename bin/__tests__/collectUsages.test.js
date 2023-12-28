@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { expect, test } from 'vitest'
 
-import { exec } from './exec.js'
+import { exec } from './monorepo/exec.js'
 
 test.each([['package-a'], ['package-b'], ['package-c']])(
   '--collect-usages in %s',
