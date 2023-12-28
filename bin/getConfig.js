@@ -57,7 +57,9 @@ const getConfig = async () => {
           default: batch.default || BASE_CONFIG.batch.defaul
         },
         collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
-        extensions: cli.flags.extensions || extensions
+        extensions: cli.flags.extensions
+          ? cli.flags.extensions.split(',').map(x => `.${x}`)
+          : extensions
       }
 }
 
