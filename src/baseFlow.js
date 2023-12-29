@@ -1,8 +1,6 @@
-import { join } from 'node:path'
-
 import { getExports } from './getExports.js'
 import { fileTraversal } from './fileTraversal/index.js'
-import { createStatusAPI, readJSON } from './utils/index.js'
+import { Result } from './utils/index.js'
 
 /**
  * @param {{
@@ -13,39 +11,33 @@ import { createStatusAPI, readJSON } from './utils/index.js'
  *      exclude: Set<string>
  *      extensions: Array<string>
  *      dir: string
- *   },
+ *   }
+ *   pkg: {
+ *      path: string
+ *   }
  * }}
- *
- * @returns {Promise<void>}
  */
-const baseFlow = async ({ config }) => {
-  const { name } = await readJSON('package.json')
-  const pkg = { name, path: config.entry }
-  const statusApi = createStatusAPI({
-    title: `Checking exports from the ${pkg.name} package`
-  })
+const baseFlow = async ({ pkg, config, onEmpty }) => {
   const exports = await getExports({ config, pkg })
   const originalExportsSize = exports.size
 
-  exports.onEmpty(statusApi.succeed)
-
-  if (originalExportsSize === 0) {
-    statusApi.failed({
-      msg: `Nothing is exported from ${pkg.name}. Remove it.`
+  return new Promise(async resolve => {
+    // immediate termination
+    exports.onEmpty(() => {
+      resolve(Result.Ok({ exports }))
     })
-  }
 
-  await fileTraversal({ config, pkg, cmd: exports.delete.bind(exports) })
+    if (originalExportsSize === 0) {
+      resolve(Result.Err({ reason: 'no_exports' }))
+    }
 
-  if (exports.size === originalExportsSize) {
-    statusApi.failed({
-      msg: `Nothing is imported from ${pkg.name}. Remove it.`
-    })
-  }
+    await fileTraversal({ config, pkg, cmd: exports.delete.bind(exports) })
 
-  statusApi.failed({
-    msg: `Unused exports in ${pkg.name} package found`,
-    set: exports
+    if (exports.size === originalExportsSize) {
+      resolve(Result.Err({ reason: 'no_imports' }))
+    }
+
+    resolve(Result.Err({ exports, reason: 'unused_exports' }))
   })
 }
 

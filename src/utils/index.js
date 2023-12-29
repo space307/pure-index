@@ -1,5 +1,4 @@
 import fs from 'node:fs/promises'
-import { createSpinner } from 'nanospinner'
 import pc from 'picocolors'
 
 const { bgRed, bold } = pc
@@ -15,36 +14,7 @@ const printError = text =>
 const printSet = set =>
   process.stdout.write(`${JSON.stringify([...set], undefined, 2)} \n\n`)
 
-const createStatusAPI = ({ title }) => {
-  const spinner = createSpinner(title)
-
-  const succeed = (params = {}) => {
-    const { set } = params
-
-    spinner.success()
-
-    if (set) {
-      printSet(set)
-    }
-
-    process.exit(0)
-  }
-
-  const failed = ({ msg, set }) => {
-    spinner.error()
-    printError(msg)
-
-    if (set) {
-      printSet(set)
-    }
-
-    process.exit(1)
-  }
-
-  return { succeed, failed }
-}
-
-export { readFile, readJSON, createStatusAPI, printSet, printError }
+export { readFile, readJSON, printSet, printError }
 export { getRepoRoot } from './getRepoRoot.js'
 export { ObservableSet } from './observableSet.js'
 export { Result } from './result.js'
