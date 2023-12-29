@@ -9,7 +9,7 @@ import { createStatusAPI } from './utils/index.js'
  *      collectUsages: string
  *      exclude: Set<string>
  *      extensions: Array<string>
- *      searchDir: string
+ *      dir: string
  *   },
  * }}
  *

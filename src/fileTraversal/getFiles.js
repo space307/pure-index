@@ -9,7 +9,7 @@ const formattedExtensions = list =>
  *   config: {
  *      exclude: Set<string>
  *      extensions: Array<string>
- *      searchDir: string
+ *      dir: string
  *   }
  *   pkg: {
  *      name: string
@@ -36,7 +36,7 @@ const getFiles = async ({ config, pkg }) => {
     .exclude(dirName => excludeRegExp.test(dirName))
     .globWithOptions([source], { dot: false })
     .withFullPaths()
-    .crawl(config.searchDir)
+    .crawl(config.dir)
     .sync()
 
   return files

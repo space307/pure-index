@@ -5,5 +5,5 @@ export const CONFIG = {
   entry: 'index.ts',
   exclude: new Set(['node_modules']),
   extensions: ['ts', 'tsx'],
-  searchDir: 'repo-root'
+  dir: 'repo-root'
 }

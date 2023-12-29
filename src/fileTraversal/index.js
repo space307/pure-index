@@ -9,7 +9,7 @@ import { getFiles } from './getFiles.js'
  *      batch: number
  *      exclude: Set<string>
  *      extensions: Array<string>
- *      searchDir: string
+ *      dir: string
  *   }
  *   pkg: {
  *      name: string

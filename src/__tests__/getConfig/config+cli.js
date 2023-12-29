@@ -13,7 +13,7 @@ test('default value', async () => {
           entry: 'src/index.ts',
           exclude: ['build'],
           extensions: ['js', 'jsx'],
-          searchDir: 'dir-from-cli'
+          dir: 'dir-from-cli'
         }
       })
     })
@@ -28,7 +28,7 @@ test('default value', async () => {
         batch: 1,
         babelPlugins: 'decorators-legacy,classPrivateProperties',
         exclude: 'biba,boba,.cache,www/assets,__tests__',
-        searchDir: 'dir-from-config'
+        dir: 'dir-from-config'
       }
     }))
   }))
@@ -50,7 +50,7 @@ test('default value', async () => {
       'www/assets',
       '__tests__'
     ]),
-    searchDir: 'dir-from-cli'
+    dir: 'dir-from-cli'
   })
 
   vi.resetAllMocks()

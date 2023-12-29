@@ -13,7 +13,7 @@ test('default value', async () => {
           entry: 'src/index.ts',
           exclude: ['build'],
           extensions: ['js', 'jsx'],
-          searchDir: 'dir-from-config'
+          dir: 'dir-from-config'
         }
       })
     })
@@ -28,7 +28,7 @@ test('default value', async () => {
     entry: 'src/index.ts',
     extensions: ['js', 'jsx'],
     exclude: new Set([...CONFIG.exclude, 'build']),
-    searchDir: 'dir-from-config'
+    dir: 'dir-from-config'
   })
 
   vi.resetAllMocks()

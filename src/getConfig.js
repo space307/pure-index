@@ -9,7 +9,7 @@ const BASE_CONFIG = {
   batch: 100,
   collectUsages: null,
   entry: 'index.ts',
-  searchDir: null,
+  dir: null,
   exclude: new Set(['node_modules']),
   extensions: ['ts', 'tsx']
 }
@@ -20,7 +20,7 @@ const cli = meow(
 	  --entry, -e  path to the package index file. relative to the package directory
     --exclude, -i list of directories that will be excluded when searching for imports
     --extensions, -x  list of file extensions to be considered during the search
-    --search-dir, -s  path to the directory where imports should be searched for
+    --dir, -d  path to the directory where imports should be searched for
     --babel-plugins, -p  list of babel plugins that will be used when parsing files
     --batch, -b  number of files to be traversed in parallel
     --collect-usages, -u  outputs a list of all unique uses of the package
@@ -33,7 +33,7 @@ const cli = meow(
       entry: { type: 'string', shortFlag: 'e' },
       exclude: { type: 'string', shortFlag: 'i' },
       extensions: { type: 'string', shortFlag: 'x' },
-      searchDir: { type: 'string', shortFlag: 's' },
+      dir: { type: 'string', shortFlag: 'd' },
       babelPlugins: { type: 'string', shortFlag: 'p' },
       batch: { type: 'number', shortFlag: 'b' },
       collectUsages: { type: 'string', shortFlag: 'u' }
@@ -57,7 +57,7 @@ const getConfig = async () => {
     entry = BASE_CONFIG.entry,
     batch = BASE_CONFIG.batch,
     extensions = BASE_CONFIG.extensions,
-    searchDir
+    dir
   } = result.config
 
   return result === null
@@ -75,7 +75,7 @@ const getConfig = async () => {
         extensions: cli.flags.extensions
           ? cli.flags.extensions.split(',')
           : extensions,
-        searchDir: cli.flags.searchDir || searchDir || getRepoRoot()
+        dir: cli.flags.dir || dir || getRepoRoot()
       }
 }
 

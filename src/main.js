@@ -10,7 +10,7 @@ import { createStatusAPI, readJSON } from './utils/index.js'
  *      entry: string
  *      exclude: Set<string>
  *      extensions: Array<string>
- *      searchDir: string
+ *      dir: string
  *   },
  * }}
  *
