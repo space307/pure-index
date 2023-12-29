@@ -1,3 +1,5 @@
+import { join } from 'node:path'
+
 import { getExports } from './getExports.js'
 import { fileTraversal } from './fileTraversal/index.js'
 import { createStatusAPI, readJSON } from './utils/index.js'
@@ -18,7 +20,7 @@ import { createStatusAPI, readJSON } from './utils/index.js'
  */
 const baseFlow = async ({ config }) => {
   const { name } = await readJSON('package.json')
-  const pkg = { name, path: process.cwd() }
+  const pkg = { name, path: config.entry }
   const statusApi = createStatusAPI({
     title: `Checking exports from the ${pkg.name} package`
   })

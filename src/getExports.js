@@ -1,4 +1,3 @@
-import { join } from 'node:path'
 import parser from '@babel/parser'
 
 import { readFile, ObservableSet } from './utils/index.js'
@@ -7,7 +6,6 @@ import { readFile, ObservableSet } from './utils/index.js'
  * @param {{
  *   config: {
  *      babelPlugins: Array<string>
- *      entry: string
  *   }
  *   pkg: {
  *      path: string
@@ -17,7 +15,7 @@ import { readFile, ObservableSet } from './utils/index.js'
  * @returns {Promise<Set.<string>>}
  */
 const getExports = async ({ config, pkg }) => {
-  const code = await readFile(join(pkg.path, config.entry))
+  const code = await readFile(pkg.path)
   const result = new ObservableSet()
 
   const ast = parser.parse(code, {
