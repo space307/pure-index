@@ -3,7 +3,7 @@ import { lilconfig } from 'lilconfig'
 import meow from 'meow'
 
 const BASE_CONFIG = {
-  babelPlugins: new Set(['typescript']),
+  babelPlugins: ['typescript'],
   batch: 100,
   collectUsages: null,
   entry: 'index.ts',
@@ -12,12 +12,12 @@ const BASE_CONFIG = {
 }
 
 // todo: add exclude
-// todo: add babelPlugins
 const cli = meow(
   `
 	Options
 	  --entry, -e  path to the package index file. relative to the package directory
     --extensions, -x  list of file extensions to be considered during the search
+    --babel-plugins, -p  list of babel plugins that will be used when parsing files
     --batch, -b  number of files to be traversed in parallel
     --collect-usages, -u  outputs a list of all unique uses of the package
 `,
@@ -28,6 +28,7 @@ const cli = meow(
     flags: {
       entry: { type: 'string', shortFlag: 'e' },
       extensions: { type: 'string', shortFlag: 'x' },
+      babelPlugins: { type: 'string', shortFlag: 'p' },
       batch: { type: 'number', shortFlag: 'b' },
       collectUsages: { type: 'string', shortFlag: 'u' }
     }
@@ -46,7 +47,7 @@ const getConfig = async () => {
 
   const {
     exclude = [],
-    babelPlugins = [],
+    babelPlugins = BASE_CONFIG.babelPlugins,
     entry = BASE_CONFIG.entry,
     batch = BASE_CONFIG.batch,
     extensions = BASE_CONFIG.extensions
@@ -57,7 +58,9 @@ const getConfig = async () => {
     : {
         entry: cli.flags.entry || entry,
         exclude: new Set([...BASE_CONFIG.exclude, ...exclude]),
-        babelPlugins: new Set([...BASE_CONFIG.babelPlugins, ...babelPlugins]),
+        babelPlugins: cli.flags.babelPlugins
+          ? cli.flags.babelPlugins.split(',')
+          : babelPlugins,
         batch: cli.flags.batch || batch,
         collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
         extensions: cli.flags.extensions

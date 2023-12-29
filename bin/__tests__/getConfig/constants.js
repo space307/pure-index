@@ -1,5 +1,5 @@
 export const CONFIG = {
-  babelPlugins: new Set(['typescript']),
+  babelPlugins: ['typescript'],
   batch: 100,
   collectUsages: null,
   entry: 'index.ts',

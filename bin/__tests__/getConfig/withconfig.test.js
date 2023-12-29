@@ -22,7 +22,7 @@ test('default value', async () => {
 
   expect(config).toStrictEqual({
     ...CONFIG,
-    babelPlugins: new Set([...CONFIG.babelPlugins, 'jsx']),
+    babelPlugins: ['jsx'],
     batch: 500,
     entry: 'src/index.ts',
     extensions: ['js', 'jsx'],

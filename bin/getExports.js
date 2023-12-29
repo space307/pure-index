@@ -6,7 +6,7 @@ import { readFile, ObservableSet } from './utils/index.js'
 /**
  * @param {{
  *   config: {
- *      babelPlugins: Set<string>
+ *      babelPlugins: Array<string>
  *      entry: string
  *   }
  *   pkg: {
@@ -22,7 +22,7 @@ const getExports = async ({ config, pkg }) => {
 
   const ast = parser.parse(code, {
     sourceType: 'module',
-    plugins: [...config.babelPlugins]
+    plugins: config.babelPlugins
   })
 
   for (const node of ast.program.body) {

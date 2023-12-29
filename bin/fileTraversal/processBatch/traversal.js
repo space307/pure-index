@@ -7,7 +7,7 @@ import { readFile } from '../../utils/index.js'
  *   file: string
  *   cmd: {function(_: string): void}
  *   config: {
- *      babelPlugins: Set<string>
+ *      babelPlugins: Array<string>
  *   }
  *   pkg: {
  *      name: string
@@ -19,7 +19,7 @@ const traversal = async ({ file, pkg, config, cmd }) => {
 
   const ast = parse(code, {
     sourceType: 'module',
-    plugins: [...config.babelPlugins]
+    plugins: config.babelPlugins
   })
 
   for (const node of ast.program.body) {

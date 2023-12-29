@@ -10,7 +10,8 @@ test('default value', async () => {
         entry: 'src/index.tsx',
         extensions: 'js,jsx',
         collectUsages: 'package-a',
-        batch: 1
+        batch: 1,
+        babelPlugins: 'decorators-legacy,classPrivateProperties'
       }
     }))
   }))
@@ -22,7 +23,8 @@ test('default value', async () => {
     entry: 'src/index.tsx',
     extensions: ['js', 'jsx'],
     collectUsages: 'package-a',
-    batch: 1
+    batch: 1,
+    babelPlugins: ['decorators-legacy', 'classPrivateProperties']
   })
 
   vi.resetAllMocks()

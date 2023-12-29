@@ -5,7 +5,7 @@ import { getFiles } from './getFiles.js'
  * @param {{
  *   cmd: {function(_: string): void}
  *   config: {
- *      babelPlugins: Set<string>
+ *      babelPlugins: Array<string>
  *      batch: number
  *      exclude: Set<string>
  *      extensions: Array<string>

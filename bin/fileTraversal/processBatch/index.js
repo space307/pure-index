@@ -6,7 +6,7 @@ import { traversal } from './traversal.js'
  *   files: Array<string>
  *   cmd: {function(_: string): void}
  *   config: {
- *      babelPlugins: Set<string>
+ *      babelPlugins: Array<string>
  *   }
  *   pkg: {
  *      name: string

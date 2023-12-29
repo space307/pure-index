@@ -121,6 +121,17 @@ Allows to override the config values for package.
     }
 ```
 
+### `--babel-plugins, -p`
+
+```diff
+    "scripts": {
+      "build": "webpack ./webpack.config.js",
+-     "check-exports": "pure-index",
++     "check-exports": "pure-index --babel-plugins typescript,classPrivateProperties",
+      "test": "vitest"
+    }
+```
+
 ### `--batch, -b`
 
 ```diff

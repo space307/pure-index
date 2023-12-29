@@ -24,7 +24,8 @@ test('default value', async () => {
         entry: 'src/main.js',
         extensions: 'js,jsx,ts,tsx',
         collectUsages: 'package-a',
-        batch: 1
+        batch: 1,
+        babelPlugins: 'decorators-legacy,classPrivateProperties'
       }
     }))
   }))
@@ -33,7 +34,7 @@ test('default value', async () => {
 
   expect(config).toStrictEqual({
     ...CONFIG,
-    babelPlugins: new Set([...CONFIG.babelPlugins, 'jsx']),
+    babelPlugins: ['decorators-legacy', 'classPrivateProperties'],
     batch: 1,
     collectUsages: 'package-a',
     entry: 'src/main.js',
