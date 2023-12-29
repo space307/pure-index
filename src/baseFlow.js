@@ -37,10 +37,6 @@ const baseFlow = async ({ config }) => {
 
   await fileTraversal({ config, pkg, cmd: exports.delete.bind(exports) })
 
-  if (exports.size === 0) {
-    statusApi.succeed()
-  }
-
   if (exports.size === originalExportsSize) {
     statusApi.failed({
       msg: `Nothing is imported from ${pkg.name}. Remove it.`

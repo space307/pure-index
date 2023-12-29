@@ -47,3 +47,4 @@ const createStatusAPI = ({ title }) => {
 export { readFile, readJSON, createStatusAPI }
 export { getRepoRoot } from './getRepoRoot.js'
 export { ObservableSet } from './observableSet.js'
+export { Result } from './result.js'
