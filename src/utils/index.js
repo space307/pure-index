@@ -12,6 +12,9 @@ const readJSON = async filePath => JSON.parse(await readFile(filePath))
 const printError = text =>
   process.stdout.write(`\n${bold(bgRed(' Failed '))} ${text}\n\n`)
 
+const printSet = set =>
+  process.stdout.write(`${JSON.stringify([...set], undefined, 2)} \n\n`)
+
 const createStatusAPI = ({ title }) => {
   const spinner = createSpinner(title)
 
@@ -21,8 +24,7 @@ const createStatusAPI = ({ title }) => {
     spinner.success()
 
     if (set) {
-      const list = [...set]
-      process.stdout.write(`${JSON.stringify(list, undefined, 2)} \n\n`)
+      printSet(set)
     }
 
     process.exit(0)
@@ -33,8 +35,7 @@ const createStatusAPI = ({ title }) => {
     printError(msg)
 
     if (set) {
-      const list = [...set]
-      process.stdout.write(`${JSON.stringify(list, undefined, 2)} \n\n`)
+      printSet(set)
     }
 
     process.exit(1)
