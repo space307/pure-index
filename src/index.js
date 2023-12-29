@@ -1,4 +1,4 @@
-import { main } from './main.js'
+import { baseFlow } from './baseFlow.js'
 
 /**
  * @param {{
@@ -20,7 +20,7 @@ const find = ({ config }) => {
   const unusedExports = new Set()
 
   const tasks = config.list(x =>
-    main({
+    baseFlow({
       babelPlugins: x.babelPlugins,
       batch: config.batch,
       entry: config.entry,

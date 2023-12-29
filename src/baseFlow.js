@@ -16,7 +16,7 @@ import { createStatusAPI, readJSON } from './utils/index.js'
  *
  * @returns {Promise<void>}
  */
-const main = async ({ config }) => {
+const baseFlow = async ({ config }) => {
   const { name } = await readJSON('package.json')
   const pkg = { name, path: process.cwd() }
   const statusApi = createStatusAPI({
@@ -51,4 +51,4 @@ const main = async ({ config }) => {
   })
 }
 
-export { main }
+export { baseFlow }
