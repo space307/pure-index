@@ -23,7 +23,8 @@ const createStatusAPI = ({ title }) => {
     spinner.success()
 
     if (set) {
-      process.stdout.write(`${JSON.stringify([...set], undefined, 2)} \n\n`)
+      const list = [...set]
+      process.stdout.write(`${JSON.stringify(list, undefined, 2)} \n\n`)
     }
 
     process.exit(0)
@@ -34,7 +35,8 @@ const createStatusAPI = ({ title }) => {
     printError(msg)
 
     if (set) {
-      process.stdout.write(`${JSON.stringify([...set], undefined, 2)} \n\n`)
+      const list = [...set]
+      process.stdout.write(`${JSON.stringify(list, undefined, 2)} \n\n`)
     }
 
     process.exit(1)
