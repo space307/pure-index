@@ -1,7 +1,7 @@
-import { ususedFn } from 'package-d'
+import { unusedFn } from 'package-d'
 
 const identity = <T>(x: T) => {
-  ususedFn()
+  unusedFn()
   return x
 }
 

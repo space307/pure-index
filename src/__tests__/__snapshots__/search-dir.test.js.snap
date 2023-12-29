@@ -9,7 +9,7 @@ exports[`package-d 1`] = `
  Failed  Unused exports in package-d package found
 
 [
-  "ususedFn"
+  "unusedFn"
 ] 
 
 "

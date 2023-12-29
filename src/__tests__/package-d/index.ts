@@ -1,4 +1,4 @@
 const getRoot = () => document.getElementById('root')
-const ususedFn = () => false
+const unusedFn = () => false
 
-export { getRoot, ususedFn }
+export { getRoot, unusedFn }
