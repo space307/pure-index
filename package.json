@@ -1,7 +1,7 @@
 {
   "name": "pure-index",
   "type": "module",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "Utility for monorepos. It helps to find unused exports from packages or get a list of all unique uses of any package",
   "main": "./bin/index.js",
   "bin": "./bin/index.js",
