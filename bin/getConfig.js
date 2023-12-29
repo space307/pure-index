@@ -11,7 +11,6 @@ const BASE_CONFIG = {
   extensions: ['ts', 'tsx']
 }
 
-// todo: remove .default from batch
 // todo: add exclude
 // todo: add babelPlugins
 // todo: add batch to cli
