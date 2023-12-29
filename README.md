@@ -90,8 +90,8 @@ module.exports = {
 ### Arguments
 
 - `entry (String)` — path to the package index file. relative to the package directory.
-- `exclude (Array<string>)` — list of directories that will be excluded when searching for imports.
 - `extensions (Array<string>)` — list of file extensions to be considered during the search.
+- `exclude (Array<string>)` — list of directories that will be excluded when searching for imports.
 - `babelPlugins (Array<string>)` — list of babel plugins that will be used when parsing files.
 - `batch (Number)` — number of files to be traversed in parallel. Changing the value may speed up or slow down the script. Choose the value yourself.
 
@@ -117,6 +117,17 @@ Allows to override the config values for package.
       "build": "webpack ./webpack.config.js",
 -     "check-exports": "pure-index",
 +     "check-exports": "pure-index --extensions js,jsx,ts,tsx",
+      "test": "vitest"
+    }
+```
+
+### `--exclude, -i`
+
+```diff
+    "scripts": {
+      "build": "webpack ./webpack.config.js",
+-     "check-exports": "pure-index",
++     "check-exports": "pure-index --exclude .cache,www/assets",
       "test": "vitest"
     }
 ```

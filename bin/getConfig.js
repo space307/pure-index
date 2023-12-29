@@ -11,11 +11,11 @@ const BASE_CONFIG = {
   extensions: ['ts', 'tsx']
 }
 
-// todo: add exclude
 const cli = meow(
   `
 	Options
 	  --entry, -e  path to the package index file. relative to the package directory
+    --exclude, -i list of directories that will be excluded when searching for imports
     --extensions, -x  list of file extensions to be considered during the search
     --babel-plugins, -p  list of babel plugins that will be used when parsing files
     --batch, -b  number of files to be traversed in parallel
@@ -27,6 +27,7 @@ const cli = meow(
     description: false,
     flags: {
       entry: { type: 'string', shortFlag: 'e' },
+      exclude: { type: 'string', shortFlag: 'i' },
       extensions: { type: 'string', shortFlag: 'x' },
       babelPlugins: { type: 'string', shortFlag: 'p' },
       batch: { type: 'number', shortFlag: 'b' },
@@ -57,7 +58,9 @@ const getConfig = async () => {
     ? BASE_CONFIG
     : {
         entry: cli.flags.entry || entry,
-        exclude: new Set([...BASE_CONFIG.exclude, ...exclude]),
+        exclude: cli.flags.exclude
+          ? new Set([...BASE_CONFIG.exclude, ...cli.flags.exclude.split(',')])
+          : new Set([...BASE_CONFIG.exclude, ...exclude]),
         babelPlugins: cli.flags.babelPlugins
           ? cli.flags.babelPlugins.split(',')
           : babelPlugins,

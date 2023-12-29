@@ -11,7 +11,8 @@ test('default value', async () => {
         extensions: 'js,jsx',
         collectUsages: 'package-a',
         batch: 1,
-        babelPlugins: 'decorators-legacy,classPrivateProperties'
+        babelPlugins: 'decorators-legacy,classPrivateProperties',
+        exclude: 'biba,boba,.cache,www/assets,__tests__'
       }
     }))
   }))
@@ -24,7 +25,15 @@ test('default value', async () => {
     extensions: ['js', 'jsx'],
     collectUsages: 'package-a',
     batch: 1,
-    babelPlugins: ['decorators-legacy', 'classPrivateProperties']
+    babelPlugins: ['decorators-legacy', 'classPrivateProperties'],
+    exclude: new Set([
+      'node_modules',
+      'biba',
+      'boba',
+      '.cache',
+      'www/assets',
+      '__tests__'
+    ])
   })
 
   vi.resetAllMocks()
