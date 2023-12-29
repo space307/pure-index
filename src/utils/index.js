@@ -44,7 +44,8 @@ const createStatusAPI = ({ title }) => {
   return { succeed, failed }
 }
 
-export { readFile, readJSON, createStatusAPI }
+export { readFile, readJSON, createStatusAPI, printSet, printError }
 export { getRepoRoot } from './getRepoRoot.js'
 export { ObservableSet } from './observableSet.js'
 export { Result } from './result.js'
+export { createSpinner } from 'nanospinner'

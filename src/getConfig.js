@@ -79,4 +79,4 @@ const getConfig = async () => {
       }
 }
 
-export { getConfig }
+export { getConfig, BASE_CONFIG }

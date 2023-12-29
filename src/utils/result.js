@@ -1,6 +1,6 @@
 class Result {
-  constructor(isSuccess, value, error) {
-    this.isSuccess = isSuccess
+  constructor(success, value, error) {
+    this.success = success
     this.value = value
     this.error = error
   }
