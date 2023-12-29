@@ -9,7 +9,8 @@ test('default value', async () => {
       flags: {
         entry: 'src/index.tsx',
         extensions: 'js,jsx',
-        collectUsages: 'package-a'
+        collectUsages: 'package-a',
+        batch: 1
       }
     }))
   }))
@@ -20,7 +21,8 @@ test('default value', async () => {
     ...CONFIG,
     entry: 'src/index.tsx',
     extensions: ['js', 'jsx'],
-    collectUsages: 'package-a'
+    collectUsages: 'package-a',
+    batch: 1
   })
 
   vi.resetAllMocks()

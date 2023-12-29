@@ -23,7 +23,8 @@ test('default value', async () => {
       flags: {
         entry: 'src/main.js',
         extensions: 'js,jsx,ts,tsx',
-        collectUsages: 'package-a'
+        collectUsages: 'package-a',
+        batch: 1
       }
     }))
   }))
@@ -33,7 +34,7 @@ test('default value', async () => {
   expect(config).toStrictEqual({
     ...CONFIG,
     babelPlugins: new Set([...CONFIG.babelPlugins, 'jsx']),
-    batch: 500,
+    batch: 1,
     collectUsages: 'package-a',
     entry: 'src/main.js',
     extensions: ['js', 'jsx', 'ts', 'tsx'],

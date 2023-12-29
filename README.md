@@ -121,6 +121,17 @@ Allows to override the config values for package.
     }
 ```
 
+### `--batch, -b`
+
+```diff
+    "scripts": {
+      "build": "webpack ./webpack.config.js",
+-     "check-exports": "pure-index",
++     "check-exports": "pure-index --batch 500",
+      "test": "vitest"
+    }
+```
+
 ### `--collect-usages, -u`
 
 Outputs a list of all unique uses of the package.

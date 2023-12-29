@@ -13,13 +13,13 @@ const BASE_CONFIG = {
 
 // todo: add exclude
 // todo: add babelPlugins
-// todo: add batch to cli
 const cli = meow(
   `
 	Options
 	  --entry, -e  path to the package index file. relative to the package directory
-    --collect-usages, -u  outputs a list of all unique uses of the package
     --extensions, -x  list of file extensions to be considered during the search
+    --batch, -b  number of files to be traversed in parallel
+    --collect-usages, -u  outputs a list of all unique uses of the package
 `,
   {
     importMeta: import.meta,
@@ -28,6 +28,7 @@ const cli = meow(
     flags: {
       entry: { type: 'string', shortFlag: 'e' },
       extensions: { type: 'string', shortFlag: 'x' },
+      batch: { type: 'number', shortFlag: 'b' },
       collectUsages: { type: 'string', shortFlag: 'u' }
     }
   }
@@ -57,7 +58,7 @@ const getConfig = async () => {
         entry: cli.flags.entry || entry,
         exclude: new Set([...BASE_CONFIG.exclude, ...exclude]),
         babelPlugins: new Set([...BASE_CONFIG.babelPlugins, ...babelPlugins]),
-        batch,
+        batch: cli.flags.batch || batch,
         collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
         extensions: cli.flags.extensions
           ? cli.flags.extensions.split(',')
