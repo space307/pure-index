@@ -105,6 +105,8 @@ Allows to override the config values for package.
 
 ### `--entry, -e`
 
+<details><summary><b>Show instructions</b></summary>
+
 ```diff
     "scripts": {
       "build": "webpack ./webpack.config.js",
@@ -114,7 +116,11 @@ Allows to override the config values for package.
     }
 ```
 
+</details>
+
 ### `--extensions, -x`
+
+<details><summary><b>Show instructions</b></summary>
 
 ```diff
     "scripts": {
@@ -125,7 +131,11 @@ Allows to override the config values for package.
     }
 ```
 
+</details>
+
 ### `--exclude, -i`
+
+<details><summary><b>Show instructions</b></summary>
 
 ```diff
     "scripts": {
@@ -136,7 +146,11 @@ Allows to override the config values for package.
     }
 ```
 
+</details>
+
 ### `--search-dir, -s`
+
+<details><summary><b>Show instructions</b></summary>
 
 ```diff
     "scripts": {
@@ -147,7 +161,11 @@ Allows to override the config values for package.
     }
 ```
 
+</details>
+
 ### `--babel-plugins, -p`
+
+<details><summary><b>Show instructions</b></summary>
 
 ```diff
     "scripts": {
@@ -158,7 +176,11 @@ Allows to override the config values for package.
     }
 ```
 
+</details>
+
 ### `--batch, -b`
+
+<details><summary><b>Show instructions</b></summary>
 
 ```diff
     "scripts": {
@@ -168,6 +190,8 @@ Allows to override the config values for package.
       "test": "vitest"
     }
 ```
+
+</details>
 
 ### `--collect-usages, -u`
 
