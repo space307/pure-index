@@ -12,7 +12,8 @@ test('default value', async () => {
           batch: 500,
           entry: 'src/index.ts',
           exclude: ['build'],
-          extensions: ['js', 'jsx']
+          extensions: ['js', 'jsx'],
+          searchDir: 'dir-from-config'
         }
       })
     })
@@ -26,7 +27,8 @@ test('default value', async () => {
     batch: 500,
     entry: 'src/index.ts',
     extensions: ['js', 'jsx'],
-    exclude: new Set([...CONFIG.exclude, 'build'])
+    exclude: new Set([...CONFIG.exclude, 'build']),
+    searchDir: 'dir-from-config'
   })
 
   vi.resetAllMocks()

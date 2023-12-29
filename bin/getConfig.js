@@ -2,11 +2,14 @@ import { join } from 'node:path'
 import { lilconfig } from 'lilconfig'
 import meow from 'meow'
 
+import { getRepoRoot } from './utils/index.js'
+
 const BASE_CONFIG = {
   babelPlugins: ['typescript'],
   batch: 100,
   collectUsages: null,
   entry: 'index.ts',
+  searchDir: null,
   exclude: new Set(['node_modules']),
   extensions: ['ts', 'tsx']
 }
@@ -17,6 +20,7 @@ const cli = meow(
 	  --entry, -e  path to the package index file. relative to the package directory
     --exclude, -i list of directories that will be excluded when searching for imports
     --extensions, -x  list of file extensions to be considered during the search
+    --search-dir, -s  path to the directory where imports should be searched for
     --babel-plugins, -p  list of babel plugins that will be used when parsing files
     --batch, -b  number of files to be traversed in parallel
     --collect-usages, -u  outputs a list of all unique uses of the package
@@ -29,6 +33,7 @@ const cli = meow(
       entry: { type: 'string', shortFlag: 'e' },
       exclude: { type: 'string', shortFlag: 'i' },
       extensions: { type: 'string', shortFlag: 'x' },
+      searchDir: { type: 'string', shortFlag: 's' },
       babelPlugins: { type: 'string', shortFlag: 'p' },
       batch: { type: 'number', shortFlag: 'b' },
       collectUsages: { type: 'string', shortFlag: 'u' }
@@ -51,7 +56,8 @@ const getConfig = async () => {
     babelPlugins = BASE_CONFIG.babelPlugins,
     entry = BASE_CONFIG.entry,
     batch = BASE_CONFIG.batch,
-    extensions = BASE_CONFIG.extensions
+    extensions = BASE_CONFIG.extensions,
+    searchDir
   } = result.config
 
   return result === null
@@ -68,7 +74,8 @@ const getConfig = async () => {
         collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
         extensions: cli.flags.extensions
           ? cli.flags.extensions.split(',')
-          : extensions
+          : extensions,
+        searchDir: cli.flags.searchDir || searchDir || getRepoRoot()
       }
 }
 

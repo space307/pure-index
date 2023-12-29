@@ -4,5 +4,6 @@ export const CONFIG = {
   collectUsages: null,
   entry: 'index.ts',
   exclude: new Set(['node_modules']),
-  extensions: ['ts', 'tsx']
+  extensions: ['ts', 'tsx'],
+  searchDir: 'repo-root'
 }

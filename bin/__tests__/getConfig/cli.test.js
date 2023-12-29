@@ -12,7 +12,8 @@ test('default value', async () => {
         collectUsages: 'package-a',
         batch: 1,
         babelPlugins: 'decorators-legacy,classPrivateProperties',
-        exclude: 'biba,boba,.cache,www/assets,__tests__'
+        exclude: 'biba,boba,.cache,www/assets,__tests__',
+        searchDir: 'dir-from-cli'
       }
     }))
   }))
@@ -33,7 +34,8 @@ test('default value', async () => {
       '.cache',
       'www/assets',
       '__tests__'
-    ])
+    ]),
+    searchDir: 'dir-from-cli'
   })
 
   vi.resetAllMocks()

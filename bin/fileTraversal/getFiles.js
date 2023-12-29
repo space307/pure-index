@@ -1,9 +1,5 @@
-import { execSync } from 'node:child_process'
 import { join } from 'node:path'
 import { fdir } from 'fdir'
-
-const getRepoRoot = () =>
-  execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim()
 
 const formattedExtensions = list =>
   list.reduce((acc, ext) => acc + (acc ? ',' : '') + ext, '')
@@ -13,6 +9,7 @@ const formattedExtensions = list =>
  *   config: {
  *      exclude: Set<string>
  *      extensions: Array<string>
+ *      searchDir: string
  *   }
  *   pkg: {
  *      name: string
@@ -33,18 +30,13 @@ const getFiles = async ({ config, pkg }) => {
     )
     .join('|')
   const excludeRegExp = new RegExp(exclude)
-  const repoRoot = getRepoRoot()
-  const source = join(
-    repoRoot,
-    '**',
-    `*.{${formattedExtensions(config.extensions)}}`
-  )
+  const source = join('**', `*.{${formattedExtensions(config.extensions)}}`)
 
   const files = new fdir()
     .exclude(dirName => excludeRegExp.test(dirName))
     .globWithOptions([source], { dot: false })
     .withFullPaths()
-    .crawl(repoRoot)
+    .crawl(config.searchDir)
     .sync()
 
   return files
