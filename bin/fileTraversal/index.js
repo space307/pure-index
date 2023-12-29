@@ -6,9 +6,7 @@ import { getFiles } from './getFiles.js'
  *   cmd: {function(_: string): void}
  *   config: {
  *      babelPlugins: Set<string>
- *      batch: {
- *        default: number
- *      }
+ *      batch: number
  *      exclude: Set<string>
  *      extensions: Array<string>
  *   }
@@ -28,7 +26,7 @@ const fileTraversal = async ({ config, pkg, cmd }) => {
   for (const file of files) {
     batch.push(file)
 
-    if (batch.length >= config.batch.default) {
+    if (batch.length >= config.batch) {
       await processBatch({ config, cmd, files: batch, pkg, tokens })
       batch = []
     }

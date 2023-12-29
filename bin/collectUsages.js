@@ -5,9 +5,7 @@ import { createStatusAPI } from './utils/index.js'
  * @param {{
  *   config: {
  *      babelPlugins: Set<string>
- *      batch: {
- *        default: number
- *      }
+ *      batch: number
  *      collectUsages: string
  *      exclude: Set<string>
  *      extensions: Array<string>

@@ -4,13 +4,17 @@ import meow from 'meow'
 
 const BASE_CONFIG = {
   babelPlugins: new Set(['typescript']),
-  batch: { default: 100 },
+  batch: 100,
   collectUsages: null,
   entry: 'index.ts',
   exclude: new Set(['node_modules']),
   extensions: ['ts', 'tsx']
 }
 
+// todo: remove .default from batch
+// todo: add exclude
+// todo: add babelPlugins
+// todo: add batch to cli
 const cli = meow(
   `
 	Options
@@ -44,7 +48,7 @@ const getConfig = async () => {
     exclude = [],
     babelPlugins = [],
     entry = BASE_CONFIG.entry,
-    batch = {},
+    batch = BASE_CONFIG.batch,
     extensions = BASE_CONFIG.extensions
   } = result.config
 
@@ -54,9 +58,7 @@ const getConfig = async () => {
         entry: cli.flags.entry || entry,
         exclude: new Set([...BASE_CONFIG.exclude, ...exclude]),
         babelPlugins: new Set([...BASE_CONFIG.babelPlugins, ...babelPlugins]),
-        batch: {
-          default: batch.default || BASE_CONFIG.batch.defaul
-        },
+        batch,
         collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
         extensions: cli.flags.extensions
           ? cli.flags.extensions.split(',')

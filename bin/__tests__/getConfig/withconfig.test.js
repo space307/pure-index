@@ -9,7 +9,7 @@ test('default value', async () => {
       search: () => ({
         config: {
           babelPlugins: ['jsx'],
-          batch: { default: 500 },
+          batch: 500,
           entry: 'src/index.ts',
           exclude: ['build'],
           extensions: ['js', 'jsx']
@@ -23,7 +23,7 @@ test('default value', async () => {
   expect(config).toStrictEqual({
     ...CONFIG,
     babelPlugins: new Set([...CONFIG.babelPlugins, 'jsx']),
-    batch: { default: 500 },
+    batch: 500,
     entry: 'src/index.ts',
     extensions: ['js', 'jsx'],
     exclude: new Set([...CONFIG.exclude, 'build'])
