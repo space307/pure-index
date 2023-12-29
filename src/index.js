@@ -21,12 +21,14 @@ const find = ({ config }) => {
 
   const tasks = config.list(x =>
     baseFlow({
-      babelPlugins: x.babelPlugins,
-      batch: config.batch,
-      entry: config.entry,
-      exclude: x.exclude,
-      extensions: x.extensions,
-      dir: x.dir
+      config: {
+        babelPlugins: x.babelPlugins,
+        batch: config.batch,
+        entry: config.entry,
+        exclude: x.exclude,
+        extensions: x.extensions,
+        dir: x.dir
+      }
     })
   )
 
