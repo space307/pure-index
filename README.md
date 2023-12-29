@@ -92,6 +92,14 @@ module.exports = {
 
 ### Arguments
 
+#### entry
+
+_String_ Path to the package index file. relative to the package directory. Default: `'lol'`
+
+#### extensions
+
+_Array<string>_ List of file extensions to be considered during the search. Default: `[ts,tsx]`
+
 - `entry (String)` — path to the package index file. relative to the package directory.
 - `extensions (Array<string>)` — list of file extensions to be considered during the search.
 - `exclude (Array<string>)` — list of directories that will be excluded when searching for imports.
