@@ -3,7 +3,7 @@
 exports[`package-d 1`] = `
 "
 > check-exports
-> node ../../index.js -s ../monorepo/app
+> node ../../../bin/index.js -s ../monorepo/app
 
 
  Failed  Unused exports in package-d package found
@@ -18,7 +18,7 @@ exports[`package-d 1`] = `
 exports[`package-d happy 1`] = `
 "
 > check-exports-happy
-> node ../../index.js -s ../monorepo
+> node ../../../bin/index.js -s ../monorepo
 
 "
 `;
@@ -31,7 +31,7 @@ exports[`package-d happy 2`] = `
 exports[`package-d unhappy 1`] = `
 "
 > check-exports-unhappy
-> node ../../index.js -s ../biba
+> node ../../../bin/index.js -s ../biba
 
 
  Failed  Nothing is imported from package-d. Remove it.

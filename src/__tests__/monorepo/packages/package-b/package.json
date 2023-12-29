@@ -1,0 +1,6 @@
+{
+  "name": "package-b",
+  "scripts": {
+    "check-exports": "node ../../../../../bin/index.js -e index.tsx"
+  }
+}

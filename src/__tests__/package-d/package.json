@@ -1,0 +1,8 @@
+{
+  "name": "package-d",
+  "scripts": {
+    "check-exports": "node ../../../bin/index.js -s ../monorepo/app",
+    "check-exports-unhappy": "node ../../../bin/index.js -s ../biba",
+    "check-exports-happy": "node ../../../bin/index.js -s ../monorepo"
+  }
+}

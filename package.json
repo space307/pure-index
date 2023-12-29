@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.33",
   "description": "Utility for monorepos. It helps to find unused exports from packages or get a list of all unique uses of any package",
-  "main": "./bin/index.js",
+  "main": "./src/index.js",
   "bin": "./bin/index.js",
   "author": "Viktor Pasynok",
   "license": "MIT",
