@@ -1,5 +1,6 @@
+import { getRoot } from 'package-d'
 import { createRoot } from 'react-dom/client'
 
 import { Component } from 'package-b'
 
-createRoot(document.getElementById('root')).render(Component)
+createRoot(getRoot()).render(Component)

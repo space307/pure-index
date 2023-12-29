@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`package-d 1`] = `
+"
+> check-exports
+> node ../../index.js -s ../monorepo/app
+
+
+ Failed  Unused exports in package-d package found
+
+[
+  "ususedFn"
+] 
+
+"
+`;
+
+exports[`package-d happy 1`] = `
+"
+> check-exports-happy
+> node ../../index.js -s ../monorepo
+
+"
+`;
+
+exports[`package-d happy 2`] = `
+"✔ Checking exports from the package-d package
+"
+`;
+
+exports[`package-d unhappy 1`] = `
+"
+> check-exports-unhappy
+> node ../../index.js -s ../biba
+
+
+ Failed  Nothing is imported from package-d. Remove it.
+
+"
+`;
