@@ -1,24 +1,6 @@
 import { processBatch } from './processBatch/index.js'
 import { getFiles } from './getFiles.js'
 
-/**
- * @param {{
- *   cmd: {function(_: string): void}
- *   config: {
- *      babelPlugins: Array<string>
- *      batch: number
- *      exclude: Set<string>
- *      extensions: Array<string>
- *      dir: string
- *   }
- *   pkg: {
- *      name: string
- *      path?: string
- *   }
- * }}
- *
- * @returns {Promise<Set.<string>>}
- */
 const fileTraversal = async ({ config, pkg, cmd }) => {
   const files = await getFiles({ config, pkg })
   const tokens = [`from '${pkg.name}'`, `from "${pkg.name}"`]

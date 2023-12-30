@@ -2,12 +2,13 @@ import { join } from 'node:path'
 import { expect, test } from 'vitest'
 
 import { collectUsages } from '../../index.js'
+import { Result } from '../../utils/index.js'
 
 test.each([
-  ['package-a', new Set(['T', 'Value'])],
-  ['package-b', new Set(['Component'])],
-  ['package-c', new Set()],
-  ['package-d', new Set(['getRoot', 'unusedFn'])]
+  ['package-a', Result.Ok({ usages: new Set(['T', 'Value']) })],
+  ['package-b', Result.Ok({ usages: new Set(['Component']) })],
+  ['package-c', Result.Err({ usages: new Set() })],
+  ['package-d', Result.Ok({ usages: new Set(['getRoot', 'unusedFn']) })]
 ])('collect usages js api for %s', async (name, result) => {
   const usages = await collectUsages(name, [
     {

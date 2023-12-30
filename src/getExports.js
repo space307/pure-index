@@ -2,18 +2,6 @@ import parser from '@babel/parser'
 
 import { readFile, ObservableSet } from './utils/index.js'
 
-/**
- * @param {{
- *   config: {
- *      babelPlugins: Array<string>
- *   }
- *   pkg: {
- *      path: string
- *   }
- * }}
- *
- * @returns {Promise<Set.<string>>}
- */
 const getExports = async ({ config, pkg }) => {
   const code = await readFile(pkg.path)
   const result = new ObservableSet()

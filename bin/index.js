@@ -35,23 +35,23 @@ const spinner = createSpinner(`Checking exports from the ${pkg.name} package`)
 
 const result = await baseFlow({ pkg, config, onEmpty: spinner.success })
 
-if (!result.success) {
-  spinner.error()
-
-  switch (result.error.reason) {
-    case 'no_exports':
-      printError(`Nothing is exported from ${pkg.name}. Remove it.`)
-      break
-    case 'no_imports':
-      printError(`Nothing is imported from ${pkg.name}. Remove it.`)
-      break
-    case 'unused_exports':
-      printError(`Unused exports in ${pkg.name} package found`)
-      printSet(result.error.exports)
-  }
-
-  process.exit(1)
+if (result.success) {
+  spinner.success()
+  process.exit(0)
 }
 
-spinner.success()
-process.exit(0)
+spinner.error()
+
+switch (result.error.reason) {
+  case 'no_exports':
+    printError(`Nothing is exported from ${pkg.name}. Remove it.`)
+    break
+  case 'no_imports':
+    printError(`Nothing is imported from ${pkg.name}. Remove it.`)
+    break
+  case 'unused_exports':
+    printError(`Unused exports in ${pkg.name} package found`)
+    printSet(result.error.exports)
+}
+
+process.exit(1)

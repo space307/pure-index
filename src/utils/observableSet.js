@@ -6,7 +6,6 @@ class ObservableSet extends Set {
 
   add(value) {
     super.add(value)
-    this.checkSize()
   }
 
   delete(value) {

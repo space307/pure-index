@@ -2,18 +2,6 @@ import { parse } from '@babel/parser'
 
 import { readFile } from '../../utils/index.js'
 
-/**
- * @param {{
- *   file: string
- *   cmd: {function(_: string): void}
- *   config: {
- *      babelPlugins: Array<string>
- *   }
- *   pkg: {
- *      name: string
- *   }
- * }}
- */
 const traversal = async ({ file, pkg, config, cmd }) => {
   const code = await readFile(file)
 
