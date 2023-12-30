@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { expect, test } from 'vitest'
 
-import { collectUsages } from '../../index.js'
+import { collectUsages } from '../collectUsages.js'
 import { Result } from '../../utils/index.js'
 
 test.each([
