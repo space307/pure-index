@@ -1,8 +1,9 @@
-import { fileTraversal } from './fileTraversal/index.js'
+import { fileTraversal } from './fileTraversal'
 import { Err, Ok } from 'shared'
+import type { Config } from 'getConfig'
 
 type Params = {
-  config: Parameters<typeof fileTraversal>[0]['config'] & {
+  config: Pick<Config, 'dir' | 'batch' | 'exclude' | 'extensions'> & {
     collectUsages: string
   }
 }

@@ -1,8 +1,6 @@
-import { createReadStream } from 'node:fs'
+import { createReadStream, type PathLike } from 'node:fs'
 import { Transform } from 'node:stream'
 import { pipeline } from 'node:stream/promises'
-
-import type { PathLike } from 'node:fs'
 
 type Params = {
   path: PathLike

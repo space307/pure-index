@@ -1,15 +1,12 @@
 import { processBatch } from './processBatch'
 import { getFiles } from './getFiles'
 import type { Config } from 'getConfig'
+import type { Cmd, Pkg } from 'shared'
 
-type Params = Omit<
-  Parameters<typeof processBatch>[0],
-  'config' | 'files' | 'tokens'
-> & {
-  config: Pick<
-    Config,
-    'babelPlugins' | 'dir' | 'batch' | 'exclude' | 'extensions'
-  >
+type Params = {
+  pkg: Pkg
+  config: Pick<Config, 'dir' | 'batch' | 'exclude' | 'extensions'>
+  cmd: Cmd
 }
 
 const fileTraversal = async ({ config, pkg, cmd }: Params) => {
@@ -21,13 +18,13 @@ const fileTraversal = async ({ config, pkg, cmd }: Params) => {
     batch.push(file)
 
     if (batch.length >= config.batch) {
-      await processBatch({ config, cmd, files: batch, pkg, tokens })
+      await processBatch({ cmd, files: batch, pkg, tokens })
       batch = []
     }
   }
 
   if (batch.length > 0) {
-    await processBatch({ config, cmd, files: batch, pkg, tokens })
+    await processBatch({ cmd, files: batch, pkg, tokens })
   }
 }
 

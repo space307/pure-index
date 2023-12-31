@@ -1,7 +1,6 @@
-import { expect, test, mock, vi } from 'vitest'
+import { expect, test, vi } from 'vitest'
 
-import { getConfig } from '../../getConfig.js'
-import { CONFIG } from './constants.js'
+import { getConfig, BASE_CONFIG } from '../'
 
 test('default value', async () => {
   vi.mock('meow', () => ({
@@ -11,7 +10,6 @@ test('default value', async () => {
         extensions: 'js,jsx',
         collectUsages: 'package-a',
         batch: 1,
-        babelPlugins: 'decorators-legacy,classPrivateProperties',
         exclude: 'biba,boba,.cache,www/assets,__tests__',
         dir: 'dir-from-cli'
       }
@@ -21,12 +19,11 @@ test('default value', async () => {
   const config = await getConfig()
 
   expect(config).toStrictEqual({
-    ...CONFIG,
+    ...BASE_CONFIG,
     entry: 'src/index.tsx',
     extensions: ['js', 'jsx'],
     collectUsages: 'package-a',
     batch: 1,
-    babelPlugins: ['decorators-legacy', 'classPrivateProperties'],
     exclude: new Set([
       'node_modules',
       'biba',

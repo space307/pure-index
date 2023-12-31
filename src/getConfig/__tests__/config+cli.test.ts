@@ -1,19 +1,17 @@
-import { expect, test, mock, vi } from 'vitest'
+import { expect, test, vi } from 'vitest'
 
-import { getConfig } from '../../getConfig.js'
-import { CONFIG } from './constants.js'
+import { getConfig, BASE_CONFIG } from '..'
 
 test('default value', async () => {
   vi.mock('lilconfig', () => ({
     lilconfig: () => ({
       search: () => ({
         config: {
-          babelPlugins: ['jsx'],
           batch: 500,
           entry: 'src/index.ts',
           exclude: ['build'],
           extensions: ['js', 'jsx'],
-          dir: 'dir-from-cli'
+          dir: 'dir-from-config'
         }
       })
     })
@@ -26,9 +24,8 @@ test('default value', async () => {
         extensions: 'js,jsx,ts,tsx',
         collectUsages: 'package-a',
         batch: 1,
-        babelPlugins: 'decorators-legacy,classPrivateProperties',
         exclude: 'biba,boba,.cache,www/assets,__tests__',
-        dir: 'dir-from-config'
+        dir: 'dir-from-cli'
       }
     }))
   }))
@@ -36,8 +33,7 @@ test('default value', async () => {
   const config = await getConfig()
 
   expect(config).toStrictEqual({
-    ...CONFIG,
-    babelPlugins: ['decorators-legacy', 'classPrivateProperties'],
+    ...BASE_CONFIG,
     batch: 1,
     collectUsages: 'package-a',
     entry: 'src/main.js',

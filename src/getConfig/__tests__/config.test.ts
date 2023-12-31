@@ -1,14 +1,12 @@
-import { expect, test, mock, vi } from 'vitest'
+import { expect, test, vi } from 'vitest'
 
-import { getConfig } from '../../getConfig.js'
-import { CONFIG } from './constants.js'
+import { getConfig, BASE_CONFIG } from '..'
 
 test('default value', async () => {
   vi.mock('lilconfig', () => ({
     lilconfig: () => ({
       search: () => ({
         config: {
-          babelPlugins: ['jsx'],
           batch: 500,
           entry: 'src/index.ts',
           exclude: ['build'],
@@ -22,12 +20,11 @@ test('default value', async () => {
   const config = await getConfig()
 
   expect(config).toStrictEqual({
-    ...CONFIG,
-    babelPlugins: ['jsx'],
+    ...BASE_CONFIG,
     batch: 500,
     entry: 'src/index.ts',
     extensions: ['js', 'jsx'],
-    exclude: new Set([...CONFIG.exclude, 'build']),
+    exclude: new Set([...BASE_CONFIG.exclude, 'build']),
     dir: 'dir-from-config'
   })
 

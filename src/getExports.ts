@@ -1,11 +1,9 @@
 import { parseFile } from '@swc/core'
-import type { Config } from 'getConfig'
 
 import { ObservableSet, type Pkg } from 'shared'
 
 type Params = {
-  config: Pick<Config, 'babelPlugins'>
-  pkg: Pick<Pkg, 'path'>
+  pkg: Pkg
 }
 
 const getExports = async ({ pkg }: Params) => {

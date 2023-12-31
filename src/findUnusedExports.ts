@@ -1,5 +1,5 @@
-import { getExports } from './getExports.js'
-import { fileTraversal } from './fileTraversal/index.js'
+import { getExports } from './getExports'
+import { fileTraversal } from './fileTraversal'
 import { Err, ObservableSet, Ok, type Result } from 'shared'
 
 type FindUnusedExports = (
@@ -14,7 +14,7 @@ type FindUnusedExports = (
 >
 
 const findUnusedExports: FindUnusedExports = async ({ pkg, config }) => {
-  const exports = await getExports({ config, pkg })
+  const exports = await getExports({ pkg })
   const originalExportsSize = exports.size
 
   return new Promise(async resolve => {

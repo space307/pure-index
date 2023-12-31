@@ -1,18 +1,12 @@
 import { findUnusedExports as _findUnusedExports } from 'findUnusedExports'
-import { BASE_CONFIG, type Config } from '../getConfig.js'
-import { readJSON, Ok, Err, type NonEmptyArray } from 'shared'
+import { BASE_CONFIG, type Config } from 'getConfig'
+import { readJSON, Ok, Err, type NonEmptyArray, type Result } from 'shared'
 
 type TaskResult = Awaited<ReturnType<typeof _findUnusedExports>>
 type FailedTaks = Extract<TaskResult, { ok: false }>
 type ExtractError<T> = {
   ok: false
   err: Extract<Omit<FailedTaks, 'ok'>['err'], { reason: T }>
-}
-
-type ListItem = Partial<
-  Pick<Config, 'babelPlugins' | 'batch' | 'exclude' | 'extensions'>
-> & {
-  dir: Config['dir']
 }
 
 const mergeUnusedExports = (
@@ -44,6 +38,13 @@ const mergeUnusedExports = (
   return Err({ reason: 'unused_exports', exports: head })
 }
 
+type ListItem = {
+  dir: Config['dir']
+  batch?: Config['batch']
+  exclude?: string[]
+  extensions?: Config['extensions']
+}
+
 const findUnusedExports = async (entry: string, list: ListItem[]) => {
   const { name } = await readJSON('package.json')
   const pkg = { name, path: entry }
@@ -52,7 +53,6 @@ const findUnusedExports = async (entry: string, list: ListItem[]) => {
     _findUnusedExports({
       pkg,
       config: {
-        babelPlugins: x.babelPlugins || BASE_CONFIG.babelPlugins,
         batch: x.batch || BASE_CONFIG.batch,
         exclude: x.exclude
           ? new Set([...BASE_CONFIG.exclude, ...x.exclude])
@@ -66,7 +66,7 @@ const findUnusedExports = async (entry: string, list: ListItem[]) => {
   const result = (await Promise.all(tasks)) as NonEmptyArray<TaskResult>
 
   if (result.some(x => x.ok)) {
-    return Ok(new Set<void>())
+    return Ok(true)
   }
 
   const [head] = result

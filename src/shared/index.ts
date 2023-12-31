@@ -32,9 +32,10 @@ type Pkg = {
 }
 
 type NonEmptyArray<T> = [T, ...T[]]
+type Cmd = (_: string) => unknown
 
 export { readJSON, printError, notNil, Ok, Err }
 export { getRepoRoot } from './getRepoRoot'
 export { ObservableSet } from './observableSet'
 export { createSpinner } from 'nanospinner'
-export type { Pkg, NonEmptyArray, Result }
+export type { Pkg, NonEmptyArray, Result, Cmd }

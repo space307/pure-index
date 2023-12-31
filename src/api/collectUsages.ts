@@ -1,18 +1,18 @@
-import { collectUsages as _collectUsages } from '../collectUsages.js'
-import { BASE_CONFIG, type Config } from '../getConfig.js'
+import { collectUsages as _collectUsages } from 'collectUsages'
+import { BASE_CONFIG, type Config } from 'getConfig'
 import { Ok, Err } from 'shared'
 
-type ListItem = Partial<
-  Pick<Config, 'babelPlugins' | 'batch' | 'exclude' | 'extensions'>
-> & {
+type ListItem = {
   dir: Config['dir']
+  batch?: Config['batch']
+  exclude?: string[]
+  extensions?: Config['extensions']
 }
 
 const collectUsages = async (name: string, list: ListItem[]) => {
   const tasks = list.map(x =>
     _collectUsages({
       config: {
-        babelPlugins: x.babelPlugins || BASE_CONFIG.babelPlugins,
         batch: x.batch || BASE_CONFIG.batch,
         exclude: x.exclude
           ? new Set([...BASE_CONFIG.exclude, ...x.exclude])

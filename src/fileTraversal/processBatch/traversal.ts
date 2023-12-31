@@ -1,13 +1,11 @@
 import { parseFile } from '@swc/core'
 
-import type { Pkg } from 'shared'
-import type { Config } from 'getConfig'
+import type { Cmd, Pkg } from 'shared'
 
 type Params = {
   path: string
-  config: Pick<Config, 'babelPlugins'>
   pkg: Pkg
-  cmd: (_: string) => unknown
+  cmd: Cmd
 }
 
 const traversal = async ({ path, pkg, cmd }: Params) => {

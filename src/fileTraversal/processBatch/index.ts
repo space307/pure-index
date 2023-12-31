@@ -1,14 +1,16 @@
-import { notNil } from 'shared'
+import { notNil, type Cmd, type Pkg } from 'shared'
 import { findImport } from './findImport'
 import { traversal } from './traversal'
 
-type Params = Omit<Parameters<typeof traversal>[0], 'path'> &
-  Pick<Parameters<typeof findImport>[0], 'tokens'> & {
-    files: string[]
-  }
+type Params = {
+  cmd: Cmd
+  files: string[]
+  pkg: Pkg
+  tokens: string[]
+}
 
 // todo: in single Promise.all ?
-const processBatch = async ({ config, cmd, files, pkg, tokens }: Params) => {
+const processBatch = async ({ cmd, files, pkg, tokens }: Params) => {
   const pathesPromise = files.map(async path => {
     const found = await findImport({ path, tokens })
     return found ? path : null
@@ -16,7 +18,7 @@ const processBatch = async ({ config, cmd, files, pkg, tokens }: Params) => {
 
   const filterPromise = (await Promise.all(pathesPromise))
     .filter(notNil)
-    .map(path => traversal({ config, cmd, path, pkg }))
+    .map(path => traversal({ cmd, path, pkg }))
 
   await Promise.all(filterPromise)
 }
