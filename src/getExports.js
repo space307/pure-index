@@ -1,33 +1,32 @@
-import parser from '@babel/parser'
+import { parseFile } from '@swc/core'
 
-import { readFile, ObservableSet } from './utils/index.js'
+import { ObservableSet } from './utils/index.js'
 
 const getExports = async ({ config, pkg }) => {
-  const code = await readFile(pkg.path)
   const result = new ObservableSet()
 
-  const ast = parser.parse(code, {
-    sourceType: 'module',
-    plugins: config.babelPlugins
+  const ast = await parseFile(pkg.path, {
+    syntax: 'typescript',
+    comments: false
   })
 
-  for (const node of ast.program.body) {
+  for (const node of ast.body) {
     if (node.type === 'ExportNamedDeclaration') {
-      if (node.declaration) {
-        const declaration = node.declaration
-
-        if (declaration.declarations) {
-          // constants and fns
-          for (const decl of declaration.declarations) {
-            result.add(decl.id.name)
-          }
-        }
-      } else if (node.specifiers) {
-        // `export { name }`
-        for (const specifier of node.specifiers) {
-          result.add(specifier.exported.name)
-        }
+      // `export { name }`
+      for (const specifier of node.specifiers) {
+        specifier.exported
+          ? result.add(specifier.exported.value)
+          : result.add(specifier.orig.value)
       }
+      continue
+    }
+
+    // constants and fns
+    if (node.type === 'ExportDeclaration') {
+      for (const decl of node.declaration.declarations) {
+        result.add(decl.id.value)
+      }
+
       continue
     }
   }

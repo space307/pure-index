@@ -1,24 +1,19 @@
-import { parse } from '@babel/parser'
-
-import { readFile } from '../../utils/index.js'
+import { parseFile } from '@swc/core'
 
 const traversal = async ({ file, pkg, config, cmd }) => {
-  const code = await readFile(file)
-
-  const ast = parse(code, {
-    sourceType: 'module',
-    plugins: config.babelPlugins
+  const ast = await parseFile(file, {
+    syntax: 'typescript'
   })
 
-  for (const node of ast.program.body) {
+  for (const node of ast.body) {
     if (node.type === 'ImportDeclaration' && node.source.value === pkg.name) {
       for (const specifier of node.specifiers) {
-        const type = specifier.type
+        const { type } = specifier
 
         if (type === 'ImportSpecifier' || type === 'ImportDefaultSpecifier') {
-          cmd(specifier.imported?.name)
-        } else if (type === 'ImportNamespaceSpecifier') {
-          cmd('* as ' + specifier.local.name)
+          specifier.imported
+            ? cmd(specifier.imported.value)
+            : cmd(specifier.local.value)
         }
       }
 
@@ -31,7 +26,9 @@ const traversal = async ({ file, pkg, config, cmd }) => {
       node.source.value === pkg.name
     ) {
       for (const specifier of node.specifiers) {
-        cmd(specifier.exported.name)
+        specifier.exported
+          ? cmd(specifier.exported.value)
+          : cmd(specifier.orig.value)
       }
 
       continue
