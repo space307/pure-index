@@ -16,6 +16,7 @@ test('getExports', async () => {
     'aFn',
     'Foo',
     'fn2',
+    'b',
     'createEvent',
     'Event',
     'cReAtEsToRe',
@@ -23,6 +24,8 @@ test('getExports', async () => {
     'EFFECT',
     'fn',
     'boba',
-    'bFn'
+    'bFn',
+    'i',
+    'ba'
   ])
 })
