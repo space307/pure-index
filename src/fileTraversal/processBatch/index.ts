@@ -9,7 +9,6 @@ type Params = {
   tokens: string[]
 }
 
-// todo: in single Promise.all ?
 const processBatch = async ({ cmd, files, pkg, tokens }: Params) => {
   const pathesPromise = files.map(async path => {
     const found = await findImport({ path, tokens })
