@@ -4,7 +4,7 @@ import type { Cmd, Pkg } from 'shared'
 
 type Params = {
   path: string
-  pkg: Pkg
+  pkg: Pick<Pkg, 'name'>
   cmd: Cmd
 }
 
@@ -16,14 +16,10 @@ const traversal = async ({ path, pkg, cmd }: Params) => {
   for (const node of ast.body) {
     if (node.type === 'ImportDeclaration' && node.source.value === pkg.name) {
       for (const specifier of node.specifiers) {
-        const { type } = specifier
-
-        if (type === 'ImportSpecifier' || type === 'ImportDefaultSpecifier') {
-          // @ts-expect-error
-          cmd(specifier.imported?.name)
-        } else if (type === 'ImportNamespaceSpecifier') {
-          // @ts-expect-error
-          cmd('* as ' + specifier.local.name)
+        if (specifier.type === 'ImportSpecifier') {
+          specifier.imported
+            ? cmd(specifier.imported.value)
+            : cmd(specifier.local.value)
         }
       }
 
@@ -37,7 +33,7 @@ const traversal = async ({ path, pkg, cmd }: Params) => {
     ) {
       for (const specifier of node.specifiers) {
         // @ts-expect-error
-        cmd(specifier.exported.name)
+        cmd(specifier.orig.value)
       }
 
       continue

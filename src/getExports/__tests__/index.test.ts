@@ -8,7 +8,7 @@ test('getExports', async () => {
   const result = await getExports({
     pkg: {
       name: '_',
-      path: join(fileURLToPath(import.meta.url), '..', 'pkg', 'index.ts')
+      path: join(fileURLToPath(import.meta.url), '..', 'file.ts')
     }
   })
 
@@ -16,11 +16,11 @@ test('getExports', async () => {
     'aFn',
     'Foo',
     'fn2',
-    'F',
-    'Truthly',
-    'iDeNtItY',
-    'Falsy',
-    'NIIIIIL',
+    'createEvent',
+    'Event',
+    'cReAtEsToRe',
+    'Store',
+    'EFFECT',
     'fn',
     'boba',
     'bFn'
