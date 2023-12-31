@@ -29,8 +29,16 @@ const getExports = async ({ pkg }: Params) => {
       continue
     }
 
-    // constants and fns
+    // constants, fns, classes etc
     if (node.type === 'ExportDeclaration') {
+      // classes edge case
+      // @ts-expect-error
+      if (!node.declaration.declarations) {
+        // @ts-expect-error
+        result.add(node.declaration.identifier.value)
+        continue
+      }
+
       // @ts-expect-error
       for (const decl of node.declaration.declarations) {
         result.add(decl.id.value)
