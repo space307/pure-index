@@ -1,4 +1,4 @@
-import fs from 'node:fs/promises'
+import { readFile } from 'node:fs/promises'
 import pc from 'picocolors'
 
 import type { ObservableSet } from './observableSet'
@@ -9,11 +9,8 @@ const isNil = <T>(x: T | undefined | null): x is undefined | null =>
   x === null || x === undefined
 const notNil = <T>(x: T): x is Exclude<typeof x, undefined | null> => !isNil(x)
 
-const readFile = async (filePath: string) =>
-  await fs.readFile(filePath, { encoding: 'utf-8' })
-
 const readJSON = async (filePath: string) =>
-  JSON.parse(await readFile(filePath))
+  JSON.parse(await readFile(filePath, { encoding: 'utf-8' }))
 
 const printError = (opts: { text: string; set?: ObservableSet }) => {
   process.stdout.write(`\n${bold(bgRed(' Failed '))} ${opts.text}\n\n`)
@@ -36,7 +33,7 @@ type Pkg = {
 
 type NonEmptyArray<T> = [T, ...T[]]
 
-export { readFile, readJSON, printError, notNil, Ok, Err }
+export { readJSON, printError, notNil, Ok, Err }
 export { getRepoRoot } from './getRepoRoot'
 export { ObservableSet } from './observableSet'
 export { createSpinner } from 'nanospinner'

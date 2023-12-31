@@ -1,39 +1,43 @@
-import parser from '@babel/parser'
+import { parseFile } from '@swc/core'
 import type { Config } from 'getConfig'
 
-import { readFile, ObservableSet, type Pkg } from 'shared'
+import { ObservableSet, type Pkg } from 'shared'
 
 type Params = {
   config: Pick<Config, 'babelPlugins'>
   pkg: Pick<Pkg, 'path'>
 }
 
-const getExports = async ({ config, pkg }: Params) => {
-  const code = await readFile(pkg.path)
+const getExports = async ({ pkg }: Params) => {
   const result = new ObservableSet()
 
-  const ast = parser.parse(code, {
-    sourceType: 'module',
-    plugins: config.babelPlugins
+  const ast = await parseFile(pkg.path, {
+    syntax: 'typescript',
+    comments: false
   })
 
-  for (const node of ast.program.body) {
+  for (const node of ast.body) {
     if (node.type === 'ExportNamedDeclaration') {
-      if (node.declaration) {
-        const declaration = node.declaration
-
-        if (declaration.declarations) {
-          // constants and fns
-          for (const decl of declaration.declarations) {
-            result.add(decl.id.name)
-          }
-        }
-      } else if (node.specifiers) {
-        // `export { name }`
-        for (const specifier of node.specifiers) {
-          result.add(specifier.exported.name)
-        }
+      // `export { name }`
+      for (const specifier of node.specifiers) {
+        // fast check
+        // @ts-expect-error
+        specifier.exported
+          ? // @ts-expect-error
+            result.add(specifier.exported.value)
+          : // @ts-expect-error
+            result.add(specifier.orig.value)
       }
+      continue
+    }
+
+    // constants and fns
+    if (node.type === 'ExportDeclaration') {
+      // @ts-expect-error
+      for (const decl of node.declaration.declarations) {
+        result.add(decl.id.value)
+      }
+
       continue
     }
   }
