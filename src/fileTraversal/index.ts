@@ -10,7 +10,7 @@ type Params = {
 }
 
 const fileTraversal = async ({ config, pkg, cmd }: Params) => {
-  const files = await getFiles({ config, pkg })
+  const files = await getFiles({ config })
   const tokens = [`from '${pkg.name}'`, `from "${pkg.name}"`]
   let batch = []
 

@@ -2,21 +2,15 @@ import { join } from 'node:path'
 import { fdir } from 'fdir'
 
 import type { Config } from 'getConfig'
-import type { Pkg } from 'shared'
 
-const formattedExtensions = (list: Config['extensions']) =>
-  list.reduce((acc, ext) => acc + (acc ? ',' : '') + ext, '')
+const formattedExtensions = (list: Config['extensions']) => list.join(',') + ','
 
 type Params = {
   config: Pick<Config, 'extensions' | 'exclude' | 'dir'>
-  pkg: Pkg
 }
 
-const getFiles = async ({ config, pkg }: Params) => {
-  if (pkg.path) {
-    config.exclude.add(pkg.path)
-  }
-
+// fixme: https://github.com/space307/pure-index/issues/10
+const getFiles = async ({ config }: Params) => {
   const exclude = [...config.exclude]
     .map(item =>
       item.replace(/(^\/|\/$)/g, '').replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
