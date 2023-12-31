@@ -1,14 +1,17 @@
-class ObservableSet extends Set {
-  constructor(iterable) {
+class ObservableSet extends Set<string> {
+  private emptyCallback: (() => void) | null
+
+  constructor(iterable?: Iterable<string>) {
     super(iterable)
     this.emptyCallback = null
   }
 
-  add(value) {
+  add(value: string) {
     super.add(value)
+    return this
   }
 
-  delete(value) {
+  delete(value: string) {
     const result = super.delete(value)
     this.checkSize()
     return result
@@ -19,11 +22,11 @@ class ObservableSet extends Set {
     this.checkSize()
   }
 
-  onEmpty(callback) {
+  onEmpty(callback: () => void) {
     this.emptyCallback = callback
   }
 
-  checkSize() {
+  private checkSize() {
     if (this.size === 0 && this.emptyCallback) {
       this.emptyCallback()
     }

@@ -1,10 +1,18 @@
 import { join } from 'node:path'
 import { fdir } from 'fdir'
 
-const formattedExtensions = list =>
+import type { Config } from 'getConfig'
+import type { Pkg } from 'shared'
+
+const formattedExtensions = (list: Config['extensions']) =>
   list.reduce((acc, ext) => acc + (acc ? ',' : '') + ext, '')
 
-const getFiles = async ({ config, pkg }) => {
+type Params = {
+  config: Pick<Config, 'extensions' | 'exclude' | 'dir'>
+  pkg: Pkg
+}
+
+const getFiles = async ({ config, pkg }: Params) => {
   if (pkg.path) {
     config.exclude.add(pkg.path)
   }

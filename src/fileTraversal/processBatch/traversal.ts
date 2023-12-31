@@ -1,9 +1,18 @@
 import { parse } from '@babel/parser'
 
-import { readFile } from '../../utils/index.js'
+import { readFile, type Pkg } from 'shared'
 
-const traversal = async ({ file, pkg, config, cmd }) => {
-  const code = await readFile(file)
+import type { Config } from 'getConfig'
+
+type Params = {
+  path: string
+  config: Pick<Config, 'babelPlugins'>
+  pkg: Pkg
+  cmd: (_: string) => unknown
+}
+
+const traversal = async ({ path, pkg, config, cmd }: Params) => {
+  const code = await readFile(path)
 
   const ast = parse(code, {
     sourceType: 'module',

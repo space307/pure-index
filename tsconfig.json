@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "strict": true,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "lib": ["esnext"],
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "module": "esnext",
+    "removeComments": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false,
+    "noUncheckedIndexedAccess": true,
+    "declaration": true,
+    "strictNullChecks": true,
+    "paths": {
+      "*": ["*"]
+    },
+    "typeRoots": ["overrides", "./node_modules/@types"],
+    "types": ["node"],
+    "baseUrl": "./src/",
+    "verbatimModuleSyntax": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    "build",
+    "**/build/*",
+    "dist",
+    "**/dist/*"
+  ]
+}

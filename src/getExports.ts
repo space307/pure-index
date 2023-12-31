@@ -1,8 +1,14 @@
 import parser from '@babel/parser'
+import type { Config } from 'getConfig'
 
-import { readFile, ObservableSet } from './utils/index.js'
+import { readFile, ObservableSet, type Pkg } from 'shared'
 
-const getExports = async ({ config, pkg }) => {
+type Params = {
+  config: Pick<Config, 'babelPlugins'>
+  pkg: Pick<Pkg, 'path'>
+}
+
+const getExports = async ({ config, pkg }: Params) => {
   const code = await readFile(pkg.path)
   const result = new ObservableSet()
 

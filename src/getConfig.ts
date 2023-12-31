@@ -1,11 +1,13 @@
-import { join } from 'node:path'
 import { lilconfig } from 'lilconfig'
+// @ts-expect-error
 import meow from 'meow'
 
-import { getRepoRoot } from './utils/index.js'
+import { getRepoRoot } from 'shared'
+
+import type { ParserPlugin } from '@babel/parser'
 
 const BASE_CONFIG = {
-  babelPlugins: ['typescript'],
+  babelPlugins: ['typescript'] as ParserPlugin[],
   batch: 100,
   collectUsages: null,
   entry: 'index.ts',
@@ -41,7 +43,11 @@ const cli = meow(
   }
 )
 
-const getConfig = async () => {
+type Config = Omit<typeof BASE_CONFIG, 'dir'> & {
+  dir: string
+}
+
+const getConfig = async (): Promise<Config> => {
   const result = (await lilconfig('pure-index', {
     searchPlaces: [
       'package.json',
@@ -80,3 +86,4 @@ const getConfig = async () => {
 }
 
 export { getConfig, BASE_CONFIG }
+export type { Config }
