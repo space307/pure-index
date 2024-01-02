@@ -1,5 +1,5 @@
 import { findUnusedExports as _findUnusedExports } from '~/findUnusedExports.js';
-import { BASE_CONFIG, type Config } from '~/getConfig/index.js';
+import { mergeConfig, type Config } from '~/getConfig/index.js';
 import { readJSON, Ok, Err, type NonEmptyArray } from '~/shared/index.js';
 
 type TaskResult = Awaited<ReturnType<typeof _findUnusedExports>>;
@@ -51,13 +51,7 @@ const findUnusedExports = async (entry: string, list: ListItem[]) => {
   const tasks = list.map((x) =>
     _findUnusedExports({
       pkg,
-      config: {
-        batch: x.batch || BASE_CONFIG.batch,
-        exclude: x.exclude ? [...new Set([...BASE_CONFIG.exclude, ...x.exclude])] : BASE_CONFIG.exclude,
-        extensions: x.extensions || BASE_CONFIG.extensions,
-        dir: x.dir,
-        parserConfig: x.parserConfig || BASE_CONFIG.parserConfig,
-      },
+      config: mergeConfig(x),
     }),
   );
 

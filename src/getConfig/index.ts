@@ -18,8 +18,8 @@ type Config = {
 const BASE_CONFIG: Config = {
   batch: 100,
   collectUsages: null,
-  entry: 'index.ts',
   dir: '',
+  entry: 'index.ts',
   exclude: ['node_modules'],
   extensions: ['ts', 'tsx'],
   parserConfig: {
@@ -28,30 +28,27 @@ const BASE_CONFIG: Config = {
   },
 };
 
+const mergeConfig = (x: Partial<Config>): Config => ({
+  batch: x.batch || BASE_CONFIG.batch,
+  collectUsages: x.collectUsages || BASE_CONFIG.collectUsages,
+  dir: x.dir || getRepoRoot(),
+  entry: x.entry || BASE_CONFIG.entry,
+  exclude: x.exclude ? [...new Set([...BASE_CONFIG.exclude, ...x.exclude])] : BASE_CONFIG.exclude,
+  extensions: x.extensions || BASE_CONFIG.extensions,
+  parserConfig: x.parserConfig || BASE_CONFIG.parserConfig,
+});
+
 const getConfig = async (): Promise<Config> => {
   const result = (await lilconfig('pure-index', {
     searchPlaces: ['package.json', '.pure-index.json', '.pure-index.js', '.pure-index.cjs'],
-  }).search()) || { config: BASE_CONFIG };
+  }).search()) || { config: {} };
 
-  const {
-    exclude = [],
-    entry = BASE_CONFIG.entry,
-    batch = BASE_CONFIG.batch,
-    extensions = BASE_CONFIG.extensions,
-    dir,
-    parserConfig = BASE_CONFIG.parserConfig,
-  } = result.config;
-
-  return {
-    entry: cli.flags.entry || entry,
-    batch,
-    parserConfig,
-    exclude: [...new Set([...BASE_CONFIG.exclude, ...exclude])],
-    collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
-    extensions,
-    dir: dir || getRepoRoot(),
-  };
+  return mergeConfig({
+    ...result.config,
+    entry: cli.flags.entry || result.config.entry,
+    collectUsages: cli.flags.collectUsages,
+  });
 };
 
-export { getConfig, BASE_CONFIG };
+export { getConfig, mergeConfig, BASE_CONFIG };
 export type { Config };
