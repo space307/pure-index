@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "strict": true,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "lib": ["esnext"],
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "moduleResolution": "NodeNext",
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "module": "nodenext",
+    "removeComments": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false,
+    "noUncheckedIndexedAccess": true,
+    "declaration": true,
+    "strictNullChecks": true,
+    "paths": {
+      "~/*": ["./src/*"]
+    },
+    "typeRoots": ["overrides", "./node_modules/@types"],
+    "types": ["node"],
+    "verbatimModuleSyntax": true,
+    "outDir": "dist"
+  },
+  "exclude": ["node_modules", "**/node_modules/*", "dist", "**/dist/*"],
+  "include": ["./src/"]
+}
