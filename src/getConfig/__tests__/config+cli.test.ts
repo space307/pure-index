@@ -21,10 +21,7 @@ test('default value', async () => {
     default: vi.fn(() => ({
       flags: {
         entry: 'src/main.js',
-        extensions: 'js,jsx,ts,tsx',
         collectUsages: 'package-a',
-        exclude: 'biba,boba,.cache,www/assets,__tests__',
-        dir: 'dir-from-cli',
       },
     })),
   }));
@@ -36,9 +33,9 @@ test('default value', async () => {
     batch: 500,
     collectUsages: 'package-a',
     entry: 'src/main.js',
-    extensions: ['js', 'jsx', 'ts', 'tsx'],
-    exclude: new Set(['node_modules', 'biba', 'boba', '.cache', 'www/assets', '__tests__']),
-    dir: 'dir-from-cli',
+    extensions: ['js', 'jsx'],
+    exclude: new Set(['node_modules', 'build']),
+    dir: 'dir-from-config',
   });
 
   vi.resetAllMocks();

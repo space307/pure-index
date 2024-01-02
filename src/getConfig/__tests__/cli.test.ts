@@ -3,14 +3,15 @@ import { expect, test, vi } from 'vitest';
 import { getConfig, BASE_CONFIG } from '../index.js';
 
 test('default value', async () => {
+  vi.mock('../../shared/getRepoRoot', () => ({
+    getRepoRoot: () => 'repo-root',
+  }));
+
   vi.mock('meow', () => ({
     default: vi.fn(() => ({
       flags: {
         entry: 'src/index.tsx',
-        extensions: 'js,jsx',
         collectUsages: 'package-a',
-        exclude: 'biba,boba,.cache,www/assets,__tests__',
-        dir: 'dir-from-cli',
       },
     })),
   }));
@@ -19,11 +20,9 @@ test('default value', async () => {
 
   expect(config).toStrictEqual({
     ...BASE_CONFIG,
+    dir: 'repo-root',
     entry: 'src/index.tsx',
-    extensions: ['js', 'jsx'],
     collectUsages: 'package-a',
-    exclude: new Set(['node_modules', 'biba', 'boba', '.cache', 'www/assets', '__tests__']),
-    dir: 'dir-from-cli',
   });
 
   vi.resetAllMocks();
