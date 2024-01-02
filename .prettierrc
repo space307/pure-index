@@ -20,5 +20,11 @@
     "options": {
       "parser": "markdown"
     }
+  },
+  {
+    "files": ["*.md"],
+    "options": {
+      "parser": "markdown"
+    }
   }]
 }
