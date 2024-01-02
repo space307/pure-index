@@ -37,8 +37,9 @@ const cli = meow(
   },
 );
 
-type Config = Omit<typeof BASE_CONFIG, 'dir'> & {
+type Config = Omit<typeof BASE_CONFIG, 'dir' | 'collectUsages'> & {
   dir: string;
+  collectUsages: string | null;
 };
 
 const getConfig = async (): Promise<Config> => {
@@ -54,19 +55,16 @@ const getConfig = async (): Promise<Config> => {
     dir,
   } = result.config;
 
-  // @ts-expect-error 123
-  return result === null
-    ? BASE_CONFIG
-    : {
-        entry: cli.flags.entry || entry,
-        exclude: cli.flags.exclude
-          ? new Set([...BASE_CONFIG.exclude, ...cli.flags.exclude.split(',')])
-          : new Set([...BASE_CONFIG.exclude, ...exclude]),
-        batch: cli.flags.batch || batch,
-        collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
-        extensions: cli.flags.extensions ? cli.flags.extensions.split(',') : extensions,
-        dir: cli.flags.dir || dir || getRepoRoot(),
-      };
+  return {
+    entry: cli.flags.entry || entry,
+    exclude: cli.flags.exclude
+      ? new Set([...BASE_CONFIG.exclude, ...cli.flags.exclude.split(',')])
+      : new Set([...BASE_CONFIG.exclude, ...exclude]),
+    batch: cli.flags.batch || batch,
+    collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
+    extensions: cli.flags.extensions ? cli.flags.extensions.split(',') : extensions,
+    dir: cli.flags.dir || dir || getRepoRoot(),
+  };
 };
 
 export { getConfig, BASE_CONFIG };
