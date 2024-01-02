@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "ES2022",
     "strict": true,
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
@@ -8,10 +8,10 @@
     "lib": ["esnext"],
     "resolveJsonModule": true,
     "importHelpers": true,
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "isolatedModules": true,
     "skipLibCheck": true,
-    "module": "esnext",
+    "module": "nodenext",
     "removeComments": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": false,
@@ -19,19 +19,13 @@
     "declaration": true,
     "strictNullChecks": true,
     "paths": {
-      "*": ["*"]
+      "~/*": ["./src/*"]
     },
     "typeRoots": ["overrides", "./node_modules/@types"],
     "types": ["node"],
-    "baseUrl": "./src/",
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "outDir": "dist"
   },
-  "exclude": [
-    "node_modules",
-    "**/node_modules/*",
-    "build",
-    "**/build/*",
-    "dist",
-    "**/dist/*"
-  ]
+  "exclude": ["node_modules", "**/node_modules/*", "dist", "**/dist/*"],
+  "include": ["./src/"]
 }

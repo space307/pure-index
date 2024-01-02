@@ -1,6 +1,6 @@
-import { expect, test, vi } from 'vitest'
+import { expect, test, vi } from 'vitest';
 
-import { getConfig, BASE_CONFIG } from '..'
+import { getConfig, BASE_CONFIG } from '../index.js';
 
 test('default value', async () => {
   vi.mock('lilconfig', () => ({
@@ -11,11 +11,11 @@ test('default value', async () => {
           entry: 'src/index.ts',
           exclude: ['build'],
           extensions: ['js', 'jsx'],
-          dir: 'dir-from-config'
-        }
-      })
-    })
-  }))
+          dir: 'dir-from-config',
+        },
+      }),
+    }),
+  }));
 
   vi.mock('meow', () => ({
     default: vi.fn(() => ({
@@ -25,12 +25,12 @@ test('default value', async () => {
         collectUsages: 'package-a',
         batch: 1,
         exclude: 'biba,boba,.cache,www/assets,__tests__',
-        dir: 'dir-from-cli'
-      }
-    }))
-  }))
+        dir: 'dir-from-cli',
+      },
+    })),
+  }));
 
-  const config = await getConfig()
+  const config = await getConfig();
 
   expect(config).toStrictEqual({
     ...BASE_CONFIG,
@@ -38,16 +38,9 @@ test('default value', async () => {
     collectUsages: 'package-a',
     entry: 'src/main.js',
     extensions: ['js', 'jsx', 'ts', 'tsx'],
-    exclude: new Set([
-      'node_modules',
-      'biba',
-      'boba',
-      '.cache',
-      'www/assets',
-      '__tests__'
-    ]),
-    dir: 'dir-from-cli'
-  })
+    exclude: new Set(['node_modules', 'biba', 'boba', '.cache', 'www/assets', '__tests__']),
+    dir: 'dir-from-cli',
+  });
 
-  vi.resetAllMocks()
-})
+  vi.resetAllMocks();
+});

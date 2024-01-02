@@ -1,6 +1,6 @@
-import { expect, test, vi } from 'vitest'
+import { expect, test, vi } from 'vitest';
 
-import { getConfig, BASE_CONFIG } from '..'
+import { getConfig, BASE_CONFIG } from '../index.js';
 
 test('default value', async () => {
   vi.mock('lilconfig', () => ({
@@ -11,13 +11,13 @@ test('default value', async () => {
           entry: 'src/index.ts',
           exclude: ['build'],
           extensions: ['js', 'jsx'],
-          dir: 'dir-from-config'
-        }
-      })
-    })
-  }))
+          dir: 'dir-from-config',
+        },
+      }),
+    }),
+  }));
 
-  const config = await getConfig()
+  const config = await getConfig();
 
   expect(config).toStrictEqual({
     ...BASE_CONFIG,
@@ -25,8 +25,8 @@ test('default value', async () => {
     entry: 'src/index.ts',
     extensions: ['js', 'jsx'],
     exclude: new Set([...BASE_CONFIG.exclude, 'build']),
-    dir: 'dir-from-config'
-  })
+    dir: 'dir-from-config',
+  });
 
-  vi.resetAllMocks()
-})
+  vi.resetAllMocks();
+});

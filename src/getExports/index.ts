@@ -1,18 +1,18 @@
-import { parseFile } from '@swc/core'
+import { parseFile } from '@swc/core';
 
-import { ObservableSet, type Pkg } from 'shared'
+import { ObservableSet, type Pkg } from '~/shared/index.js';
 
 type Params = {
-  pkg: Pkg
-}
+  pkg: Pkg;
+};
 
 const getExports = async ({ pkg }: Params) => {
-  const result = new ObservableSet()
+  const result = new ObservableSet();
 
   const ast = await parseFile(pkg.path, {
     syntax: 'typescript',
-    comments: false
-  })
+    comments: false,
+  });
 
   for (const node of ast.body) {
     if (node.type === 'ExportNamedDeclaration') {
@@ -24,9 +24,9 @@ const getExports = async ({ pkg }: Params) => {
           ? // @ts-expect-error
             result.add(specifier.exported.value)
           : // @ts-expect-error
-            result.add(specifier.orig.value)
+            result.add(specifier.orig.value);
       }
-      continue
+      continue;
     }
 
     // constants, fns, classes etc
@@ -35,20 +35,20 @@ const getExports = async ({ pkg }: Params) => {
       // @ts-expect-error
       if (!node.declaration.declarations) {
         // @ts-expect-error
-        result.add(node.declaration.identifier.value)
-        continue
+        result.add(node.declaration.identifier.value);
+        continue;
       }
 
       // @ts-expect-error
       for (const decl of node.declaration.declarations) {
-        result.add(decl.id.value)
+        result.add(decl.id.value);
       }
 
-      continue
+      continue;
     }
   }
 
-  return result
-}
+  return result;
+};
 
-export { getExports }
+export { getExports };

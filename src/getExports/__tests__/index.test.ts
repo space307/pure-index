@@ -1,16 +1,16 @@
-import { join } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { expect, test } from 'vitest'
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { expect, test } from 'vitest';
 
-import { getExports } from '../'
+import { getExports } from '../index.js';
 
 test('getExports', async () => {
   const result = await getExports({
     pkg: {
       name: '_',
-      path: join(fileURLToPath(import.meta.url), '..', 'file.ts')
-    }
-  })
+      path: join(fileURLToPath(import.meta.url), '..', 'file.ts'),
+    },
+  });
 
   expect([...result]).toStrictEqual([
     'aFn',
@@ -26,6 +26,6 @@ test('getExports', async () => {
     'boba',
     'bFn',
     'i',
-    'ba'
-  ])
-})
+    'ba',
+  ]);
+});

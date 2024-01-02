@@ -1,6 +1,5 @@
-import { execSync } from 'node:child_process'
+import { execSync } from 'node:child_process';
 
-const getRepoRoot = () =>
-  execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim()
+const getRepoRoot = () => execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim();
 
-export { getRepoRoot }
+export { getRepoRoot };

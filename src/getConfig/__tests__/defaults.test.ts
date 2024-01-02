@@ -1,14 +1,14 @@
-import { expect, test, vi } from 'vitest'
+import { expect, test, vi } from 'vitest';
 
-import { getConfig, BASE_CONFIG } from '../'
+import { getConfig, BASE_CONFIG } from '../index.js';
 
 test('default value', async () => {
   vi.mock('../../shared/getRepoRoot', () => ({
-    getRepoRoot: () => 'repo-root'
-  }))
+    getRepoRoot: () => 'repo-root',
+  }));
 
-  const config = await getConfig()
+  const config = await getConfig();
 
-  expect(config).toStrictEqual({ ...BASE_CONFIG, dir: 'repo-root' })
-  vi.resetAllMocks()
-})
+  expect(config).toStrictEqual({ ...BASE_CONFIG, dir: 'repo-root' });
+  vi.resetAllMocks();
+});

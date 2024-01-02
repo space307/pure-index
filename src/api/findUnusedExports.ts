@@ -1,88 +1,84 @@
-import { findUnusedExports as _findUnusedExports } from 'findUnusedExports'
-import { BASE_CONFIG, type Config } from 'getConfig'
-import { readJSON, Ok, Err, type NonEmptyArray, type Result } from 'shared'
+import { findUnusedExports as _findUnusedExports } from '~/findUnusedExports.js';
+import { BASE_CONFIG, type Config } from '~/getConfig/index.js';
+import { readJSON, Ok, Err, type NonEmptyArray } from '~/shared/index.js';
 
-type TaskResult = Awaited<ReturnType<typeof _findUnusedExports>>
-type FailedTaks = Extract<TaskResult, { ok: false }>
+type TaskResult = Awaited<ReturnType<typeof _findUnusedExports>>;
+type FailedTaks = Extract<TaskResult, { ok: false }>;
 type ExtractError<T> = {
-  ok: false
-  err: Extract<Omit<FailedTaks, 'ok'>['err'], { reason: T }>
-}
+  ok: false;
+  err: Extract<Omit<FailedTaks, 'ok'>['err'], { reason: T }>;
+};
 
-const mergeUnusedExports = (
-  list: NonEmptyArray<TaskResult>
-): ExtractError<'unused_exports'> => {
+const mergeUnusedExports = (list: NonEmptyArray<TaskResult>): ExtractError<'unused_exports'> => {
   const [head, ...tail] = list.reduce(
     (acc, res) => {
       if (!res.ok) {
-        acc.push(res.err.exports)
+        acc.push(res.err.exports);
       }
 
-      return acc
+      return acc;
     },
-    [] as unknown as NonEmptyArray<FailedTaks['err']['exports']>
-  )
+    [] as unknown as NonEmptyArray<FailedTaks['err']['exports']>,
+  );
 
   if (tail.length) {
-    return Err({ reason: 'unused_exports', exports: head })
+    return Err({ reason: 'unused_exports', exports: head });
   }
 
   for (const set of tail) {
     for (const item of head) {
       if (!set.has(item)) {
-        head.delete(item)
+        head.delete(item);
       }
     }
   }
 
-  return Err({ reason: 'unused_exports', exports: head })
-}
+  return Err({ reason: 'unused_exports', exports: head });
+};
 
 type ListItem = {
-  dir: Config['dir']
-  batch?: Config['batch']
-  exclude?: string[]
-  extensions?: Config['extensions']
-}
+  dir: Config['dir'];
+  batch?: Config['batch'];
+  exclude?: string[];
+  extensions?: Config['extensions'];
+};
 
 const findUnusedExports = async (entry: string, list: ListItem[]) => {
-  const { name } = await readJSON('package.json')
-  const pkg = { name, path: entry }
+  const { name } = await readJSON('package.json');
+  const pkg = { name, path: entry };
 
-  const tasks = list.map(x =>
+  const tasks = list.map((x) =>
     _findUnusedExports({
       pkg,
       config: {
         batch: x.batch || BASE_CONFIG.batch,
-        exclude: x.exclude
-          ? new Set([...BASE_CONFIG.exclude, ...x.exclude])
-          : BASE_CONFIG.exclude,
+        exclude: x.exclude ? new Set([...BASE_CONFIG.exclude, ...x.exclude]) : BASE_CONFIG.exclude,
         extensions: x.extensions || BASE_CONFIG.extensions,
-        dir: x.dir
-      }
-    })
-  )
+        dir: x.dir,
+      },
+    }),
+  );
 
-  const result = (await Promise.all(tasks)) as NonEmptyArray<TaskResult>
+  const result = (await Promise.all(tasks)) as NonEmptyArray<TaskResult>;
 
-  if (result.some(x => x.ok)) {
-    return Ok(true)
+  if (result.some((x) => x.ok)) {
+    return Ok(true);
   }
 
-  const [head] = result
-  const noExports = !head.ok && head.err.reason === 'no_exports'
+  const [head] = result;
+  const noExports = !head.ok && head.err.reason === 'no_exports';
 
   if (noExports) {
-    return head as ExtractError<'no_exports'>
+    return head as ExtractError<'no_exports'>;
   }
 
-  const noImports = result.every(x => !x.ok && x.err.reason === 'no_imports')
+  const noImports = result.every((x) => !x.ok && x.err.reason === 'no_imports');
 
   if (noImports) {
-    return head as ExtractError<'no_imports'>
+    return head as ExtractError<'no_imports'>;
   }
 
-  return mergeUnusedExports(result)
-}
+  return mergeUnusedExports(result);
+};
 
-export { findUnusedExports }
+export { findUnusedExports };
