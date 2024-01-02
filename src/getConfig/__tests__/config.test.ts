@@ -24,7 +24,7 @@ test('default value', async () => {
     batch: 500,
     entry: 'src/index.ts',
     extensions: ['js', 'jsx'],
-    exclude: new Set([...BASE_CONFIG.exclude, 'build']),
+    exclude: [...BASE_CONFIG.exclude, 'build'],
     dir: 'dir-from-config',
   });
 

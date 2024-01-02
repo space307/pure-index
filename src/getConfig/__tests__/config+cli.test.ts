@@ -34,7 +34,7 @@ test('default value', async () => {
     collectUsages: 'package-a',
     entry: 'src/main.js',
     extensions: ['js', 'jsx'],
-    exclude: new Set(['node_modules', 'build']),
+    exclude: ['node_modules', 'build'],
     dir: 'dir-from-config',
   });
 

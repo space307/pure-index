@@ -6,12 +6,12 @@ import type { Config } from '~/getConfig/index.js';
 const formattedExtensions = (list: Config['extensions']) => list.join(',') + ',';
 
 type Params = {
-  config: Pick<Config, 'extensions' | 'exclude' | 'dir'>;
+  config: Pick<Config, 'extensions' | 'dir' | 'exclude'>;
 };
 
 // fixme: https://github.com/space307/pure-index/issues/10
 const getFiles = async ({ config }: Params) => {
-  const exclude = [...config.exclude]
+  const exclude = config.exclude
     .map((item) => item.replace(/(^\/|\/$)/g, '').replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'))
     .join('|');
   const excludeRegExp = new RegExp(exclude);

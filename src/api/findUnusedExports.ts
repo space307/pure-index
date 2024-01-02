@@ -53,7 +53,7 @@ const findUnusedExports = async (entry: string, list: ListItem[]) => {
       pkg,
       config: {
         batch: x.batch || BASE_CONFIG.batch,
-        exclude: x.exclude ? new Set([...BASE_CONFIG.exclude, ...x.exclude]) : BASE_CONFIG.exclude,
+        exclude: x.exclude ? [...new Set([...BASE_CONFIG.exclude, ...x.exclude])] : BASE_CONFIG.exclude,
         extensions: x.extensions || BASE_CONFIG.extensions,
         dir: x.dir,
         parserConfig: x.parserConfig || BASE_CONFIG.parserConfig,

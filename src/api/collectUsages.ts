@@ -15,7 +15,7 @@ const collectUsages = async (name: string, list: ListItem[]) => {
     _collectUsages({
       config: {
         batch: x.batch || BASE_CONFIG.batch,
-        exclude: x.exclude ? new Set([...BASE_CONFIG.exclude, ...x.exclude]) : BASE_CONFIG.exclude,
+        exclude: x.exclude ? [...new Set([...BASE_CONFIG.exclude, ...x.exclude])] : BASE_CONFIG.exclude,
         extensions: x.extensions || BASE_CONFIG.extensions,
         dir: x.dir,
         collectUsages: name,
