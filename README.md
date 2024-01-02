@@ -4,7 +4,7 @@ Pure Index is utility for packages. It helps to find all unused exports or colle
 
 ## Motivation
 
-We will use the `ui-kit` package as an example. Its _index.ts_ file will look like this
+We will use the `ui-kit` package as an example. Its _index.ts_ file looks like this
 
 ```ts
 export { Button } from './components/button';
