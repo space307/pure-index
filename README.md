@@ -122,66 +122,6 @@ Allows to override the config values for package.
 
 </details>
 
-### `--extensions, -x`
-
-<details><summary><b>Show instructions</b></summary>
-
-```diff
-    "scripts": {
-      "build": "webpack ./webpack.config.js",
--     "check-exports": "pure-index",
-+     "check-exports": "pure-index --extensions js,jsx,ts,tsx",
-      "test": "vitest"
-    }
-```
-
-</details>
-
-### `--exclude, -i`
-
-<details><summary><b>Show instructions</b></summary>
-
-```diff
-    "scripts": {
-      "build": "webpack ./webpack.config.js",
--     "check-exports": "pure-index",
-+     "check-exports": "pure-index --exclude .cache,www/assets",
-      "test": "vitest"
-    }
-```
-
-</details>
-
-### `--dir, -d`
-
-<details><summary><b>Show instructions</b></summary>
-
-```diff
-    "scripts": {
-      "build": "webpack ./webpack.config.js",
--     "check-exports": "pure-index",
-+     "check-exports": "pure-index --dir /Users/user/another-repo",
-      "test": "vitest"
-    }
-```
-
-</details>
-
-### `--batch, -b`
-
-<details><summary><b>Show instructions</b></summary>
-
-```diff
-    "scripts": {
-      "build": "webpack ./webpack.config.js",
--     "check-exports": "pure-index",
-+     "check-exports": "pure-index --batch 500",
-      "test": "vitest"
-    }
-```
-
-</details>
-
 ### `--collect-usages, -u`
 
 Outputs a list of all unique uses of the package.
