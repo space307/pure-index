@@ -20,6 +20,8 @@ You can check this manually by just looping through the exports. It's time consu
 
 We need to automate this process!
 
+## First step
+
 ```sh
 npm install --save-dev pure-index
 ```
