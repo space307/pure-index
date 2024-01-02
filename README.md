@@ -28,6 +28,10 @@ npm install --save-dev pure-index
 
 Use the `pure-index` call to search within a monorepo and JS API to search across repositories.
 
+## Monorepos
+
+## Various repositories
+
 ## How to
 
 ### Find unused exports within a monorepo
