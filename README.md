@@ -20,11 +20,13 @@ You can check this manually by just looping through the exports. It's time consu
 
 We need to automate this process!
 
-## Usage
+## First step
 
 ```sh
 npm install --save-dev pure-index
 ```
+
+<!-- Use the `pure-index` call to search within a monorepo and JS API to search across repositories. -->
 
 <!-- ## Monorepos
 
