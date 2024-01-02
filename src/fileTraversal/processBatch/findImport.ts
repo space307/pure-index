@@ -4,7 +4,6 @@ import { pipeline } from 'node:stream/promises';
 
 type Params = {
   path: PathLike;
-  // todo: use regexp
   tokens: string[];
 };
 
