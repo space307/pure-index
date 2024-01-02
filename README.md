@@ -29,3 +29,7 @@ npm install --save-dev pure-index
 ## How to
 
 ### Find unused exports within a monorepo
+
+### Find used imports within a monorepo
+
+
