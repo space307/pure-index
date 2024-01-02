@@ -3,6 +3,8 @@ import { lilconfig } from 'lilconfig';
 import { cli } from './cli.js';
 import { getRepoRoot } from '~/shared/index.js';
 
+import type { ParserConfig } from '@swc/core';
+
 const BASE_CONFIG = {
   batch: 100,
   collectUsages: null,
@@ -10,11 +12,16 @@ const BASE_CONFIG = {
   dir: null,
   exclude: new Set(['node_modules']),
   extensions: ['ts', 'tsx'],
+  parserConfig: {
+    syntax: 'typescript',
+    tsx: true,
+  } as ParserConfig,
 };
 
-type Config = Omit<typeof BASE_CONFIG, 'dir' | 'collectUsages'> & {
+type Config = Omit<typeof BASE_CONFIG, 'dir' | 'collectUsages' | 'parserConfig'> & {
   dir: string;
   collectUsages: string | null;
+  parserConfig: ParserConfig;
 };
 
 const getConfig = async (): Promise<Config> => {
@@ -28,6 +35,7 @@ const getConfig = async (): Promise<Config> => {
     batch = BASE_CONFIG.batch,
     extensions = BASE_CONFIG.extensions,
     dir,
+    parserConfig = BASE_CONFIG.parserConfig,
   } = result.config;
 
   return {
@@ -39,6 +47,7 @@ const getConfig = async (): Promise<Config> => {
     collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
     extensions: cli.flags.extensions ? cli.flags.extensions.split(',') : extensions,
     dir: cli.flags.dir || dir || getRepoRoot(),
+    parserConfig,
   };
 };
 

@@ -41,6 +41,7 @@ type ListItem = {
   batch?: Config['batch'];
   exclude?: string[];
   extensions?: Config['extensions'];
+  parserConfig?: Config['parserConfig'];
 };
 
 const findUnusedExports = async (entry: string, list: ListItem[]) => {
@@ -55,6 +56,7 @@ const findUnusedExports = async (entry: string, list: ListItem[]) => {
         exclude: x.exclude ? new Set([...BASE_CONFIG.exclude, ...x.exclude]) : BASE_CONFIG.exclude,
         extensions: x.extensions || BASE_CONFIG.extensions,
         dir: x.dir,
+        parserConfig: x.parserConfig || BASE_CONFIG.parserConfig,
       },
     }),
   );

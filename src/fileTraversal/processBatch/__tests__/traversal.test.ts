@@ -11,6 +11,9 @@ test('traversal', async () => {
     path: join(fileURLToPath(import.meta.url), '..', 'file.ts'),
     cmd: result.add.bind(result),
     pkg: { name: 'effector' },
+    config: {
+      parserConfig: { syntax: 'typescript' },
+    },
   });
 
   expect([...result]).toStrictEqual([

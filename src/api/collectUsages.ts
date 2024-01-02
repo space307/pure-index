@@ -7,6 +7,7 @@ type ListItem = {
   batch?: Config['batch'];
   exclude?: string[];
   extensions?: Config['extensions'];
+  parserConfig?: Config['parserConfig'];
 };
 
 const collectUsages = async (name: string, list: ListItem[]) => {
@@ -18,6 +19,7 @@ const collectUsages = async (name: string, list: ListItem[]) => {
         extensions: x.extensions || BASE_CONFIG.extensions,
         dir: x.dir,
         collectUsages: name,
+        parserConfig: x.parserConfig || BASE_CONFIG.parserConfig,
       },
     }),
   );

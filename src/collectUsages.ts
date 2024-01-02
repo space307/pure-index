@@ -3,7 +3,7 @@ import { Err, Ok } from '~/shared/index.js';
 import type { Config } from '~/getConfig/index.js';
 
 type Params = {
-  config: Pick<Config, 'dir' | 'batch' | 'exclude' | 'extensions'> & {
+  config: Pick<Config, 'dir' | 'batch' | 'exclude' | 'extensions' | 'parserConfig'> & {
     collectUsages: string;
   };
 };

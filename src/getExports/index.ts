@@ -1,18 +1,17 @@
 import { parseFile } from '@swc/core';
+import type { Config } from '~/getConfig/index.js';
 
 import { ObservableSet, type Pkg } from '~/shared/index.js';
 
 type Params = {
   pkg: Pkg;
+  config: Pick<Config, 'parserConfig'>;
 };
 
-const getExports = async ({ pkg }: Params) => {
+const getExports = async ({ pkg, config }: Params) => {
   const result = new ObservableSet();
 
-  const ast = await parseFile(pkg.path, {
-    syntax: 'typescript',
-    comments: false,
-  });
+  const ast = await parseFile(pkg.path, config.parserConfig);
 
   for (const node of ast.body) {
     if (node.type === 'ExportNamedDeclaration') {

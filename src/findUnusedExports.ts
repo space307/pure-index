@@ -1,10 +1,12 @@
 import { getExports } from './getExports/index.js';
 import { fileTraversal } from './fileTraversal/index.js';
-import { Err, ObservableSet, Ok, type Result } from '~/shared/index.js';
+import { Err, ObservableSet, Ok, type Pkg, type Result } from '~/shared/index.js';
+import type { Config } from './getConfig/index.js';
 
-type FindUnusedExports = (
-  _: Omit<Parameters<typeof fileTraversal>[0], 'cmd'>,
-) => Promise<
+type FindUnusedExports = (_: {
+  pkg: Pkg;
+  config: Pick<Config, 'dir' | 'batch' | 'exclude' | 'extensions' | 'parserConfig'>;
+}) => Promise<
   Result<
     { exports: ObservableSet },
     | { reason: 'no_exports'; exports: ObservableSet }
@@ -14,7 +16,7 @@ type FindUnusedExports = (
 >;
 
 const findUnusedExports: FindUnusedExports = async ({ pkg, config }) => {
-  const exports = await getExports({ pkg });
+  const exports = await getExports({ pkg, config });
   const originalExportsSize = exports.size;
 
   return new Promise(async (resolve) => {

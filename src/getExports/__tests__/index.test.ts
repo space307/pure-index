@@ -10,6 +10,9 @@ test('getExports', async () => {
       name: '_',
       path: join(fileURLToPath(import.meta.url), '..', 'file.ts'),
     },
+    config: {
+      parserConfig: { syntax: 'typescript' },
+    },
   });
 
   expect([...result]).toStrictEqual([
