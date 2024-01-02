@@ -9,7 +9,6 @@ test('default value', async () => {
         entry: 'src/index.tsx',
         extensions: 'js,jsx',
         collectUsages: 'package-a',
-        batch: 1,
         exclude: 'biba,boba,.cache,www/assets,__tests__',
         dir: 'dir-from-cli',
       },
@@ -23,7 +22,6 @@ test('default value', async () => {
     entry: 'src/index.tsx',
     extensions: ['js', 'jsx'],
     collectUsages: 'package-a',
-    batch: 1,
     exclude: new Set(['node_modules', 'biba', 'boba', '.cache', 'www/assets', '__tests__']),
     dir: 'dir-from-cli',
   });

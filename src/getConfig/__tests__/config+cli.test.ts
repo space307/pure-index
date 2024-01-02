@@ -23,7 +23,6 @@ test('default value', async () => {
         entry: 'src/main.js',
         extensions: 'js,jsx,ts,tsx',
         collectUsages: 'package-a',
-        batch: 1,
         exclude: 'biba,boba,.cache,www/assets,__tests__',
         dir: 'dir-from-cli',
       },
@@ -34,7 +33,7 @@ test('default value', async () => {
 
   expect(config).toStrictEqual({
     ...BASE_CONFIG,
-    batch: 1,
+    batch: 500,
     collectUsages: 'package-a',
     entry: 'src/main.js',
     extensions: ['js', 'jsx', 'ts', 'tsx'],

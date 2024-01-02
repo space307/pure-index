@@ -40,14 +40,15 @@ const getConfig = async (): Promise<Config> => {
 
   return {
     entry: cli.flags.entry || entry,
+    batch,
+    parserConfig,
+
     exclude: cli.flags.exclude
       ? new Set([...BASE_CONFIG.exclude, ...cli.flags.exclude.split(',')])
       : new Set([...BASE_CONFIG.exclude, ...exclude]),
-    batch: cli.flags.batch || batch,
     collectUsages: cli.flags.collectUsages || BASE_CONFIG.collectUsages,
     extensions: cli.flags.extensions ? cli.flags.extensions.split(',') : extensions,
     dir: cli.flags.dir || dir || getRepoRoot(),
-    parserConfig,
   };
 };
 
