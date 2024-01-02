@@ -10,7 +10,7 @@
   "license": "MIT",
   "files": ["dist"],
   "scripts": {
-    "build": "tsc --project ./tsconfig.build.json && tsc-alias",
+    "build": "rm -rf ./dist && tsc --project ./tsconfig.build.json && tsc-alias",
     "prepublishOnly": "npm run build",
     "test": "vitest"
   },
