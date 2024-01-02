@@ -30,6 +30,8 @@ npm install --save-dev pure-index
 
 ### Find unused exports within a monorepo
 
-### Find used imports within a monorepo
+### Collect usages within a monorepo
 
+### Find unused exports in various repositories
 
+### Collect usages in various repositories
