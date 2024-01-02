@@ -19,7 +19,6 @@ const cli = meow(
     --exclude, -i list of directories that will be excluded when searching for imports
     --extensions, -x  list of file extensions to be considered during the search
     --dir, -d  path to the directory where imports should be searched for
-    --batch, -b  number of files to be traversed in parallel
     --collect-usages, -u  outputs a list of all unique uses of the package
 `,
   {
@@ -31,7 +30,6 @@ const cli = meow(
       exclude: { type: 'string', shortFlag: 'i' },
       extensions: { type: 'string', shortFlag: 'x' },
       dir: { type: 'string', shortFlag: 'd' },
-      batch: { type: 'number', shortFlag: 'b' },
       collectUsages: { type: 'string', shortFlag: 'u' },
     },
   },
