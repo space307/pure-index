@@ -23,3 +23,7 @@ We need to automate this process!
 ```sh
 npm install --save-dev pure-index
 ```
+
+## How to
+
+### Find unused exports within a monorepo
