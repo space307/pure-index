@@ -16,6 +16,6 @@ export { ThemeProvider, useTheme, type Theme } from './themes';
 
 All of its exportable code requires support. But is all of it actually being used?
 
-You can check this manually by just looping through the exports. It's time consuming and there is a chance of error. What if his code is used by multiple repositories?
+You can check this manually by just looping through the exports. It's time consuming and there is a chance of error. What if it's code is used by multiple repositories?
 
 We need to automate this process!
