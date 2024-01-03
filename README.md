@@ -18,7 +18,7 @@ All of its exportable code requires support. But is all of it actually being use
 
 You can check this manually by just looping through the exports. It's time consuming and there is a chance of error. What if it's code is used by multiple repositories?
 
-We need to automate this process!
+Pure Index automates this process!
 
 ## Quick Start
 
