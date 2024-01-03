@@ -25,7 +25,7 @@ npm run check-exports
 Use [nx](https://nx.dev) (or any other monorepo manager) to run a script for checking multiple packages with a single command.
 
 ```bash title="Example"
-nx run-many --target=check-usage
+nx run-many --target=check-usage --parallel=12
 ```
 
 :::

@@ -1,6 +1,6 @@
 # 🌿 Pure Index
 
-Pure Index is utility for packages. It helps to clean your packages of unused exports with ease.
+Pure Index is utility for packages. It helps to clean your packages of unused exports with ease.<br />And it's also very fast ⚡️
 
 ## Motivation
 

@@ -1,29 +1,28 @@
 import { createReadStream, type PathLike } from 'node:fs';
-import { Transform } from 'node:stream';
-import { pipeline } from 'node:stream/promises';
 
 type Params = {
-  path: PathLike;
+  path: string;
   tokens: string[];
 };
 
-const findImport = ({ path, tokens }: Params) =>
+const highWaterMark = 65536; // 64 * 1024
+
+const findImport = ({ path, tokens }: Params): Promise<Params['path'] | null> =>
   new Promise((resolve, reject) => {
-    const transformStream = new Transform({
-      transform(chunk, _, callback) {
-        if (chunk.includes(tokens[0]) || chunk.includes(tokens[1])) {
-          this.push(chunk);
-          resolve(true);
-          this.destroy();
-        } else {
-          callback();
-        }
-      },
+    const readStream = createReadStream(path, { highWaterMark });
+
+    readStream.on('data', (chunk) => {
+      if (tokens.some((token) => chunk.includes(token))) {
+        readStream.destroy();
+        resolve(path);
+      }
     });
 
-    pipeline(createReadStream(path), transformStream)
-      .then(() => resolve(false))
-      .catch(reject);
+    readStream.on('end', () => {
+      resolve(null);
+    });
+
+    readStream.on('error', reject);
   });
 
 export { findImport };

@@ -5,9 +5,6 @@ import type { ObservableSet } from './observableSet.js';
 
 const { bgRed, bold } = pc;
 
-const isNil = <T>(x: T | undefined | null): x is undefined | null => x === null || x === undefined;
-const notNil = <T>(x: T): x is Exclude<typeof x, undefined | null> => !isNil(x);
-
 const readJSON = async (filePath: string) => JSON.parse(await readFile(filePath, { encoding: 'utf-8' }));
 
 const printSet = (x: Set<unknown>) => process.stdout.write(`${JSON.stringify([...x], undefined, 2)} \n\n`);
@@ -15,7 +12,7 @@ const printSet = (x: Set<unknown>) => process.stdout.write(`${JSON.stringify([..
 const printError = (opts: { text: string; set?: ObservableSet }) => {
   process.stdout.write(`\n${bold(bgRed(' Failed '))} ${opts.text}\n\n`);
 
-  if (notNil(opts.set)) {
+  if (opts.set) {
     printSet(opts.set);
   }
 };
@@ -34,7 +31,7 @@ type Pkg = {
 type NonEmptyArray<T> = [T, ...T[]];
 type Cmd = (_: string) => unknown;
 
-export { readJSON, printError, notNil, Ok, Err, printSet };
+export { readJSON, printError, Ok, Err, printSet };
 export { getRepoRoot } from './getRepoRoot.js';
 export { ObservableSet } from './observableSet.js';
 export { createSpinner } from 'nanospinner';
