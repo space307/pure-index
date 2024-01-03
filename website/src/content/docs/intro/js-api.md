@@ -43,7 +43,8 @@ type Item = {
 };
 ```
 
-The description of each field can be found in the [configuration section](/pure-index/reference/configuration)
+The description of each field can be found in the [configuration section](/pure-index/reference/configuration).
+Values for optional parameters will be taken from `.pure-index.json` or by default.
 
 :::caution
 `Item['dir']` should contains full path to the repository
@@ -130,7 +131,8 @@ type Item = {
 };
 ```
 
-The description of each field can be found in the [configuration section](/pure-index/reference/configuration)
+The description of each field can be found in the [configuration section](/pure-index/reference/configuration).
+Values for optional parameters will be taken from `.pure-index.json` or by default.
 
 :::caution
 `Item['dir']` should contains full path to the repository
