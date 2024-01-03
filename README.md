@@ -46,7 +46,11 @@ Pure Index can be used either through a command line interface with an optional 
 npm run check-exports
 ```
 
-## Config
+## Documentation
+
+Extended documentation is available [here]()
+
+<!-- ## Config
 
 Pure Index supports three ways to define config.
 
@@ -60,7 +64,7 @@ Pure Index supports three ways to define config.
   "dir": "my-path",
   "batch": 100
 }
-```
+``` -->
 
 <!-- Use the `pure-index` call to search within a monorepo and JS API to search across repositories. -->
 
