@@ -39,7 +39,7 @@ const mergeUnusedExports = (list: NonEmptyArray<TaskResult>): ExtractError<'unus
 type ListItem = {
   dir: Config['dir'];
   batch?: Config['batch'];
-  exclude?: string[];
+  exclude?: Config['exclude'];
   extensions?: Config['extensions'];
   parserConfig?: Config['parserConfig'];
 };
@@ -58,7 +58,7 @@ const findUnusedExports = async (entry: string, list: ListItem[]) => {
   const result = (await Promise.all(tasks)) as NonEmptyArray<TaskResult>;
 
   if (result.some((x) => x.ok)) {
-    return Ok(true);
+    return Ok({ exports: new Set<void>() });
   }
 
   const [head] = result;

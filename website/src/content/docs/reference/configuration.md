@@ -4,7 +4,7 @@ title: Configuration
 
 Pure Index will read your root `.pure-index.json` when it is present.
 
-All options are optional.
+All options are not required.
 
 ```json title=".pure-index.json"
 {

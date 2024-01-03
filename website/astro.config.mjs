@@ -17,6 +17,7 @@ export default defineConfig({
           items: [
             { label: 'Introduction', link: '/' },
             { label: 'CLI', link: '/intro/cli' },
+            { label: 'JavaScript API', link: '/intro/js-api' },
           ],
         },
         {
@@ -35,7 +36,9 @@ export default defineConfig({
           ],
         },
       ],
-      customCss: ['./src/styles/layout.css'],
+      tableOfContents: {
+        maxHeadingLevel: 4,
+      },
     }),
   ],
 });
