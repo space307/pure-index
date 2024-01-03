@@ -20,15 +20,17 @@ You can check this manually by just looping through the exports. It's time consu
 
 Pure Index automates this process!
 
-## Quick Start
-
-1. Install
+## Installation
 
 ```sh
 npm install --save-dev pure-index
 ```
 
-2. Add the `check-exports` script in the `package.json` of each package that needs to be checked
+## Quick Start
+
+Pure Index can be used either through a command line interface with an optional configuration file, or else through its JavaScript API.
+
+1. Add the `check-exports` script in the `package.json` of each package that needs to be checked
 
 ```diff
     "scripts": {
@@ -38,13 +40,29 @@ npm install --save-dev pure-index
     }
 ```
 
-3. Run
+2. Run
 
 ```sh
 npm run check-exports
 ```
 
 It may be necessary to configure Pure Index.
+
+## Config
+
+Pure Index supports three ways to define config.
+
+1. `.pure-index.json` config file:
+
+```json
+{
+  "entry": "index.ts",
+  "exclude": ["node_modules"],
+  "extensions": ["ts", "tsx"],
+  "dir": "my-path",
+  "batch": 100
+}
+```
 
 <!-- Use the `pure-index` call to search within a monorepo and JS API to search across repositories. -->
 
