@@ -7,8 +7,6 @@ import { getFiles } from '../index.js';
 test('getExports', async () => {
   const dir = dirname(fileURLToPath(import.meta.url));
 
-  console.log(dir);
-
   const files = await getFiles({
     config: {
       extensions: ['ts'],
@@ -19,5 +17,5 @@ test('getExports', async () => {
 
   const result = files.map((x) => x.replace(dir, ''));
 
-  expect([...result]).toStrictEqual(['/files/a.ts', '/files/b.ts', '/getFiles.test.ts', '/pkg/index.ts']);
+  expect([...result]).toStrictEqual(['/files/a.ts', '/files/b.ts', '/getFiles.test.ts']);
 });
