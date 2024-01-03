@@ -8,7 +8,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Pure Index',
-      description: '', // todo: add normal
+      description: 'Pure Index is utility for packages. It helps to clean your packages of unused exports with ease.',
       social: {
         github: 'https://github.com/space307/pure-index',
       },

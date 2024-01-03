@@ -1,5 +1,6 @@
 ---
 title: How to collect package usages
+description: How to collect package usages with Pure Index
 ---
 
 :::tip

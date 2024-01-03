@@ -1,5 +1,6 @@
 ---
 title: How to find unused code inside a package
+description: How to find unused code inside a package with Pure Index
 ---
 
 1. Use Pure Index to find unused exports from packages.

@@ -1,5 +1,6 @@
 ---
 title: JavaScript API
+description: Pure Index JavaScript API Intro
 ---
 
 Pure Index provides a JavaScript API which is usable from Node.js. You only have to use this if the use of Pure Index goes beyond the monorepository.

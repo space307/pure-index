@@ -1,5 +1,6 @@
 ---
 title: Configuration
+description: Pure Index Configuration
 ---
 
 Pure Index will read your root `.pure-index.json` when it is present.

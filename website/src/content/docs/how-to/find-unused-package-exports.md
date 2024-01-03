@@ -1,5 +1,6 @@
 ---
 title: How to find unused package exports
+description: How to find unused package exports with Pure Index
 ---
 
 ## In a monorepository

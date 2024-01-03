@@ -1,5 +1,6 @@
 ---
 title: Limitations
+description: Limitations of Pure Index
 ---
 
 ## export \*

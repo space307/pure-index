@@ -1,5 +1,6 @@
 ---
 title: How It Works
+description: How Pure Index works
 ---
 
 In fact, the task is to compare all exports and imports of the package. Anything not imported but exported are unused exports.

@@ -1,5 +1,6 @@
 ---
 title: Command Line Interface
+description: Pure Index Command Line Interface Intro
 ---
 
 Pure Index should typically be used from the command line. You can provide an optional [configuration file](/pure-index/reference/configuration) to simplify command line usage and enable advanced functionality.

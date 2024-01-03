@@ -1,5 +1,6 @@
 ---
 title: How to precisely override a package's entry
+description: How to precisely override a package's entry with Pure Index
 ---
 
 Sometimes it may be necessary to precisely override the path to the package index file. For example, all packages have `./index.ts` and only one has `./src/index.tsx`.
