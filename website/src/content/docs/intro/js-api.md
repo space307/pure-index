@@ -72,7 +72,7 @@ type Result =
 - if no unused exports were found, `result.ok = true`
 - if unused exports were found, `result.ok = false`
 
-## Example
+### Example
 
 ```js
 import { findUnusedExports } from 'pure-index';
@@ -156,6 +156,8 @@ type Result =
 
 - if imports were found, `result.ok = true`
 - if no imports were found, `result.ok = false`
+
+### Example
 
 ```js
 import { findUnusedExports } from 'pure-index';
