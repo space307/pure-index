@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: 'node:16.15.0-buster'
+      image: 'node:20-buster'
     env:
       NO_COLOR: true
     steps:
