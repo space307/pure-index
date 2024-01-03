@@ -1,6 +1,6 @@
 # 🌿 Pure Index
 
-Pure Index is utility for packages. It helps to find all unused exports or collect used imports of a package. For any local repository.
+Pure Index is utility for packages. It helps to clean your packages of unused exports with ease.
 
 ## Motivation
 
@@ -46,38 +46,64 @@ Pure Index can be used either through a command line interface with an optional 
 npm run check-exports
 ```
 
-## Documentation
+## Configuration
 
-Extended documentation is available [here]()
+Pure Index will read your root `.pure-index.json` when it is present.
 
-<!-- ## Config
-
-Pure Index supports three ways to define config.
-
-1. `.pure-index.json` config file:
-
-```json
+```json title=".pure-index.json"
 {
   "entry": "index.ts",
   "exclude": ["node_modules"],
   "extensions": ["ts", "tsx"],
-  "dir": "my-path",
-  "batch": 100
+  "dir": "repository-root",
+  "batch": 100,
+  "parserConfig": {
+    "syntax": "typescript",
+    "tsx": true
+  }
 }
-``` -->
+```
 
-<!-- Use the `pure-index` call to search within a monorepo and JS API to search across repositories. -->
+### Options
 
-<!-- ## Monorepos
+#### entry
 
-## Various repositories
+- **Type**: `string`
+- **Default**: `index.ts`
 
-## How to
+Path to the package index file. Relative to the package directory.
 
-### Find unused exports within a monorepo
+#### extensions
 
-### Collect usages within a monorepo
+- **Type**: `string[]`
+- **Default**: `['ts', 'tsx']`
 
-### Find unused exports in various repositories
+List of file extensions to be considered during the search.
 
-### Collect usages in various repositories -->
+#### exclude
+
+- **Type**: `string[]`
+- **Default**: `['node_modules']`
+
+List of directories that will be excluded when searching for imports.
+
+#### parserConfig
+
+- **Type**: `object`
+- **Default**: `{"syntax": "typescript", "tsx": true}`
+
+Object with [swc parser parameters](https://swc.rs/docs/configuration/compilation#jscparser)
+
+#### dir
+
+- **Type**: `string`
+- **Default**: `repository root`
+
+Path to the directory where imports should be searched for.
+
+#### batch
+
+- **Type**: `number`
+- **Default**: `200`
+
+Number of files to be traversed in parallel. Changing the value may speed up or slow down the script. Choose the value yourself.
