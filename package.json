@@ -8,7 +8,7 @@
   "bin": "./dist/bin/index.js",
   "author": "Viktor Pasynok",
   "license": "MIT",
-  "files": ["dist"],
+  "files": ["dist", "README.md", "CHANGELOG.md"],
   "private": false,
   "scripts": {
     "build": "rm -rf ./dist && tsc --project ./tsconfig.build.json && tsc-alias",
