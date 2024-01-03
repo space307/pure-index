@@ -1,6 +1,7 @@
 import { notNil, type Cmd, type Pkg } from '~/shared/index.js';
 import { findImport } from './findImport.js';
-import { traversal } from './traversal.js';
+import { traversal } from './traversal/index.js';
+
 import type { Config } from '~/getConfig/index.js';
 
 type Params = {

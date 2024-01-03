@@ -2,7 +2,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expect, test } from 'vitest';
 
-import { traversal } from '../traversal.js';
+import { traversal } from '../index.js';
 
 test('traversal', async () => {
   const result = new Set<string>();
