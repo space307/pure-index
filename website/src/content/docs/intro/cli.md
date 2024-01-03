@@ -4,7 +4,7 @@ title: Command Line Interface
 
 ## Commands
 
-`pure-index`
+### pure-index
 
 Start Pure Index in the current directory.
 

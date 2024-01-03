@@ -96,3 +96,82 @@ process.exit(0);
 ```
 
 ## collectUsages
+
+This function allows you to collect all usages of the package in different repositories.
+A function call can be made from anywhere.
+
+### Formulae
+
+```ts
+const result = await collectUsages(name, repositories);
+```
+
+### Arguments
+
+#### name
+
+- **Type**: `string`
+
+The name of the package to look for.
+
+#### repositories
+
+- **Type**: `Item[]`
+
+List of repositories where to look for package imports.
+
+```ts title="Item"
+type Item = {
+  dir: Config['dir']; // full path to the repository
+  batch?: Config['batch'];
+  exclude?: Config['exclude'];
+  extensions?: Config['extensions'];
+  parserConfig?: Config['parserConfig'];
+};
+```
+
+The description of each field can be found in the [configuration section](/pure-index/reference/configuration)
+
+:::caution
+`Item['dir']` should contains full path to the repository
+:::
+
+### Returns
+
+Promise with `Result` object.
+
+```ts
+type Result =
+  | {
+      ok: true;
+      val: { usages: Set<string> };
+    }
+  | {
+      ok: false;
+      err: { usages: Set<void> };
+    };
+```
+
+- if imports were found, `result.ok = true`
+- if no imports were found, `result.ok = false`
+
+```js
+import { findUnusedExports } from 'pure-index';
+
+const result = await collectUsages('@my/ui-kit', [
+  {
+    dir: '/Users/me/my-awesome-repo',
+    exclude: ['build'],
+  },
+  {
+    dir: '/Users/me/my-another-awesome-repo',
+  },
+]);
+
+if (result.ok) {
+  process.stout.write(JSON.stringify(result.val.usages, undefined, 2));
+  process.exit(0);
+}
+
+process.exit(1);
+```
