@@ -1,9 +1,9 @@
 import { collectUsages as _collectUsages } from '~/collectUsages.js';
-import { getConfig } from '~/getConfig/index.js';
+import { type Config } from '~/getConfig/index.js';
 import { printSet, printError, createSpinner } from '~/shared/index.js';
 
 type Params = {
-  config: Awaited<ReturnType<typeof getConfig>>;
+  config: Config;
 };
 
 const collectUsages = async ({ config }: Params) => {

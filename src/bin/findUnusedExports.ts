@@ -1,9 +1,9 @@
-import { getConfig } from '~/getConfig/index.js';
+import { type Config } from '~/getConfig/index.js';
 import { findUnusedExports as _findUnusedExports } from '~/findUnusedExports.js';
 import { printError, createSpinner, readJSON } from '~/shared/index.js';
 
 type Params = {
-  config: Awaited<ReturnType<typeof getConfig>>;
+  config: Config;
 };
 
 const findUnusedExports = async ({ config }: Params) => {
