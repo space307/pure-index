@@ -8,9 +8,7 @@ title: How to find unused package exports
 
 ```diff
     "scripts": {
-      "build": "webpack ./webpack.config.js",
-+     "check-exports": "pure-index",
-      "test": "vitest"
++     "check-exports": "pure-index"
     }
 ```
 

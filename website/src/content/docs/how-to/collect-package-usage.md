@@ -2,6 +2,15 @@
 title: How to collect package usages
 ---
 
+:::tip
+You can collect usages not only of your own packages, but also of any others. For example, [effector](https://effector.dev).
+
+```sh
+pure-index --collect-usages effector
+```
+
+:::
+
 ## In a monorepository
 
 1. Run Pure Index with [`--collect-usages`](/pure-index/intro/cli#command-line-flags) flag
