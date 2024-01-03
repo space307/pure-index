@@ -25,7 +25,7 @@ Let's automate this process!
 > You can use any package manager
 
 ```sh
-npm install -D pure-index
+npm install -D @space307/pure-index
 ```
 
 ## Documentation
