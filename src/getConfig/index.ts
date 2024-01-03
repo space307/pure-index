@@ -40,7 +40,7 @@ const mergeConfig = (x: Partial<Config>): Config => ({
 
 const getConfig = async (): Promise<Config> => {
   const result = (await lilconfig('pure-index', {
-    searchPlaces: ['package.json', '.pure-index.json', '.pure-index.js', '.pure-index.cjs'],
+    searchPlaces: ['.pure-index.json'],
   }).search()) || { config: {} };
 
   return mergeConfig({

@@ -7,23 +7,35 @@ export default defineConfig({
   base: '/pure-index',
   integrations: [
     starlight({
-      title: 'My Docs',
+      title: '🌿Pure Index',
       social: {
-        github: 'https://github.com/withastro/starlight',
+        github: 'https://github.com/space307/pure-index',
       },
       sidebar: [
         {
-          label: 'Guides',
+          label: 'Getting started',
           items: [
-            // Each item here is one entry in the navigation menu.
-            { label: 'Example Guide', link: '/guides/example/' },
+            { label: 'Introduction', link: '/' },
+            { label: 'CLI', link: '/intro/cli' },
           ],
         },
         {
+          label: 'How to',
+          items: [{ label: 'Find unused code inside a package', link: 'how-to/find-unused-code-inside-package' }],
+        },
+        {
           label: 'Reference',
-          autogenerate: { directory: 'reference' },
+          items: [{ label: 'Configuration', link: 'reference/configuration' }],
+        },
+        {
+          label: 'Explanation',
+          items: [
+            { label: 'How It Works', link: 'explanation/how-it-works' },
+            { label: 'Limitations', link: 'explanation/limitations' },
+          ],
         },
       ],
+      customCss: ['./src/styles/layout.css'],
     }),
   ],
 });
