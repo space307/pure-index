@@ -16,7 +16,8 @@ const traversal = async ({ path, pkg, cmd, config }: Params) => {
   for (const node of ast.body) {
     if (node.type === 'ImportDeclaration' && node.source.value === pkg.name) {
       for (const specifier of node.specifiers) {
-        if (specifier.type === 'ImportSpecifier') {
+        if (specifier.type === 'ImportSpecifier' || specifier.type === 'ImportDefaultSpecifier') {
+          // @ts-expect-error
           specifier.imported ? cmd(specifier.imported.value) : cmd(specifier.local.value);
         }
       }

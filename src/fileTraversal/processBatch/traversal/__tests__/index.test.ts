@@ -25,6 +25,8 @@ test('traversal', async () => {
     'Unit',
     'Domain',
     'EffectError',
+    'effector',
+    'createDomain',
     'NoInfer',
     'UnitValue',
     'is',

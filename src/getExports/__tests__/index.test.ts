@@ -30,5 +30,6 @@ test('getExports', async () => {
     'bFn',
     'i',
     'ba',
+    'def',
   ]);
 });

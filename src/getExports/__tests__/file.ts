@@ -13,3 +13,6 @@ export { createEvent, type Event, createStore as cReAtEsToRe } from 'effector';
 export type { Store, Effect as EFFECT } from 'effector';
 export { fn, biba as boba };
 export { bFn, i, c as ba };
+
+const def = 1;
+export default def;

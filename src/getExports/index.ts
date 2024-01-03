@@ -45,6 +45,11 @@ const getExports = async ({ pkg, config }: Params) => {
 
       continue;
     }
+
+    if (node.type === 'ExportDefaultExpression') {
+      // @ts-expect-error
+      result.add(node.expression.value);
+    }
   }
 
   return result;
