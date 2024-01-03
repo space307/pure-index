@@ -2,6 +2,8 @@
 title: Command Line Interface
 ---
 
+Pure Index should typically be used from the command line. You can provide an optional Pure Index [configuration file](/pure-index/reference/configuration) to simplify command line usage and enable advanced functionality.
+
 ## Commands
 
 ### pure-index
@@ -14,7 +16,7 @@ pure-index
 
 ## Options
 
-Calling the Pure Index with options allows you to override the [configuration](pure-index/reference/configuration) or change its behavior.
+Calling the Pure Index with options allows you to override the [configuration](/pure-index/reference/configuration) or change its behavior.
 
 <!-- prettier-ignore -->
 | <div style="width:250px">property</div> |                                                   |
