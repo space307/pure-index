@@ -24,7 +24,11 @@ export default defineConfig({
         },
         {
           label: 'How to',
-          items: [{ label: 'Find unused code inside a package', link: 'how-to/find-unused-code-inside-package' }],
+          items: [
+            { label: 'Find unused package exports', link: 'how-to/find-unused-package-exports' },
+            { label: 'Collect package usages', link: 'how-to/collect-package-usage' },
+            { label: 'Find unused code inside a package', link: 'how-to/find-unused-code-inside-package' },
+          ],
         },
         {
           label: 'Reference',
