@@ -4,9 +4,9 @@ Pure Index is utility for packages. It helps to clean your packages of unused ex
 
 ## Motivation
 
-We will use the `ui-kit` package as an example. Its _index.ts_ file looks like this
+We will use the `@my/ui-kit` package as an example.
 
-```ts
+```ts title="ui-kit/index.ts"
 export { Button } from './components/button';
 export { Text } from './components/text';
 
@@ -18,14 +18,14 @@ All of its exportable code requires support. But is all of it actually being use
 
 You can check this manually by just looping through the exports. It's time consuming and there is a chance of error. What if it's code is used by multiple repositories?
 
-Pure Index automates this process!
+Let's automate this process!
 
 ## Installation
 
 > You can use any package manager
 
 ```sh
-npm install --save-dev pure-index
+npm install -D pure-index
 ```
 
 ## Documentation

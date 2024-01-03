@@ -5,10 +5,9 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
   site: 'https://space307.github.io',
   base: '/pure-index',
-  favicon: '/images/favicon.svg',
   integrations: [
     starlight({
-      title: '🌿Pure Index',
+      title: 'Pure Index',
       description: '', // todo: add normal
       social: {
         github: 'https://github.com/space307/pure-index',

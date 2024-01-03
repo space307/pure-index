@@ -6,7 +6,9 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 Pure Index is utility for packages. It helps to find all unused exports or collect used imports of a package. For any local repository.
 
-We will use the `ui-kit` package as an example.
+## Motivation
+
+We will use the `@my/ui-kit` package as an example.
 
 ```ts title="ui-kit/index.ts"
 export { Button } from './components/button';
@@ -26,22 +28,22 @@ Let's automate this process!
 
 <Tabs>
 <TabItem label="npm">
-  ```bash [npm]
+  ```sh [npm]
     npm install -D pure-index
   ```
   </TabItem>
   <TabItem label="yarn">
-  ```bash [yarn]
+  ```sh [yarn]
     yarn add -D pure-index
   ```
   </TabItem>
    <TabItem label="pnpm">
-  ```bash [pnpm]
+  ```sh [pnpm]
     pnpm add -D pure-index
   ```
   </TabItem>
   <TabItem label="bun">
-  ```bash [bun]
+  ```sh [bun]
     bun add -D pure-index
   ```
   </TabItem>
