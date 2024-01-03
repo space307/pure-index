@@ -3,8 +3,6 @@ import { fdir } from 'fdir';
 
 import type { Config } from '~/getConfig/index.js';
 
-const formattedExtensions = (list: Config['extensions']) => list.join(',') + ',';
-
 type Params = {
   config: Pick<Config, 'extensions' | 'dir' | 'exclude'>;
 };
@@ -15,7 +13,7 @@ const getFiles = async ({ config }: Params) => {
     .map((item) => item.replace(/(^\/|\/$)/g, '').replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'))
     .join('|');
   const excludeRegExp = new RegExp(exclude);
-  const source = join('**', `*.{${formattedExtensions(config.extensions)}}`);
+  const source = join('**', `*.{${config.extensions.join(',') + ','}}`);
 
   const files = new fdir()
     .exclude((dirName) => excludeRegExp.test(dirName))

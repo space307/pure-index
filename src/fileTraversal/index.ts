@@ -1,5 +1,5 @@
 import { processBatch } from './processBatch/index.js';
-import { getFiles } from './getFiles.js';
+import { getFiles } from './getFiles/index.js';
 import type { Config } from '~/getConfig/index.js';
 import type { Cmd, Pkg } from '~/shared/index.js';
 

@@ -1,11 +1,13 @@
-import { join, dirname } from 'node:path';
+import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expect, test } from 'vitest';
 
-import { getFiles } from '../getFiles.js';
+import { getFiles } from '../index.js';
 
 test('getExports', async () => {
   const dir = dirname(fileURLToPath(import.meta.url));
+
+  console.log(dir);
 
   const files = await getFiles({
     config: {
