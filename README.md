@@ -28,7 +28,7 @@ npm install --save-dev pure-index
 
 ## Quick Start
 
-Pure Index can be used either through a command line interface with an optional configuration file, or else through its JavaScript API.
+Pure Index can be used either through a command line interface with an optional [configuration file](#config), or else through its JavaScript API.
 
 1. Add the `check-exports` script in the `package.json` of each package that needs to be checked
 
@@ -45,8 +45,6 @@ Pure Index can be used either through a command line interface with an optional 
 ```sh
 npm run check-exports
 ```
-
-It may be necessary to configure Pure Index.
 
 ## Config
 
