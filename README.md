@@ -20,11 +20,31 @@ You can check this manually by just looping through the exports. It's time consu
 
 We need to automate this process!
 
-## First step
+## Quick Start
+
+1. Install
 
 ```sh
 npm install --save-dev pure-index
 ```
+
+2. Add the `check-exports` script in the `package.json` of each package that needs to be checked
+
+```diff
+    "scripts": {
+      "build": "webpack ./webpack.config.js",
++     "check-exports": "pure-index --entry ./src/index.ts",
+      "test": "vitest"
+    }
+```
+
+3. Run
+
+```sh
+npm run check-exports
+```
+
+It may be necessary to configure Pure Index.
 
 <!-- Use the `pure-index` call to search within a monorepo and JS API to search across repositories. -->
 
