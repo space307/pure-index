@@ -25,8 +25,28 @@ Let's automate this process!
 > You can use any package manager
 
 ```sh
-npm install -D @space307/pure-index
+npm install -D pure-index
 ```
+
+## Quick Start
+
+Pure Index can be used either through a [command line interface](https://space307.github.io/pure-index/intro/cli) with an optional [configuration file](https://space307.github.io/pure-index/reference/configuration), or else through its [JavaScript API](https://space307.github.io/pure-index/intro/js-api).
+
+1. Add the `check-exports` script in the `package.json` of each package that needs to be checked
+
+```diff
+    "scripts": {
++     "check-exports": "pure-index"
+    }
+```
+
+2. Run
+
+```sh
+npm run check-exports
+```
+
+3. Depending on the project, you may need to [configure](https://space307.github.io/pure-index/reference/configuration) Pure Index.
 
 ## Documentation
 
