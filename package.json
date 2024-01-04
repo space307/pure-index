@@ -76,7 +76,9 @@
     "unresolved",
     "usage",
     "unused",
-    "workspace"
+    "workspace",
+    "ease",
+    "framework agnostic"
   ],
   "volta": {
     "node": "20.10.0",
