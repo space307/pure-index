@@ -12,12 +12,12 @@ It is most convenient to use them on CI where you can clone all the repositories
 ## findUnusedExports
 
 This function allows you to find all unused package exports by checking imports in different repositories.
-Function call must come from the repository that contains the package being tested.
+Function call must come from the repository that contains the package being tested. Next to its `package.json`.
 
 ### Formulae
 
 ```ts
-const result = await findUnusedExports(entry, repositories);
+const result = await findUnusedExports({ entry, location }, repositories);
 ```
 
 ### Arguments
@@ -25,12 +25,22 @@ const result = await findUnusedExports(entry, repositories);
 #### entry
 
 - **Type**: `string`
+- **Required**: `true`
 
-Path to the package index file. Relative to the package directory.
+Path to the package index file. Relative to the package location.
+
+#### location
+
+- **Type**: `string`
+- **Required**: `false`
+- **Default**: `''`
+
+Path to the directory containing `package.json` of the package. Relative to the directory of the script call.
 
 #### repositories
 
 - **Type**: `Item[]`
+- **Required**: `true`
 
 List of repositories where to look for package imports.
 
@@ -78,15 +88,21 @@ type Result =
 ```js
 import { findUnusedExports } from 'pure-index';
 
-const result = await findUnusedExports('./src/index.ts', [
+const result = await findUnusedExports(
   {
-    dir: '/Users/me/my-awesome-repo',
-    exclude: ['build'],
+    entry: './src/index.ts',
+    // location: '../../', // or using `dirname(fileURLToPath(import.meta.url))`
   },
-  {
-    dir: '/Users/me/my-another-awesome-repo',
-  },
-]);
+  [
+    {
+      dir: '/Users/me/my-awesome-repo',
+      exclude: ['build'],
+    },
+    {
+      dir: '/Users/me/my-another-awesome-repo',
+    },
+  ],
+);
 
 if (!result.ok) {
   process.stout.write(result.err.reason);
@@ -113,12 +129,14 @@ const result = await collectUsages(name, repositories);
 #### name
 
 - **Type**: `string`
+- **Required**: `true`
 
 The name of the package to look for.
 
 #### repositories
 
 - **Type**: `Item[]`
+- **Required**: `true`
 
 List of repositories where to look for package imports.
 

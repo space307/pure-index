@@ -3,7 +3,10 @@ import { findUnusedExports } from '../findUnusedExports.js';
 
 import type { Result } from '~/shared/index.js';
 
-type Name = string;
+type Params = {
+  entry: string;
+  location?: string;
+};
 
 type ListItem = {
   dir: string;
@@ -30,7 +33,7 @@ type Returns = Result<
 
 test('findUnusedExports signature', () => {
   expectTypeOf(findUnusedExports).toBeFunction();
-  expectTypeOf(findUnusedExports).parameter(0).toMatchTypeOf<Name>();
+  expectTypeOf(findUnusedExports).parameter(0).toMatchTypeOf<Params>();
   expectTypeOf(findUnusedExports).parameter(1).toMatchTypeOf<ListItem[]>();
   expect(findUnusedExports.length).toBe(2);
 

@@ -1,22 +1,21 @@
-import path, { join } from 'node:path';
+import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test, expect } from 'vitest';
 
 import { collectUsages } from '../collectUsages.js';
 
-const filename = (importMeta: ImportMeta) => (importMeta.url ? fileURLToPath(importMeta.url) : '');
-
-const dirname = (importMeta: ImportMeta) => path.dirname(filename(importMeta));
+const monorepoPath = join(dirname(fileURLToPath(import.meta.url)), 'monorepo');
 
 test.each([
   ['package-a', ['reset', 'Store']],
   ['package-b', []],
   ['package-c', ['$list']],
   ['package-d', ['createStore']],
+  ['package-e', []],
 ])('collect usages in %s', async (name, expected) => {
   const res = await collectUsages(name, [
     {
-      dir: join(dirname(import.meta), 'monorepo'),
+      dir: monorepoPath,
     },
   ]);
 

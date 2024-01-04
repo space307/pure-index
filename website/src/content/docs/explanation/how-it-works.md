@@ -18,3 +18,4 @@ In fact, the task is to compare all exports and imports of the package. Anything
 1. file reading is divided into batches
 2. file is not immediately converted to AST. First the import of the package is searched for in the file. _createReadStream_ is used
 3. there is an instant exit with success as soon as the size of _exports Set_ is equal to zero
+4. [swc](https://swc.rs/) is used to parse the AST

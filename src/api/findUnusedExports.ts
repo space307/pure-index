@@ -1,3 +1,5 @@
+import { join } from 'node:path';
+
 import { findUnusedExports as _findUnusedExports } from '~/findUnusedExports.js';
 import { mergeConfig, type Config } from '~/getConfig/index.js';
 import { readJSON, Ok, Err, type NonEmptyArray } from '~/shared/index.js';
@@ -36,6 +38,11 @@ const mergeUnusedExports = (list: NonEmptyArray<TaskResult>): ExtractError<'unus
   return Err({ reason: 'unused_exports', exports: head });
 };
 
+type Params = {
+  entry: string;
+  location?: string;
+};
+
 type ListItem = {
   dir: Config['dir'];
   batch?: Config['batch'];
@@ -44,9 +51,9 @@ type ListItem = {
   parserConfig?: Config['parserConfig'];
 };
 
-const findUnusedExports = async (entry: string, list: ListItem[]) => {
-  const { name } = await readJSON('package.json');
-  const pkg = { name, path: entry };
+const findUnusedExports = async ({ entry, location = '' }: Params, list: ListItem[]) => {
+  const { name } = await readJSON(join(location, 'package.json'));
+  const pkg = { name, path: join(location, entry) };
 
   const tasks = list.map((x) =>
     _findUnusedExports({
