@@ -41,6 +41,7 @@ export default defineConfig({
           label: 'Explanation',
           items: [
             { label: 'How It Works', link: 'explanation/how-it-works' },
+            { label: 'Benchmarks', link: 'explanation/benchmarks' },
             { label: 'Limitations', link: 'explanation/limitations' },
           ],
         },
