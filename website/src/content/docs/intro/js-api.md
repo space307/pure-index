@@ -54,7 +54,7 @@ type Item = {
 ```
 
 The description of each field can be found in the [configuration section](/pure-index/reference/configuration).
-Values for optional parameters will be taken from `.pure-index.json` or by default.
+The values of optional parameters will be taken as defaults if they are not provided.
 
 :::caution
 `Item['dir']` should contains full path to the repository
@@ -104,8 +104,11 @@ const result = await findUnusedExports(
 );
 
 if (!result.ok) {
-  process.stout.write(result.err.reason);
-  process.stout.write(JSON.stringify(result.err.exports, undefined, 2));
+  process.stdout.write(result.err.reason + '\n');
+
+  const exports = JSON.stringify([...result.err.exports], undefined, 2);
+
+  process.stdout.write(exports + '\n');
   process.exit(1);
 }
 
@@ -115,7 +118,6 @@ process.exit(0);
 ## collectUsages
 
 This function allows you to collect all usages of the package in different repositories.
-A function call can be made from anywhere.
 
 ### Formulae
 
@@ -150,7 +152,7 @@ type Item = {
 ```
 
 The description of each field can be found in the [configuration section](/pure-index/reference/configuration).
-Values for optional parameters will be taken from `.pure-index.json` or by default.
+The values of optional parameters will be taken as defaults if they are not provided.
 
 :::caution
 `Item['dir']` should contains full path to the repository
@@ -191,7 +193,9 @@ const result = await collectUsages('@my/ui-kit', [
 ]);
 
 if (result.ok) {
-  process.stout.write(JSON.stringify(result.val.usages, undefined, 2));
+  const usages = JSON.stringify([...result.val.usages], undefined, 2);
+
+  process.stdout.write(usages + '\n');
   process.exit(0);
 }
 

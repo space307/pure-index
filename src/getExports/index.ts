@@ -21,6 +21,11 @@ const printError = (pkg: Pkg) => {
     - if you have a configuration file:
         use the pure-index command with the "--entry" flag.
         https://space307.github.io/pure-index/how-to/precisely-override-package-entry
+
+    - if you are using the JavaScript API
+        - check the path specified for "entry"
+        - specify "location" if you are calling the script from a directory other than the directory of the package being checked
+        https://space307.github.io/pure-index/intro/js-api#arguments
     `,
   });
 };
