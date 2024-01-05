@@ -30,6 +30,7 @@ export default defineConfig({
             { label: 'Collect package usages', link: 'how-to/collect-package-usage' },
             { label: "Precisely override a package's entry", link: 'how-to/precisely-override-package-entry' },
             { label: 'Find unused code inside a package', link: 'how-to/find-unused-code-inside-package' },
+            { label: 'Speed up the checking of exports', link: 'how-to/speed-up-the-checking-of-exports' },
           ],
         },
         {
@@ -49,7 +50,7 @@ export default defineConfig({
       },
     }),
   ],
-  output: 'server',
+  output: 'hybrid',
   adapter: vercel({
     webAnalytics: { enabled: true },
   }),
