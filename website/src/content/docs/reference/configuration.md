@@ -9,7 +9,7 @@ All options are not required.
 
 ```json title=".pure-index.json"
 {
-  "entry": "index.ts",
+  "entry": "src/index.ts",
   "exclude": ["node_modules"],
   "extensions": ["ts", "tsx"],
   "dir": "repository-root",
@@ -26,7 +26,7 @@ All options are not required.
 ### entry
 
 - **Type**: `string`
-- **Default**: `index.ts`
+- **Default**: `src/index.ts`
 
 Path to the package index file. Relative to the package directory.
 

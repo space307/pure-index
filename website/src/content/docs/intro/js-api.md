@@ -12,7 +12,6 @@ It is most convenient to use them on CI where you can clone all the repositories
 ## findUnusedExports
 
 This function allows you to find all unused package exports by checking imports in different repositories.
-Function call must come from the repository that contains the package being tested. Next to its `package.json`.
 
 ### Formulae
 

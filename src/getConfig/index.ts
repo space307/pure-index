@@ -1,4 +1,5 @@
 import { lilconfig } from 'lilconfig';
+import { join } from 'node:path';
 
 import { cli } from './cli.js';
 import { getRepoRoot } from '~/shared/index.js';
@@ -19,7 +20,7 @@ const BASE_CONFIG: Config = {
   batch: 100,
   collectUsages: null,
   dir: '',
-  entry: 'index.ts',
+  entry: join('src', 'index.ts'),
   exclude: ['node_modules'],
   extensions: ['ts', 'tsx'],
   parserConfig: {
