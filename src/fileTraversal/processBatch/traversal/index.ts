@@ -1,7 +1,7 @@
 import { parseFile } from '@swc/core';
 import type { Config } from '~/getConfig/index.js';
 
-import type { Cmd, Pkg } from '~/shared/index.js';
+import { type Cmd, type Pkg, printParseError } from '~/shared/index.js';
 
 type Params = {
   path: string;
@@ -11,7 +11,14 @@ type Params = {
 };
 
 const traversal = async ({ path, pkg, cmd, config }: Params) => {
-  const ast = await parseFile(path, config.parserConfig);
+  let ast;
+
+  try {
+    ast = await parseFile(path, config.parserConfig);
+  } catch (e) {
+    printParseError(path);
+    process.exit(1);
+  }
 
   for (const node of ast.body) {
     if (node.type === 'ImportDeclaration' && node.source.value === pkg.name) {

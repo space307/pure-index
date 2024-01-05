@@ -17,6 +17,16 @@ const printError = (opts: { text: string; set?: ObservableSet }) => {
   }
 };
 
+const printParseError = (path: Pkg['path']) =>
+  printError({
+    text: `
+  Unable to parse ${path}
+
+  Please refer to the documentation to learn how to configure "parserConfig":
+  https://space307.github.io/pure-index/reference/configuration#parserconfig
+  `,
+  });
+
 const Ok = <T>(val: T) => ({ ok: true, val }) as const;
 
 const Err = <E>(err: E) => ({ ok: false, err }) as const;
@@ -31,7 +41,7 @@ type Pkg = {
 type NonEmptyArray<T> = [T, ...T[]];
 type Cmd = (_: string) => unknown;
 
-export { readJSON, printError, Ok, Err, printSet };
+export { readJSON, printError, printParseError, Ok, Err, printSet };
 export { getRepoRoot } from './getRepoRoot.js';
 export { ObservableSet } from './observableSet.js';
 export { createSpinner } from 'nanospinner';

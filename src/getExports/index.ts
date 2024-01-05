@@ -1,17 +1,45 @@
+import { existsSync } from 'node:fs';
 import { parseFile } from '@swc/core';
-import type { Config } from '~/getConfig/index.js';
 
-import { ObservableSet, type Pkg } from '~/shared/index.js';
+import type { Config } from '~/getConfig/index.js';
+import { ObservableSet, printError as _printError, type Pkg, printParseError } from '~/shared/index.js';
 
 type Params = {
   pkg: Pkg;
   config: Pick<Config, 'parserConfig'>;
 };
 
-const getExports = async ({ pkg, config }: Params) => {
-  const result = new ObservableSet();
+const printError = (pkg: Pkg) => {
+  _printError({
+    text: `
+    Unable to find ${pkg.name} index file ("${pkg.path}" provided)
 
-  const ast = await parseFile(pkg.path, config.parserConfig);
+    - if you do not have a .pure-index.json file:
+        create one and specify "entry"
+        https://space307.github.io/pure-index/reference/configuration
+
+    - if you have a configuration file:
+        use the pure-index command with the "--entry" flag.
+        https://space307.github.io/pure-index/how-to/precisely-override-package-entry
+    `,
+  });
+};
+
+const getExports = async ({ pkg, config }: Params) => {
+  if (!existsSync(pkg.path)) {
+    printError(pkg);
+    process.exit(1);
+  }
+
+  const result = new ObservableSet();
+  let ast;
+
+  try {
+    ast = await parseFile(pkg.path, config.parserConfig);
+  } catch (e) {
+    printParseError(pkg.path);
+    process.exit(1);
+  }
 
   for (const node of ast.body) {
     if (node.type === 'ExportNamedDeclaration') {

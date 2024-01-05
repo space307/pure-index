@@ -1,7 +1,7 @@
 {
   "name": "pure-index",
   "type": "module",
-  "version": "0.0.54",
+  "version": "0.0.56",
   "description": "Utility for monorepos. It helps to clean your packages of unused exports with ease",
   "main": "./dist/api/index.js",
   "types": "./dist/api/index.d.ts",
@@ -12,7 +12,7 @@
   "private": false,
   "scripts": {
     "build": "rm -rf ./dist && tsc --project ./tsconfig.build.json && tsc-alias",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm t && npm run build",
     "test": "vitest"
   },
   "dependencies": {
