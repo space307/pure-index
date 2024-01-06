@@ -3,9 +3,11 @@ title: How to precisely override a package's entry
 description: How to precisely override a package's entry with Pure Index
 ---
 
-Sometimes it may be necessary to precisely override the path to the package index file. For example, all packages have `./src/index.ts` and only one has `./src/index.tsx`.
+Sometimes, it may be necessary to override the path to the package index file precisely. For example, all packages have `./src/index.ts` and only one has `./src/index.tsx`.
 
-This is easily done with the [`--entry`](/pure-index/intro/cli#command-line-flags) flag.
+You can use the --entry flag to complete this task swiftly.
+
+It's easy to do with the [`--entry`](/pure-index/intro/cli#command-line-flags) flag.
 
 ```diff title="Example"
     "scripts": {

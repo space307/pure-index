@@ -1,10 +1,10 @@
 ---
-title: How to collect package usages
-description: How to collect package usages with Pure Index
+title: How to collect package usage
+description: How to collect package usage with Pure Index
 ---
 
 :::tip
-You can collect usages not only of your own packages, but also of any others. For example, [effector](https://effector.dev).
+You can collect usage from your and external packages — for example, an [effector](https://effector.dev).
 
 ```sh
 pure-index --collect-usages effector
@@ -12,9 +12,9 @@ pure-index --collect-usages effector
 
 :::
 
-## In a monorepository
+## In a monorepo
 
-1. Run Pure Index with [`--collect-usages`](/pure-index/intro/cli#command-line-flags) flag
+1. Run Pure Index with the [`--collect-usages`](/pure-index/intro/cli#command-line-flags) flag
 
 ```sh title="Example"
 pure-index --collect-usages @my/ui-kit
@@ -24,4 +24,4 @@ pure-index --collect-usages @my/ui-kit
 
 ## In different repositories
 
-1. Use [collectUsages](/pure-index/intro/js-api#collectusages) function from [JavaScript API](/pure-index/intro/js-api).
+1. Use the [collectUsages](/pure-index/intro/js-api#collectusages) function from [JavaScript API](/pure-index/intro/js-api).

@@ -1,17 +1,17 @@
 ---
-title: How It Works
+title: How Does It Work
 description: How Pure Index works
 ---
 
-In fact, the task is to compare all exports and imports of the package. Anything not imported but exported are unused exports.
+The task is to compare all exports and imports of the package. Anything not imported but exported is an unused export.
 
 #### Algorithm
 
 1. collect all package exports into _exports Set_
 2. traverse all files where package import may occur
-3. if import is found, remove it from _exports Set_
-4. if the size of exports _exports Set_ became equal to 0, then exit with success
-5. if _exports Set_ size is not equal to 0, then exit with an error
+3. if the import is found, remove it from _exports Set_
+4. if the size of the _exports Set_ became equal to 0, then exit with success
+5. if the _exports Set_ size is not equal to 0, then exit with an error
 
 ### How It Optimized
 

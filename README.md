@@ -1,7 +1,7 @@
 # 🌿 Pure Index
 
 Pure Index is a tool for packages. It helps to clean your packages of unused exports with ease.<br />
-And it's also very fast ⚡️
+And it’s also speedy ⚡️
 
 ## Motivation
 
@@ -15,9 +15,9 @@ export { ThemeProvider, useTheme, type Theme } from './themes';
 ...
 ```
 
-The number of exports increases over time. All of its exportable code requires support. But is all of it actually being used?
+The number of exports increases over time. All of its exportable code requires support. But is all of it being used?
 
-You can check this manually by just looping through the exports. It's time consuming and there is a chance of error. What if it's code is used by multiple repositories?
+You can check this manually by just looping through the exports. It’s time-consuming, and there is a chance of error. What if multiple repositories use its code?
 
 Let's automate this process!
 
@@ -31,9 +31,9 @@ npm install -D pure-index
 
 ## Quick Start
 
-Pure Index can be used either through a [command line interface](https://space307.github.io/pure-index/intro/cli) with an optional [configuration file](https://space307.github.io/pure-index/reference/configuration), or else through its [JavaScript API](https://space307.github.io/pure-index/intro/js-api).
+Pure Index can be used either through a [command line interface](https://space307.github.io/pure-index/intro/cli) with an optional [configuration file](https://space307.github.io/pure-index/reference/configuration) or its [JavaScript API](https://space307.github.io/pure-index/intro/js-api).
 
-1. Add the `check-exports` script in the `package.json` of each package that needs to be checked
+1. Add the `check-exports` script in the `package.json` of packages that require checking.
 
 ```diff
     "scripts": {
@@ -51,4 +51,4 @@ npm run check-exports
 
 ## Documentation
 
-For additional information, guides and api reference visit [our documentation site](https://space307.github.io/pure-index)
+Visit [our documentation site](https://space307.github.io/pure-index) for additional information, guides, and API references.

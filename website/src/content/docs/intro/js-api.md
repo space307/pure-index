@@ -3,15 +3,15 @@ title: JavaScript API
 description: Pure Index JavaScript API Intro
 ---
 
-Pure Index provides a JavaScript API which is usable from Node.js. You only have to use this if the use of Pure Index goes beyond the monorepository.
+Pure Index provides a JavaScript API which is usable from Node.js. You only have to use this if the use of Pure Index goes beyond the monorepo.
 
 :::tip
-It is most convenient to use them on CI where you can clone all the repositories of interest and run the script.
+It is most convenient to use them on CI, where you can clone all the repositories of interest and run the script.
 :::
 
 ## findUnusedExports
 
-This function allows you to find all unused package exports by checking imports in different repositories.
+This function lets you find unused package exports by checking imports in different repositories.
 
 ### Formulae
 
@@ -53,16 +53,15 @@ type Item = {
 };
 ```
 
-The description of each field can be found in the [configuration section](/pure-index/reference/configuration).
-The values of optional parameters will be taken as defaults if they are not provided.
+You can find the description of each field in the [configuration section](/pure-index/reference/configuration). If you don't provide values for optional parameters, they will be taken as defaults.
 
 :::caution
-`Item['dir']` should contains full path to the repository
+`Item['dir']` should contain the full path to the repository
 :::
 
 ### Returns
 
-Promise with `Result` object.
+Promise with a `Result` object.
 
 ```ts
 type Result =
@@ -117,7 +116,7 @@ process.exit(0);
 
 ## collectUsages
 
-This function allows you to collect all usages of the package in different repositories.
+This function allows you to collect all package usage in different repositories.
 
 ### Formulae
 
@@ -151,16 +150,15 @@ type Item = {
 };
 ```
 
-The description of each field can be found in the [configuration section](/pure-index/reference/configuration).
-The values of optional parameters will be taken as defaults if they are not provided.
+You can find the description of each field in the [configuration section](/pure-index/reference/configuration). If you don't provide values for optional parameters, they will be taken as defaults.
 
 :::caution
-`Item['dir']` should contains full path to the repository
+`Item['dir']` should contain the full path to the repository
 :::
 
 ### Returns
 
-Promise with `Result` object.
+Promise with a `Result` object.
 
 ```ts
 type Result =

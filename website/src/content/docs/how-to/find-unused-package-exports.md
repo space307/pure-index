@@ -3,9 +3,9 @@ title: How to find unused package exports
 description: How to find unused package exports with Pure Index
 ---
 
-## In a monorepository
+## In a monorepo
 
-1. Add the `check-exports` script in the `package.json` of package that needs to be checked
+1. Add the `check-exports` script in the `package.json` of the package that needs to be checked
 
 ```diff
     "scripts": {
@@ -32,4 +32,4 @@ nx run-many --target=check-usage --parallel=12
 
 ## In different repositories
 
-1. Use [findUnusedExports](/pure-index/intro/js-api#findunusedexports) function from [JavaScript API](/pure-index/intro/js-api).
+1. Use the [findUnusedExports](/pure-index/intro/js-api#findunusedexports) function from [JavaScript API](/pure-index/intro/js-api).

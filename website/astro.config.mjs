@@ -27,7 +27,7 @@ export default defineConfig({
           label: 'How to',
           items: [
             { label: 'Find unused package exports', link: 'how-to/find-unused-package-exports' },
-            { label: 'Collect package usages', link: 'how-to/collect-package-usage' },
+            { label: 'Collect package usage', link: 'how-to/collect-package-usage' },
             { label: "Precisely override a package's entry", link: 'how-to/precisely-override-package-entry' },
             { label: 'Find unused code inside a package', link: 'how-to/find-unused-code-inside-package' },
             { label: 'Speed up the checking of exports', link: 'how-to/speed-up-the-checking-of-exports' },
@@ -40,7 +40,7 @@ export default defineConfig({
         {
           label: 'Explanation',
           items: [
-            { label: 'How It Works', link: 'explanation/how-it-works' },
+            { label: 'How Does It Work', link: 'explanation/how-it-works' },
             { label: 'Benchmarks', link: 'explanation/benchmarks' },
             { label: 'Limitations', link: 'explanation/limitations' },
           ],
