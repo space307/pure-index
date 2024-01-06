@@ -8,4 +8,5 @@ prepublishOnly:
 prettierCheck:
 	npx prettier ./**/*.ts --check
 
-
+outdated:
+	npm outdated && npm --prefix ./website outdated
