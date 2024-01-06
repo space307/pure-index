@@ -22,7 +22,7 @@ const BASE_CONFIG: Config = {
   dir: '',
   entry: join('src', 'index.ts'),
   exclude: ['node_modules'],
-  extensions: ['ts', 'tsx'],
+  extensions: ['.ts', '.tsx'],
   parserConfig: {
     syntax: 'typescript',
     tsx: true,

@@ -11,7 +11,7 @@ All options are not required.
 {
   "entry": "src/index.ts",
   "exclude": ["node_modules"],
-  "extensions": ["ts", "tsx"],
+  "extensions": [".ts", ".tsx"],
   "dir": "repository-root",
   "batch": 100,
   "parserConfig": {
@@ -33,7 +33,7 @@ Path to the package index file. Relative to the package directory.
 ### extensions
 
 - **Type**: `string[]`
-- **Default**: `['ts', 'tsx']`
+- **Default**: `['.ts', '.tsx']`
 
 List of file extensions to be considered during the search.
 

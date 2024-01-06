@@ -1,4 +1,4 @@
-import { join } from 'node:path';
+import { extname } from 'node:path';
 import { fdir } from 'fdir';
 
 import type { Config } from '~/getConfig/index.js';
@@ -13,12 +13,12 @@ const getFiles = async ({ config }: Params) => {
     .map((item) => item.replace(/(^\/|\/$)/g, '').replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'))
     .join('|');
   const excludeRegExp = new RegExp(exclude);
-  const source = join('**', `*.{${config.extensions.join(',') + ','}}`);
+  const extensions = new Set(config.extensions);
 
   const files = new fdir()
     .exclude((dirName) => excludeRegExp.test(dirName))
-    .globWithOptions([source], { dot: false })
-    .withFullPaths()
+    .filter((path) => extensions.has(extname(path)))
+    .withBasePath()
     .crawl(config.dir)
     .sync();
 

@@ -9,7 +9,7 @@ test('getExports', async () => {
 
   const files = await getFiles({
     config: {
-      extensions: ['ts'],
+      extensions: ['.ts'],
       exclude: ['components'],
       dir,
     },

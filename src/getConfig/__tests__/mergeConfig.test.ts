@@ -7,7 +7,7 @@ test('mergeConfig', () => {
     dir: 'dir',
     batch: 1,
     exclude: ['exclude'],
-    extensions: ['jsx'],
+    extensions: ['.jsx'],
     parserConfig: { syntax: 'ecmascript' } as const,
     collectUsages: 'collectUsages',
     entry: 'entry',

@@ -7,7 +7,7 @@ title: Benchmarks
 - Chip: `Apple M2 Pro`
 - Memory: `16 GB`
 - Node.js: `v20.10.0`
-- Project files: `5176` (ts, tsx)
+- Project files: `5176` (.ts, .tsx)
 - Project packages: `44`
 - Nx parallel: `12`
 

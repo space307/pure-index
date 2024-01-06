@@ -10,7 +10,7 @@ test('default value', async () => {
           batch: 500,
           entry: 'src/index.ts',
           exclude: ['build'],
-          extensions: ['js', 'jsx'],
+          extensions: ['.js', '.jsx'],
           dir: 'dir-from-config',
         },
       }),
@@ -33,7 +33,7 @@ test('default value', async () => {
     batch: 500,
     collectUsages: 'package-a',
     entry: 'src/main.js',
-    extensions: ['js', 'jsx'],
+    extensions: ['.js', '.jsx'],
     exclude: ['node_modules', 'build'],
     dir: 'dir-from-config',
   });
