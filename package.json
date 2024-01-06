@@ -11,8 +11,9 @@
   "files": ["dist", "README.md", "CHANGELOG.md"],
   "private": false,
   "scripts": {
-    "build": "rm -rf ./dist && tsc --project ./tsconfig.build.json && tsc-alias",
-    "prepublishOnly": "npm t && npm run build",
+    "build": "make build",
+    "prepublishOnly": "make prepublishOnly",
+    "prettier:check": "make prettierCheck",
     "test": "vitest"
   },
   "dependencies": {
