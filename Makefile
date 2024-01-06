@@ -3,7 +3,7 @@ build:
 
 
 prepublishOnly:
-	npm run prettier:check && npm t && npm run build
+	npm i && npm run prettier:check && npm t && npm run build
 
 prettierCheck:
 	npx prettier ./**/*.ts --check
