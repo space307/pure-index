@@ -22,7 +22,7 @@ npm run check-exports
 3. Depending on the project, you may need to [configure](/pure-index/reference/configuration) Pure Index.
 
 :::tip
-Use [nx](https://nx.dev) (or any other monorepo manager) to run a script for checking multiple packages with a single command.
+Use <a href="https://nx.dev" target="_blank">nx</a> (or any other monorepo manager) to run a script for checking multiple packages with a single command.
 
 ```bash title="Example"
 nx run-many --target=check-usage --parallel=12

@@ -49,7 +49,7 @@ List of directories that will be excluded when searching for imports.
 - **Type**: `object`
 - **Default**: `{"syntax": "typescript", "tsx": true}`
 
-Object with [swc parser parameters](https://swc.rs/docs/configuration/compilation#jscparser)
+Object with <a href="https://swc.rs/docs/configuration/compilation#jscparser" target="_blank">swc parser parameters</a>
 
 ### dir
 

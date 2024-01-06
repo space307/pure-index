@@ -18,5 +18,5 @@ The task is to compare all exports and imports of the package. Anything not impo
 1. file reading is divided into batches
 2. file is not immediately converted to AST. First the import of the package is searched for in the file. _createReadStream_ is used
 3. there is an instant exit with success as soon as the size of _exports Set_ is equal to zero
-4. [swc](https://swc.rs/) is used to parse the AST
-5. [fdir](https://thecodrr.github.io/fdir/) is used as project crawler
+4. <a href="https://swc.rs" target="_blank">swc</a> is used to parse the AST
+5. <a href="https://thecodrr.github.io/fdir" target="_blank">fdir</a> is used as project crawler
