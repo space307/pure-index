@@ -9,14 +9,11 @@ type Params = {
 
 // fixme: https://github.com/space307/pure-index/issues/10
 const getFiles = async ({ config }: Params) => {
-  const exclude = config.exclude
-    .map((item) => item.replace(/(^\/|\/$)/g, '').replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'))
-    .join('|');
-  const excludeRegExp = new RegExp(exclude);
+  const exclude = new Set(config.exclude);
   const extensions = new Set(config.extensions);
 
   const files = new fdir()
-    .exclude((dirName) => excludeRegExp.test(dirName))
+    .exclude((dirName) => exclude.has(dirName))
     .filter((path) => extensions.has(extname(path)))
     .withBasePath()
     .crawl(config.dir)
