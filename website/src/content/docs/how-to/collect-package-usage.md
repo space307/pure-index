@@ -4,7 +4,7 @@ description: How to collect package usage with Pure Index
 ---
 
 :::tip
-You can collect usage from your and external packages — for example, an [effector](https://effector.dev).
+You can collect usage from your and external packages — for example, an <a href="https://effector.dev" target="_blank">effector</a>.
 
 ```sh
 pure-index --collect-usages effector
