@@ -12,7 +12,7 @@ title: Benchmarks
 - Nx parallel: `12`
 
 ```rust title="Single Package"
-// with unused export
+// with unused exports
 total_time = 0.457 sec
 
 // without unused exports
@@ -20,7 +20,7 @@ total_time = 0.399 sec
 ```
 
 ```rust title="All Packages"
-// with unused export
+// with unused exports
 total_time = 5.545 sec
 
 // without unused exports
