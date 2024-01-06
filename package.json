@@ -2,7 +2,7 @@
   "name": "pure-index",
   "type": "module",
   "version": "1.0.0-next.1",
-  "description": "Utility for monorepos. It helps to clean your packages of unused exports with ease",
+  "description": "Pure Index is a tool for packages. It helps to clean your packages of unused exports with ease.",
   "main": "./dist/api/index.js",
   "types": "./dist/api/index.d.ts",
   "bin": "./dist/bin/index.js",
