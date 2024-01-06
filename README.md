@@ -51,4 +51,4 @@ npm run check-exports
 
 ## Documentation
 
-Visit [our documentation site](https://space307.github.io/pure-index) for additional information, guides, and API references.
+Visit [our documentation site](https://space307.github.io/pure-index) for additional information, guides, and API references..
