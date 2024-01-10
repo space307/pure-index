@@ -94,7 +94,7 @@ const result = await findUnusedExports(
   [
     {
       dir: '/Users/me/my-awesome-repo',
-      exclude: ['build'],
+      exclude: ['**/build/**'],
     },
     {
       dir: '/Users/me/my-another-awesome-repo',
@@ -183,7 +183,7 @@ import { findUnusedExports } from 'pure-index';
 const result = await collectUsages('@my/ui-kit', [
   {
     dir: '/Users/me/my-awesome-repo',
-    exclude: ['build'],
+    exclude: ['**/build/**'],
   },
   {
     dir: '/Users/me/my-another-awesome-repo',

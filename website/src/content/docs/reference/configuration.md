@@ -10,7 +10,7 @@ All options are not required.
 ```json title=".pure-index.json"
 {
   "entry": "src/index.ts",
-  "exclude": ["node_modules"],
+  "exclude": ["**/node_modules/**"],
   "extensions": [".ts", ".tsx"],
   "dir": "repository-root",
   "batch": 100,
@@ -40,7 +40,7 @@ List of file extensions to be considered during the search.
 ### exclude
 
 - **Type**: `string[]`
-- **Default**: `['node_modules']`
+- **Default**: `['**/node_modules/**']`
 
 List of directories that will be excluded when searching for imports.
 

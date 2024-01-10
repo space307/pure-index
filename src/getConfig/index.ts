@@ -21,7 +21,7 @@ const BASE_CONFIG: Config = {
   collectUsages: null,
   dir: '',
   entry: join('src', 'index.ts'),
-  exclude: ['node_modules'],
+  exclude: ['**/node_modules/**'],
   extensions: ['.ts', '.tsx'],
   parserConfig: {
     syntax: 'typescript',

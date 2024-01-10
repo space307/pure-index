@@ -6,7 +6,7 @@ test('mergeConfig', () => {
   const data = {
     dir: 'dir',
     batch: 1,
-    exclude: ['exclude'],
+    exclude: ['**/exclude/**'],
     extensions: ['.jsx'],
     parserConfig: { syntax: 'ecmascript' } as const,
     collectUsages: 'collectUsages',
@@ -15,6 +15,6 @@ test('mergeConfig', () => {
 
   expect(mergeConfig(data)).toStrictEqual({
     ...data,
-    exclude: ['node_modules', ...data.exclude],
+    exclude: ['**/node_modules/**', ...data.exclude],
   });
 });

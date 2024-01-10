@@ -9,7 +9,7 @@ test('default value', async () => {
         config: {
           batch: 500,
           entry: 'src/index.ts',
-          exclude: ['build'],
+          exclude: ['**/build/**'],
           extensions: ['.js', '.jsx'],
           dir: 'dir-from-config',
         },
@@ -24,7 +24,7 @@ test('default value', async () => {
     batch: 500,
     entry: 'src/index.ts',
     extensions: ['.js', '.jsx'],
-    exclude: [...BASE_CONFIG.exclude, 'build'],
+    exclude: [...BASE_CONFIG.exclude, '**/build/**'],
     dir: 'dir-from-config',
   });
 
