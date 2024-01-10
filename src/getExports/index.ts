@@ -95,9 +95,7 @@ const getExports = async ({ pkg, config }: Params) => {
     if (node.type === 'ExportDefaultExpression') {
       // @ts-expect-error
       result.add(node.expression.value);
-    }
-
-    if (node.type === 'ExportAllDeclaration') {
+    } else if (node.type === 'ExportAllDeclaration') {
       printExportAllError(pkg);
       process.exit(1);
     }
