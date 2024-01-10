@@ -30,6 +30,19 @@ const printError = (pkg: Pkg) => {
   });
 };
 
+const printExportAllError = (pkg: Pkg) => {
+  _printError({
+    text: `
+    ExportAllDeclaration was found inside the ${pkg.name} package index file.
+
+    Unfortunately, Pure Index does not parse "export *" to find out what is exported from there.
+    But it can help with replacing:
+
+    https://space307.github.io/pure-index/explanation/limitations
+    `,
+  });
+};
+
 const getExports = async ({ pkg, config }: Params) => {
   if (!existsSync(pkg.path)) {
     printError(pkg);
@@ -82,6 +95,11 @@ const getExports = async ({ pkg, config }: Params) => {
     if (node.type === 'ExportDefaultExpression') {
       // @ts-expect-error
       result.add(node.expression.value);
+    }
+
+    if (node.type === 'ExportAllDeclaration') {
+      printExportAllError(pkg);
+      process.exit(1);
     }
   }
 
