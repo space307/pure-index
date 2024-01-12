@@ -16,7 +16,7 @@ type ListItem = {
 };
 
 type Returns = Result<
-  true,
+  { exports: Set<void> },
   | {
       reason: 'unused_exports';
       exports: Set<string>;
@@ -37,6 +37,5 @@ test('findUnusedExports signature', () => {
   expectTypeOf(findUnusedExports).parameter(1).toMatchTypeOf<ListItem[]>();
   expect(findUnusedExports.length).toBe(2);
 
-  // @ts-expect-error answer idk but it returns Returns
   expectTypeOf(findUnusedExports).returns.resolves.toMatchTypeOf<Returns>();
 });

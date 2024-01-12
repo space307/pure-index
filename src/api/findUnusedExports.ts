@@ -2,7 +2,7 @@ import { join } from 'node:path';
 
 import { findUnusedExports as _findUnusedExports } from '~/findUnusedExports.js';
 import { mergeConfig, type Config } from '~/getConfig/index.js';
-import { readJSON, Ok, Err, type NonEmptyArray } from '~/shared/index.js';
+import { readJSON, Ok, Err, type NonEmptyArray, ObservableSet } from '~/shared/index.js';
 
 type TaskResult = Awaited<ReturnType<typeof _findUnusedExports>>;
 type FailedTaks = Extract<TaskResult, { ok: false }>;
@@ -11,8 +11,12 @@ type ExtractError<T> = {
   err: Extract<Omit<FailedTaks, 'ok'>['err'], { reason: T }>;
 };
 
-const mergeUnusedExports = (list: NonEmptyArray<TaskResult>): ExtractError<'unused_exports'> => {
-  const [head, ...tail] = list.reduce(
+const SUCCESS = Ok({ exports: new Set<void>() });
+
+export const mergeUnusedExports = (
+  list: NonEmptyArray<TaskResult>,
+): ExtractError<'unused_exports'> | typeof SUCCESS => {
+  const sets = list.reduce(
     (acc, res) => {
       if (!res.ok) {
         acc.push(res.err.exports);
@@ -23,19 +27,10 @@ const mergeUnusedExports = (list: NonEmptyArray<TaskResult>): ExtractError<'unus
     [] as unknown as NonEmptyArray<FailedTaks['err']['exports']>,
   );
 
-  if (tail.length) {
-    return Err({ reason: 'unused_exports', exports: head });
-  }
+  const smallestSet = sets.reduce((acc, set) => (set.size < acc.size ? set : acc), sets[0]);
+  const unused = [...smallestSet].filter((exp) => sets.every((set) => set.has(exp)));
 
-  for (const set of tail) {
-    for (const item of head) {
-      if (!set.has(item)) {
-        head.delete(item);
-      }
-    }
-  }
-
-  return Err({ reason: 'unused_exports', exports: head });
+  return unused.length === 0 ? SUCCESS : Err({ reason: 'unused_exports', exports: new ObservableSet(unused) });
 };
 
 type Params = {
@@ -65,7 +60,7 @@ const findUnusedExports = async ({ entry, location = '' }: Params, list: ListIte
   const result = (await Promise.all(tasks)) as NonEmptyArray<TaskResult>;
 
   if (result.some((x) => x.ok)) {
-    return Ok({ exports: new Set<void>() });
+    return SUCCESS;
   }
 
   const [head] = result;
