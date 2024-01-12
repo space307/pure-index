@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     watch: false,
+    reporters: 'basic',
     typecheck: { enabled: true },
   },
 });
