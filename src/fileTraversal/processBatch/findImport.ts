@@ -1,4 +1,4 @@
-import { createReadStream, type PathLike } from 'node:fs';
+import { createReadStream } from 'node:fs';
 
 type Params = {
   path: string;

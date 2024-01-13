@@ -13,7 +13,6 @@
   "scripts": {
     "build": "make build",
     "prepublishOnly": "make prepublishOnly",
-    "prettier:check": "make prettierCheck",
     "test": "vitest"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 import { extname } from 'node:path';
 import { fdir } from 'fdir';
-// @ts-expect-error doesn't matter
+// @ts-expect-error no matter
 import pm from 'picomatch';
 
 import type { Config } from '~/getConfig/index.js';
