@@ -27,7 +27,7 @@
     "node": ">= 16"
   },
   "devDependencies": {
-    "@types/node": "20.11.2",
+    "@types/node": "20.11.3",
     "effector": "23.1.0",
     "prettier": "3.2.2",
     "tsc-alias": "1.8.8",
