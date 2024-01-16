@@ -1,7 +1,7 @@
 {
   "name": "pure-index",
   "type": "module",
-  "version": "1.0.0-next.4",
+  "version": "1.0.0",
   "description": "Pure Index is a tool for packages. It helps to clean your packages of unused exports with ease.",
   "main": "./dist/api/index.js",
   "types": "./dist/api/index.d.ts",
@@ -27,7 +27,7 @@
     "node": ">= 16"
   },
   "devDependencies": {
-    "@types/node": "20.11.3",
+    "@types/node": "20.11.4",
     "effector": "23.1.0",
     "prettier": "3.2.2",
     "tsc-alias": "1.8.8",
