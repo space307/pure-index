@@ -1,7 +1,7 @@
 {
   "name": "pure-index",
   "type": "module",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Pure Index is a tool for packages. It helps to clean your packages of unused exports with ease.",
   "main": "./dist/api/index.js",
   "types": "./dist/api/index.d.ts",
@@ -31,6 +31,7 @@
     "effector": "23.1.0",
     "prettier": "3.2.4",
     "tsc-alias": "1.8.8",
+    "tsup": "^8.0.1",
     "typescript": "5.3.3",
     "vite-tsconfig-paths": "4.3.1",
     "vitest": "1.2.2"

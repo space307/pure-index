@@ -178,7 +178,7 @@ type Result =
 ### Example
 
 ```js
-import { findUnusedExports } from 'pure-index';
+import { collectUsages } from 'pure-index';
 
 const result = await collectUsages('@my/ui-kit', [
   {
