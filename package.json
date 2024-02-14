@@ -21,7 +21,7 @@
     "lilconfig": "3.0.0",
     "meow": "13.2.0",
     "nanospinner": "1.1.0",
-    "picomatch": "4.0.1"
+    "picomatch": "3.0.1"
   },
   "engines": {
     "node": ">= 16"
