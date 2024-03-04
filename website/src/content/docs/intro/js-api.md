@@ -34,7 +34,13 @@ Path to the package index file. Relative to the package location.
 - **Required**: `false`
 - **Default**: `''`
 
-Path to the directory containing `package.json` of the package. Relative to the directory of the script call.
+#### pkgName
+
+- **Type**: `string`
+- **Required**: `false`
+- **Default**: `undefined`
+
+Allows you to specify the name of the package to be searched (instead of `package.json -> name`).
 
 #### repositories
 

@@ -36,6 +36,7 @@ export const mergeUnusedExports = (
 type Params = {
   entry: string;
   location?: string;
+  pkgName?: string;
 };
 
 type ListItem = {
@@ -46,8 +47,8 @@ type ListItem = {
   parserConfig?: Config['parserConfig'];
 };
 
-const findUnusedExports = async ({ entry, location = '' }: Params, list: ListItem[]) => {
-  const { name } = await readJSON(join(location, 'package.json'));
+const findUnusedExports = async ({ entry, location = '', pkgName }: Params, list: ListItem[]) => {
+  const name = pkgName || (await readJSON(join(location, 'package.json'))).name;
   const pkg = { name, path: join(location, entry) };
 
   const tasks = list.map((x) =>
