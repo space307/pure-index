@@ -16,7 +16,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@swc/core": "1.4.11",
+    "@swc/core": "1.4.17",
     "fdir": "6.1.1",
     "lilconfig": "3.1.1",
     "meow": "13.2.0",
